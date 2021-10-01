@@ -1,20 +1,27 @@
 <div class="task">
-  <button class="task__title">Evaluate the addition and deletion of user IDs.</button>
+  <button class="task__title">{{task.name}}</button>
 
   <div class="task__content">
     <button class="task__date">
-      <p class="task__date-label">Planned for:</p>
-      <p>30</p>
-      <p>October</p>
-      <p>2021</p>
+      <span class="task__date-label">Planned for:</span>
+      <span>{{ task.date | date: "d MMMM, y" }}</span>
     </button>
     
-    <button class="task__status task__status--pending">
-      Pending
+    <button class="task__status" 
+            [ngClass]="{
+              'task__status--pending': task.status === 'pending',
+              'task__status--progress': task.status === 'in progress'
+            }">
+      <span>{{task.status}}</span>
     </button>
   
-    <button class="task__importance task__importance--minor">
-      Minor
+    <button class="task__importance" 
+            [ngClass]="{
+              'task__importance--minor': task.importance === 'minor',
+              'task__importance--normal': task.importance === 'normal',
+              'task__importance--critical': task.importance === 'critical'
+            }">
+      <span>{{task.importance}}</span>
     </button>
   
     <button class="task__btn"></button>
