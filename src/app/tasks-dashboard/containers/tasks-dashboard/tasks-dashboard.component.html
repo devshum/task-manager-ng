@@ -1,11 +1,5 @@
 <div class="tasks-board">
-  <div class="tasks-board__task">
-    <task></task>
-  </div>
-  <div class="tasks-board__task">
-    <task></task>
-  </div>
-  <div class="tasks-board__task">
-    <task></task>
+  <div class="tasks-board__task" *ngFor="let task of tasks"> 
+    <task [task]="task"></task>
   </div>
 </div>

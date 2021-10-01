@@ -1,20 +1,20 @@
 {
   "tasks": [
     {
-      "name": "Evaluate the addition and deletion of user IDs.",
-      "date": "2021-10-07",
+      "name": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora aperiam tempore accusantium nobis pariatur modi earum quis! Optio eaque totam est repellat, minima architecto? Itaque, est officia? Nobis, quam voluptatem.",
+      "date": "Thu Oct 07 2021 03:00:00 GMT+0300 (Восточная Европа, летнее время)",
       "status": "pending",
       "importance": "minor"
     },
     {
       "name": "Identify the implementation team.",
-      "date": "2022-2-12",
+      "date": "Sat Feb 12 2022 00:00:00 GMT+0200 (Восточная Европа, стандартное время)",
       "status": "in progress",
       "importance": "normal"
     },
     {
       "name": "Batch schedule download/process.",
-      "date": "2021-10-03",
+      "date": "Sun Oct 03 2021 03:00:00 GMT+0300 (Восточная Европа, летнее время)",
       "status": "pending",
       "importance": "critical"
     }

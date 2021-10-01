@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { TaskComponent } from "./components/task/task.component";
@@ -10,7 +11,7 @@ import { TasksDashBoardService } from "./tasks-dashboard.service";
     TaskDashboardComponent
   ],
   imports: [
-    
+    CommonModule
   ],
   exports: [
     TaskDashboardComponent,

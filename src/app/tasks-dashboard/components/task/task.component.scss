@@ -1,23 +1,30 @@
 @import '../../../../assets/styles/setup';
 
 .task {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 5vw;
+
+  justify-content: space-between;
   align-items: center;
 
   padding: 22px 0;
 
   &__content {
     display: grid;
-    grid-column-gap: 32px;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(3, 1fr) max-content;
 
-    justify-content: center;
-    margin-left: auto;
+    justify-items: center;
+    align-items: center;
   }
 
   &__title {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+
     font-size: 14px;
     line-height: 17px;
+    text-align: left;
 
     &::before {
       display: block;
@@ -34,9 +41,6 @@
   }
 
   &__date {
-    display: flex;
-    justify-content: center;
-
     p:not(:last-child) {
       margin-right: 5px;
     }
@@ -64,10 +68,15 @@
   }
 
   &__date-label {
+    display: block;
+
     font-weight: 800;
+    margin-bottom: 8px;
   }
 
   &__importance {
+    display: flex;
+
     font-size: 12px;
     line-height: 14px;
     align-items: center;
@@ -151,12 +160,6 @@
     &:hover {
       transform: translateY(-2px);
     }
-  }
-
-  &__title,
-  &__importance {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
   }
 
   &__date,

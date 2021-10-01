@@ -18,9 +18,6 @@ export class TaskDashboardComponent implements OnInit {
   ngOnInit() {
     this.tasksService
         .getTasks()
-        .subscribe((data: Task[]) => {
-          this.tasks = data 
-          console.log(this.tasks)
-        })
+        .subscribe((data: Task[]) => this.tasks = data)
   }
 }
