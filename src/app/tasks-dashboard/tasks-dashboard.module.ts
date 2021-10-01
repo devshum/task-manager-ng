@@ -1,6 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { TaskComponent } from "./components/task/task.component";
 import { TaskDashboardComponent } from "./containers/tasks-dashboard/tasks-dashboard.component";
+import { TasksDashBoardService } from "./tasks-dashboard.service";
 
 @NgModule({
   declarations: [
@@ -11,9 +13,12 @@ import { TaskDashboardComponent } from "./containers/tasks-dashboard/tasks-dashb
     
   ],
   exports: [
-    TaskDashboardComponent
+    TaskDashboardComponent,
+    HttpClientModule
   ],
-  providers: []
+  providers: [
+    TasksDashBoardService
+  ]
 })
 
 export class TaskDashboardModule {}
