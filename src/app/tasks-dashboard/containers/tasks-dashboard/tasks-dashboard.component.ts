@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { TasksDashBoardService } from "../../tasks-dashboard.service";
+import { Task } from "../../models/task.interface";
 @Component({
   selector: 'tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -8,7 +9,7 @@ import { TasksDashBoardService } from "../../tasks-dashboard.service";
 })
 
 export class TaskDashboardComponent implements OnInit {
-  tasks: any[] = []
+  tasks: Task[] = []
 
   constructor(
     private tasksService: TasksDashBoardService
@@ -17,6 +18,9 @@ export class TaskDashboardComponent implements OnInit {
   ngOnInit() {
     this.tasksService
         .getTasks()
-        .subscribe((data: any) => this.tasks = data )
+        .subscribe((data: Task[]) => {
+          this.tasks = data 
+          console.log(this.tasks)
+        })
   }
 }

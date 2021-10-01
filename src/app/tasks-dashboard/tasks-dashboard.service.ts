@@ -1,3 +1,4 @@
+import { Task } from './models/task.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
@@ -12,7 +13,7 @@ export class TasksDashBoardService {
     private http: HttpClient,
   ) {}
 
-  getTasks(): Observable<any> {
-    return this.http.get(`${this._apiUrl}/tasks`)
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this._apiUrl}/tasks`)
   }
 }
