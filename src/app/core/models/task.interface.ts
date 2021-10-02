@@ -3,4 +3,4 @@ export interface Task {
   date: string,
   status: string,
   importance: string
-}
+};

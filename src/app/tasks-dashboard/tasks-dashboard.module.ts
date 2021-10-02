@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { TaskComponent } from "./components/task/task.component";
 import { TaskDashboardComponent } from "./containers/tasks-dashboard/tasks-dashboard.component";
-import { TasksDashBoardService } from "./tasks-dashboard.service";
+import { TasksDashoardService } from '../core/services/tasks-dashboard.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { TasksDashBoardService } from "./tasks-dashboard.service";
     HttpClientModule
   ],
   providers: [
-    TasksDashBoardService
+    TasksDashoardService
   ]
 })
 
