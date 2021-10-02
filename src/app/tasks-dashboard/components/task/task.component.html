@@ -3,23 +3,23 @@
 
   <div class="task__content">
     <button class="task__date">
-      <span class="task__date-label">{{ StateText.plannedFor }}</span>
+      <span class="task__date-label">plannedFor:</span>
       <span>{{ task.date | date: "d MMMM, y" }}</span>
     </button>
     
     <button class="task__status" 
             [ngClass]="{
-              'task__status--pending': task.status === 'pending',
-              'task__status--progress': task.status === 'in progress'
+              'task__status--pending': task.status === taskStatus.pending,
+              'task__status--progress': task.status === taskStatus.inProgress
             }">
       <span>{{task.status}}</span>
     </button>
   
     <button class="task__importance" 
             [ngClass]="{
-              'task__importance--minor': task.importance === 'minor',
-              'task__importance--normal': task.importance === 'normal',
-              'task__importance--critical': task.importance === 'critical'
+              'task__importance--minor': task.importance === taskImportance.minor,
+              'task__importance--normal': task.importance === taskImportance.normal,
+              'task__importance--critical': task.importance === taskImportance.critical
             }">
       <span>{{task.importance}}</span>
     </button>

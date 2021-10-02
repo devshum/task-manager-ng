@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { Task } from "../../../core/models/task.interface";
-import { Text } from "../../../core/enums/text";
+import { EnumImportance } from "../../../core/enums/task.importances";
+import { EnumStatus } from "src/app/core/enums/task.statuses";
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -9,7 +10,9 @@ import { Text } from "../../../core/enums/text";
 
 export class TaskComponent {
   @Input() task: Task;
-  public StateText = Text;
+
+  taskImportance = EnumImportance;
+  taskStatus = EnumStatus;
 
   constructor() {}
 }
