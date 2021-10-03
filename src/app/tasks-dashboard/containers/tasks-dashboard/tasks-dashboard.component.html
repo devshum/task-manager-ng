@@ -1,4 +1,6 @@
 <div class="tasks-board">
+  <app-task-form [tasks]="tasks"></app-task-form>
+
   <div class="tasks-board__task" *ngFor="let task of tasks"> 
     <app-task [task]="task"></app-task>
   </div>

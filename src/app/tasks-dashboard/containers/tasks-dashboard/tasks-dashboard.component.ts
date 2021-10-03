@@ -15,7 +15,7 @@ export class TaskDashboardComponent implements OnInit {
     private _tasksService: TasksDashoardService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._tasksService
         .getTasks()
         .subscribe(data => this.tasks = data);
