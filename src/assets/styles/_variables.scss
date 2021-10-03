@@ -8,6 +8,7 @@ $c-blue: #91BDEC;
 $c-purple-10: rgba(136, 76, 178, 0.7);
 $c-purple-20: #884CB2;
 $c-purple: rgba(243, 71, 122, 0.7);
+$c-purple-10: #fa27e8;
 
 $c-orange: #F2994A;
 $c-yellow: #F2C94C;
@@ -18,6 +19,10 @@ $c-red: #EB5757;
 $c-gray: #DCD9D9;
 $c-gray-10: #DFDFDF;
 $c-gray-20: #E0E0E0;
+$c-gray-30: #1D262C;
 
 // SHADOW
 $shadow-1: rgba(0, 0, 0, 0.25);
+
+// TRANSITIONS
+$transition: all .5s;

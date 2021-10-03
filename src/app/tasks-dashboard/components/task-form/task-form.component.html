@@ -1,0 +1,17 @@
+<section class="task-form">
+  <div class="task-form__title-wrap"> 
+    <h1 class="task-form__title">
+      You’ve got 
+      <span class="task-form__amount">
+        {{ tasks.length }} {{ suffix }}
+      </span>
+    </h1>
+    <!-- <div class="task-form__filter-wrap">
+      <p>Filter by a year:</p>
+      <select>
+        <option value=""></option>
+      </select>
+    </div> -->
+  </div>
+  <app-button [text]="'Add new'"></app-button>
+</section>

@@ -1,0 +1,63 @@
+@import '../../../../assets/styles/setup';
+
+.task-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+  position: relative;
+
+  &__title {
+    line-height: 56px;
+    font-weight: 800;
+    color: $c-gray-30;
+    font-size: 34px;
+    cursor: pointer;
+  
+    transition: $transition;
+
+    &:hover {
+      .task-form {
+        &__amount {
+          animation: pulse 1s infinite;
+        }
+      }
+    }
+  }
+
+  &__amount {
+    position: absolute;
+    margin-left: 10px;
+    color: $c-purple-10;
+  }
+
+  &__title-wrap,
+  &__filter-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  &__filter-wrap {
+    margin-left: 180px;
+
+    // select {
+    //   margin-left: 12px;
+    // }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
