@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 
 export class TaskFormComponent {
-  @Input() tasks: Task[];
+  @Input() tasks: Task[] = [];
 
   constructor() {}
 
