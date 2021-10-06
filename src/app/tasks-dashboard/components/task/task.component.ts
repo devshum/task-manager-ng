@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Task } from "../../../core/models/task.interface";
+import { TaskView } from "../../../core/models/task.interface";
 import { EnumImportance } from "../../../core/enums/task.importances";
 import { EnumStatus } from "src/app/core/enums/task.statuses";
 @Component({
@@ -9,7 +9,7 @@ import { EnumStatus } from "src/app/core/enums/task.statuses";
 })
 
 export class TaskComponent {
-  @Input() task: Task;
+  @Input() task: TaskView;
 
   taskImportance = EnumImportance;
   taskStatus = EnumStatus;

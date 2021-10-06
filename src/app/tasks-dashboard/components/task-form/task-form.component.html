@@ -1,17 +1,59 @@
 <section class="task-form">
-  <div class="task-form__title-wrap"> 
-    <h1 class="task-form__title">
-      You’ve got 
-      <span class="task-form__amount">
-        {{ tasks.length }} {{ suffix }}
-      </span>
-    </h1>
-    <!-- <div class="task-form__filter-wrap">
-      <p>Filter by a year:</p>
-      <select>
-        <option value=""></option>
-      </select>
-    </div> -->
+  <div class="task-form__header">
+    <div class="task-form__title-wrap"> 
+      <h1 class="task-form__title">
+        You’ve got 
+        <span class="task-form__amount">
+          {{ tasks.length }} {{ suffix }}
+        </span>
+      </h1>
+      <!-- <div class="task-form__filter-wrap">
+        <p>Filter by a year:</p>
+        <select>
+          <option value=""></option>
+        </select>
+      </div> -->
+    </div>
+    <app-button [text]="!isFormShown ? 'Add new' : 'Hide form'"
+                (click)="toggleForm()"></app-button>
   </div>
-  <app-button [text]="'Add new'"></app-button>
+ 
+  <form class="task-form__form"
+        *ngIf="isFormShown"
+        (ngSubmit)="handleSubmit()"
+        [formGroup]="form">
+    <span>
+      <input type="text"
+             name="name"
+             formControlName="name">
+      
+      <span *ngIf="valid(name, 'required')">required</span>
+      <span *ngIf="valid(name, 'maxlength')">not more than {{name.errors?.maxlength.requiredLength }} carracthers in allowed</span>
+    </span>
+
+
+    <span>
+      <input type="date"
+             name="date"
+             [min]="today"
+             formControlName="date">
+
+      <span *ngIf="valid(date, 'required')">required</span>
+    </span>
+
+    <select name="status" formControlName="status">
+      <option value="pending">pending</option>
+      <option value="in progress">in progress</option>
+    </select>
+
+    <select name="importance" formControlName="importance">
+      <option value="minor">minor</option>
+      <option value="normal">normal</option>
+      <option value="critical">critical</option>
+    </select>
+
+    <app-button [text]="'Add'"
+                [type]="'submit'">
+    </app-button>
+  </form>
 </section>
