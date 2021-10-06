@@ -13,11 +13,23 @@ export class TaskDashboardComponent implements OnInit {
 
   constructor(
     private _tasksService: TasksDashoardService
-  ) {}
+  ) { }
+
+  getTasksSubscribe() {
+    this._tasksService
+      .getTasks()
+      .subscribe(data => this.tasks = data);
+  }
 
   ngOnInit(): void {
+    this.getTasksSubscribe();
+  }
+
+  onAddTask(event: Task): void {
     this._tasksService
-        .getTasks()
-        .subscribe(data => this.tasks = data);
+      .addTask(event)
+      .subscribe(data => {
+        this.getTasksSubscribe();
+      })
   }
 }

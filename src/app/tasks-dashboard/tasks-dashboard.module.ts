@@ -7,6 +7,8 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TaskDashboardComponent } from "./containers/tasks-dashboard/tasks-dashboard.component";
 import { ButtonComponent } from './components/button/button.component';
 import { TasksDashoardService } from '../core/services/tasks-dashboard.service';
+import {  ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     TaskComponent,
@@ -17,13 +19,15 @@ import { TasksDashoardService } from '../core/services/tasks-dashboard.service';
   imports: [
     CommonModule,
     InlineSVGModule.forRoot({ baseUrl: '/assets/icons/', bypassHttpClientInterceptorChain: true }),
+    ReactiveFormsModule
   ],
   exports: [
     TaskDashboardComponent,
     HttpClientModule
   ],
   providers: [
-    TasksDashoardService
+    TasksDashoardService,
+    DatePipe
   ]
 })
 

@@ -18,4 +18,9 @@ export class TasksDashoardService {
   getTasks(): Observable<Task[]> {
     return this._http.get<Task[]>(`${this._apiUrl}/tasks`);
   }
+
+  addTask(task: Task): Observable<Task> {
+    return this._http
+          .post<Task>(`${this._apiUrl}/tasks`, task)
+  }
 }

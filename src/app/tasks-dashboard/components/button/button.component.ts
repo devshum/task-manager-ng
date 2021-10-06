@@ -9,4 +9,5 @@ export class ButtonComponent {
   constructor() { }
 
   @Input() text: string;
+  @Input() type: string;
 }
