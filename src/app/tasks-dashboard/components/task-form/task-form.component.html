@@ -17,6 +17,7 @@
     <app-button [text]="!isFormShown ? 'Add new' : 'Hide form'"
                 (click)="toggleForm()"></app-button>
   </div>
+ 
   <form class="task-form__form"
         *ngIf="isFormShown"
         (ngSubmit)="handleSubmit()"
@@ -27,10 +28,7 @@
              formControlName="name">
       
       <span *ngIf="valid(name, 'required')">required</span>
-
-      <span *ngIf="name.errors?.maxlength">
-        not more than 200 carracthers in allowed
-      </span> 
+      <span *ngIf="valid(name, 'maxlength')">not more than {{name.errors?.maxlength.requiredLength }} carracthers in allowed</span>
     </span>
 
 

@@ -6,7 +6,7 @@ import { TaskComponent } from "./components/task/task.component";
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { TaskDashboardComponent } from "./containers/tasks-dashboard/tasks-dashboard.component";
 import { ButtonComponent } from './components/button/button.component';
-import { TasksDashoardService } from '../core/services/tasks-dashboard.service';
+import { TasksDashboardService } from '../core/services/tasks-dashboard.service';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 @NgModule({
@@ -26,7 +26,7 @@ import { DatePipe } from '@angular/common';
     HttpClientModule
   ],
   providers: [
-    TasksDashoardService,
+    TasksDashboardService,
     DatePipe
   ]
 })

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
-import { TasksDashoardService } from './../../../core/services/tasks-dashboard.service';
-import { Task } from "../../../core/models/task.interface";
+import { TasksDashboardService } from './../../../core/services/tasks-dashboard.service';
+import { TaskPostData, TaskView } from "../../../core/models/task.interface";
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -9,27 +9,27 @@ import { Task } from "../../../core/models/task.interface";
 })
 
 export class TaskDashboardComponent implements OnInit {
-  tasks: Task[] = [];
+  tasks: TaskView[] = [];
 
   constructor(
-    private _tasksService: TasksDashoardService
+    private _tasksService: TasksDashboardService
   ) { }
 
-  getTasksSubscribe() {
-    this._tasksService
-      .getTasks()
-      .subscribe(data => this.tasks = data);
-  }
-
   ngOnInit(): void {
-    this.getTasksSubscribe();
+    this._getTaskList();
   }
 
-  onAddTask(event: Task): void {
+  onAddTask(event: TaskPostData): void {
     this._tasksService
       .addTask(event)
       .subscribe(data => {
-        this.getTasksSubscribe();
+        this._getTaskList();
       })
+  }
+
+  private _getTaskList(): void {
+    this._tasksService
+      .getTasks()
+      .subscribe(data => this.tasks = data);
   }
 }

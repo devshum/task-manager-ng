@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { Task } from 'src/app/core/models/task.interface';
+import { TaskPostData, TaskView } from 'src/app/core/models/task.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class TasksDashoardService {
+export class TasksDashboardService {
   private _apiUrl = environment.apiUrl;
 
   constructor(
     private _http: HttpClient,
   ) {}
 
-  getTasks(): Observable<Task[]> {
-    return this._http.get<Task[]>(`${this._apiUrl}/tasks`);
+  getTasks(): Observable<TaskView[]> {
+    return this._http.get<TaskView[]>(`${this._apiUrl}/tasks`, 
+          { params: { _sort: 'id', _order: 'desc'}}
+    );
   }
 
-  addTask(task: Task): Observable<Task> {
+  addTask(task: TaskPostData): Observable<TaskPostData> {
     return this._http
-          .post<Task>(`${this._apiUrl}/tasks`, task)
+          .post<TaskPostData>(`${this._apiUrl}/tasks`, task)
   }
 }

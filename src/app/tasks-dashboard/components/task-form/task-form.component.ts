@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { Task } from './../../../core/models/task.interface';
+import { TaskView, TaskPostData } from './../../../core/models/task.interface';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumStatus } from 'src/app/core/enums/task.statuses';
@@ -13,12 +13,12 @@ import { DatePipe } from '@angular/common';
 })
 
 export class TaskFormComponent implements OnInit{
-  @Input() tasks: Task[] = [];
-  @Output() addTask: EventEmitter<Task> = new EventEmitter<Task>()
+  @Input() tasks: TaskView[] = [];
+  @Output() addTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
+
   form: FormGroup;
   isFormShown: boolean = true;
   currentDate = new Date();
-  taskData: Task;
 
   constructor(
     private _fb: FormBuilder,
@@ -29,20 +29,6 @@ export class TaskFormComponent implements OnInit{
     this._initForm();
   }
 
-  get suffix(): string {
-    return this.tasks.length > 1 ? 'tasks' : 'task';
-  }
-
-  private _initForm(): void {
-    this.form = this._fb.group(
-      {
-        name: ['', [Validators.required, Validators.maxLength(200)]], 
-        date: ['', [Validators.required]], 
-        status: [EnumStatus.pending, []], 
-        importance: [EnumImportance.minor, []]
-      })
-  }
-
   toggleForm(): void {
     this.isFormShown = !this.isFormShown;
   }
@@ -51,10 +37,7 @@ export class TaskFormComponent implements OnInit{
     this.form.markAllAsTouched();
 
     if(this.form.valid) {
-      this.taskData = this.form.value;
-      this.taskData.date = this.taskData.date === this.today ? 'today' : this.taskData.date;
-      
-      this.addTask.emit(this.taskData);
+      this.addTask.emit(this.form.value);
     }
   }
 
@@ -72,5 +55,19 @@ export class TaskFormComponent implements OnInit{
 
   get today(): string | null {
     return this.datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+  }
+
+  get suffix(): string {
+    return this.tasks.length > 1 ? 'tasks' : 'task';
+  }
+
+  private _initForm(): void {
+    this.form = this._fb.group(
+      {
+        name: ['', [Validators.required, Validators.maxLength(200)]], 
+        date: ['', [Validators.required]], 
+        status: [EnumStatus.pending, []], 
+        importance: [EnumImportance.minor, []]
+      })
   }
 }
