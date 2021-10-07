@@ -11,22 +11,10 @@
   box-shadow: 0px 4px 4px $shadow-1;
 
   &__wrap {
-    transform: translateY(-30px);
     height: calc(100% - 86px);
-    transition: $transition;
     padding-right: 6px;
-
+    
     @include customScroll;
-
-    &.translated {
-      transform: translateY(10px);
-      height: calc(100% - 126px);
-      transition: $transition;
-    }
-
-    &.not-translated {
-      transition: $transition .5s;
-    }
   }
 
   &__task {

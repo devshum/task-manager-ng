@@ -19,7 +19,7 @@
   </div>
  
   <form class="task-form__form"
-        [ngClass]="isFormShown ? 'opened' : 'closed'"
+        *ngIf="isFormShown"
         (ngSubmit)="handleSubmit()"
         [formGroup]="form">
     <span>

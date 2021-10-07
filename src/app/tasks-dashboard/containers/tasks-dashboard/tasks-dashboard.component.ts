@@ -10,7 +10,6 @@ import { TaskView, TaskPostData } from '../../../core/models/task.interface';
 
 export class TaskDashboardComponent implements OnInit {
   tasks: TaskView[] = [];
-  isFormShown = false;
 
   constructor(
     private _tasksService: TasksDashboardService
@@ -26,10 +25,6 @@ export class TaskDashboardComponent implements OnInit {
       .subscribe(() => {
         this._getTasksList();
       });
-  }
-
-  onFormShown(event: boolean) {
-    this.isFormShown = event;
   }
 
   private _getTasksList(): void {
