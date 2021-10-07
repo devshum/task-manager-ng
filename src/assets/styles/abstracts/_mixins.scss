@@ -1,0 +1,17 @@
+@mixin customScroll() {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $c-purple-20 $c-white;
+  
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: $c-purple-20;
+    border: 3px solid transparent;
+    background-clip: content-box;
+    border-radius: 8px;
+  }
+}
