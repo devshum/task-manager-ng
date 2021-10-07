@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
 export class TaskFormComponent implements OnInit{
   @Input() tasks: TaskView[] = [];
   @Output() addTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
-
+  @Output() formShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   form: FormGroup;
   isFormShown = false;
   currentDate = new Date();
@@ -31,6 +31,7 @@ export class TaskFormComponent implements OnInit{
 
   toggleForm(): void {
     this.isFormShown = !this.isFormShown;
+    this.formShown.emit(this.isFormShown);
   }
 
   handleSubmit(): void {
