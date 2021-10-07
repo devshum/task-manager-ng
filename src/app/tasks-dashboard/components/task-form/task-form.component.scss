@@ -50,6 +50,17 @@
   }
 
   &__form {
-    
+    opacity: 0;
+    visibility: hidden;
+
+    &.opened {
+      opacity: 1;
+      visibility: visible;
+      transition: $transition .5s;
+    }
+
+    &.closed {
+      transition: $transition;
+    }
   }
 }
