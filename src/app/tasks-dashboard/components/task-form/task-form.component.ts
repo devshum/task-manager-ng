@@ -17,7 +17,7 @@ export class TaskFormComponent implements OnInit{
   @Output() addTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
 
   form: FormGroup;
-  isFormShown: boolean;
+  isFormShown = false;
   currentDate = new Date();
 
   constructor(
