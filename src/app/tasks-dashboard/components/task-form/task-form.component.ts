@@ -17,7 +17,7 @@ export class TaskFormComponent implements OnInit{
   @Output() addTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
 
   form: FormGroup;
-  isFormShown: boolean = true;
+  isFormShown = false;
   currentDate = new Date();
 
   constructor(
@@ -42,7 +42,7 @@ export class TaskFormComponent implements OnInit{
   }
 
   valid(control: AbstractControl, type: string): boolean {
-    return control.hasError(type) && control.invalid && (control.dirty || control.touched)
+    return control.hasError(type) && control.invalid && (control.dirty || control.touched);
   }
 
   get name(): AbstractControl {
@@ -64,10 +64,9 @@ export class TaskFormComponent implements OnInit{
   private _initForm(): void {
     this.form = this._fb.group(
       {
-        name: ['', [Validators.required, Validators.maxLength(200)]], 
-        date: ['', [Validators.required]], 
-        status: [EnumStatus.pending, []], 
+        name: ['', [Validators.required, Validators.maxLength(200)]],
+        date: ['', [Validators.required]], status: [EnumStatus.pending, []],
         importance: [EnumImportance.minor, []]
-      })
+      });
   }
 }

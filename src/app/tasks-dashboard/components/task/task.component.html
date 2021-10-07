@@ -4,10 +4,7 @@
   <div class="task__content">
     <button class="task__date">
       <span class="task__date-label">Planned for:</span>
-      <span [ngSwitch]="task.date">
-        <ng-template [ngSwitchCase]="'today'">{{ task.date }}</ng-template>
-        <ng-template ngSwitchDefault>{{ task.date | date: "d MMMM, y" }}</ng-template>
-      </span>
+      <span>{{ task.date | date: "d MMMM, y" }}</span>
     </button>
     
     <button class="task__status" 

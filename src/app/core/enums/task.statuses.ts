@@ -1,4 +1,4 @@
 export enum EnumStatus {
-  pending = "pending",
-  inProgress = "in progress"
-};
+  pending = 'pending',
+  inProgress = 'in progress'
+}

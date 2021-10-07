@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
-import { TaskPostData, TaskView } from 'src/app/core/models/task.interface';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { TaskView, TaskPostData } from 'src/app/core/models/task.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -16,13 +16,12 @@ export class TasksDashboardService {
   ) {}
 
   getTasks(): Observable<TaskView[]> {
-    return this._http.get<TaskView[]>(`${this._apiUrl}/tasks`, 
-          { params: { _sort: 'id', _order: 'desc'}}
+    return this._http.get<TaskView[]>(`${this._apiUrl}/tasks`, { params: { _sort: 'id', _order: 'desc' } }
     );
   }
 
-  addTask(task: TaskPostData): Observable<TaskPostData> {
+  addTask(task: TaskPostData): Observable<TaskView> {
     return this._http
-          .post<TaskPostData>(`${this._apiUrl}/tasks`, task)
+          .post<TaskView>(`${this._apiUrl}/tasks`, task);
   }
 }

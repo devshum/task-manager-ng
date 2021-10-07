@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
-import { OnInit } from "@angular/core";
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard.service';
-import { TaskPostData, TaskView } from "../../../core/models/task.interface";
+import { TaskView, TaskPostData } from '../../../core/models/task.interface';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -16,20 +16,20 @@ export class TaskDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._getTaskList();
+    this._getTasksList();
   }
 
   onAddTask(event: TaskPostData): void {
     this._tasksService
       .addTask(event)
-      .subscribe(data => {
-        this._getTaskList();
-      })
+      .subscribe(() => {
+        this._getTasksList();
+      });
   }
 
-  private _getTaskList(): void {
+  private _getTasksList(): void {
     this._tasksService
       .getTasks()
-      .subscribe(data => this.tasks = data);
+      .subscribe(data => { this.tasks = data; });
   }
 }
