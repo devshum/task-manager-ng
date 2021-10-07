@@ -14,6 +14,10 @@
   cursor: pointer;
   transition: $transition;
 
+  &.animated {
+    animation: pulse 1s infinite;
+  }
+
   &__wrapper {
     display: flex;
     align-items: center;

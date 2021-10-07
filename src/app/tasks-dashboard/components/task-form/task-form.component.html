@@ -1,9 +1,11 @@
 <section class="task-form">
   <div class="task-form__header">
     <div class="task-form__title-wrap"> 
-      <h1 class="task-form__title">
-        You’ve got 
-        <span class="task-form__amount">
+      <h1 class="task-form__title" [class.hovered]="tasks.length">
+        <span *ngIf="tasks.length">You’ve got</span>
+        <span *ngIf="!tasks.length">You haven't got tasks yet!</span>
+
+        <span class="task-form__amount" *ngIf="tasks.length">
           {{ tasks.length }} {{ suffix }}
         </span>
       </h1>
@@ -15,11 +17,14 @@
       </div> -->
     </div>
     <app-button [text]="!isFormShown ? 'Add new' : 'Hide form'"
-                (click)="toggleForm()"></app-button>
+                (click)="toggleForm()"
+                [tasks]="tasks.length"
+                [formShown]="isFormShown"></app-button>
   </div>
  
   <form class="task-form__form"
-        [ngClass]="isFormShown ? 'opened' : 'closed'"
+        [ngClass]="isFormShown && tasks.length ? 'opened' : 'closed'"
+        [class.opened-initial]="isFormShown && !tasks.length"
         (ngSubmit)="handleSubmit()"
         [formGroup]="form">
     <span>

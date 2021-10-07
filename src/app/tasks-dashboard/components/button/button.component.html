@@ -1,4 +1,5 @@
-<button [type]="type ? type : 'button'" class="button">
+<button [type]="type ? type : 'button'" class="button" 
+        [class.animated]="tasks === 0 && !formShown"> 
   <div class="button__wrapper">
     <i [inlineSVG]="'icon-btn.svg'" class="button__icon">&nbsp;</i>
     <span>{{ text }}</span>

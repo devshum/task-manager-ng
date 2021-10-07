@@ -9,6 +9,7 @@
   width: 90vw;
 
   box-shadow: 0px 4px 4px $shadow-1;
+  position: relative;
 
   &__wrap {
     transform: translateY(-30px);
@@ -32,6 +33,29 @@
   &__task {
     &:not(:last-child) {
       border-bottom: 1px solid $c-gray-20;
+    }
+  }
+
+  &__message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: calc(100% - 160px);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__message-content {
+    font-size: 32px;
+
+    span {
+      font-weight: bold;
+      color: $c-purple-20;
     }
   }
 }

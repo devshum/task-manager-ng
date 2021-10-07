@@ -5,6 +5,9 @@
   margin-bottom: 16px;
   position: relative;
 
+  z-index: 1;
+  position: relative;
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -16,14 +19,17 @@
     font-weight: 800;
     color: $c-gray-30;
     font-size: 34px;
-    cursor: pointer;
   
     transition: $transition;
 
-    &:hover {
-      .task-form {
-        &__amount {
-          animation: pulse 1s infinite;
+    &.hovered {
+      cursor: pointer;
+
+      &:hover {
+        .task-form {
+          &__amount {
+            animation: pulse 1s infinite;
+          }
         }
       }
     }
@@ -52,11 +58,20 @@
   &__form {
     opacity: 0;
     visibility: hidden;
+    transition: $transition;
 
-    &.opened {
+    &.opened,
+    &.opened-initial {
       opacity: 1;
       visibility: visible;
+    }
+
+    &.opened {
       transition: $transition .5s;
+    }
+
+    &.opened-initial {
+      transition: $transition;
     }
 
     &.closed {
