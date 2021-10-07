@@ -8,23 +8,14 @@
   height: 80vh;
   width: 90vw;
 
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: $c-purple-20 $c-white;
-  
-  &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background-color: $c-purple-20;
-    border: 3px solid transparent;
-    background-clip: content-box;
-    border-radius: 8px;
-  }
-
   box-shadow: 0px 4px 4px $shadow-1;
+
+  &__wrap {
+    height: calc(100% - 86px);
+    padding-right: 6px;
+    
+    @include customScroll;
+  }
 
   &__task {
     &:not(:last-child) {

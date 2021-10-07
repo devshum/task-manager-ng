@@ -2,7 +2,9 @@
   <app-task-form [tasks]="tasks"
                  (addTask)="onAddTask($event)"></app-task-form>
 
-  <div class="tasks-board__task" *ngFor="let task of tasks"> 
-    <app-task [task]="task"></app-task>
+  <div class="tasks-board__wrap">
+    <div class="tasks-board__task" *ngFor="let task of tasks"> 
+      <app-task [task]="task"></app-task>
+    </div>
   </div>
 </div>
