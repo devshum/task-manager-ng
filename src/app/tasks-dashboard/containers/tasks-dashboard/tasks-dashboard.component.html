@@ -1,19 +1,26 @@
-<div class="tasks-board">
-  <app-task-form [tasks]="tasks"
-                 (addTask)="onAddTask($event)"
-                 (formShown)="onFormShown($event)"></app-task-form>
+<div class="tasks-board" *ngIf="tasks !== undefined">
+  <app-task-form
+    [tasks]="tasks"
+    (addTask)="onAddTask($event)"
+    (formShown)="onFormShown($event)"
+  ></app-task-form>
 
-  <div class="tasks-board__wrap" *ngIf="tasks.length; else noTasks"
-       [ngClass]="isFormShown && tasks.length > 0 ? 'translated' : 'not-translated'">
-    <div class="tasks-board__task" *ngFor="let task of tasks"> 
-      <app-task [task]="task"
-                (remove)="onRemoveTask($event)"></app-task>
+  <div
+    class="tasks-board__wrap"
+    *ngIf="tasks.length > 0; else noTasks"
+    [ngClass]="isFormShown ? 'translated' : 'not-translated'"
+  >
+    <div class="tasks-board__task" *ngFor="let task of tasks">
+      <app-task [task]="task" (remove)="onRemoveTask($event)"></app-task>
     </div>
-  </div> 
+  </div>
 
   <ng-template #noTasks>
     <div class="tasks-board__message">
-      <span class="tasks-board__message-content">Press the button above to open the form to add <span>a new task</span> 🙂</span>
+      <span class="tasks-board__message-content"
+        >Press the button above to open the form to add
+        <span>a new task</span> 🙂</span
+      >
     </div>
   </ng-template>
 </div>
