@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { TaskView, TaskPostData } from 'src/app/core/models/task.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TaskQueryParams } from '../models/task-query.interface';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,10 @@ export class TasksDashboardService {
   addTask(task: TaskPostData): Observable<TaskView> {
     return this._http
       .post<TaskView>(`${this._apiUrl}/tasks`, task);
+  }
+
+  removeTask(task: TaskView): Observable<TaskView> {
+    return this._http
+      .delete<TaskView>(`${this._apiUrl}/tasks/${task.id}`);
   }
 }
