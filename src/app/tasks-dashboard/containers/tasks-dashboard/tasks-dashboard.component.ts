@@ -28,6 +28,14 @@ export class TaskDashboardComponent implements OnInit {
       });
   }
 
+  onRemoveTask(event: TaskView): void {
+    this._tasksService
+      .removeTask(event)
+      .subscribe(() => {
+        this._getTasksList();
+      });
+  }
+
   onFormShown(event: boolean) {
     this.isFormShown = event;
   }

@@ -4,9 +4,10 @@
                  (formShown)="onFormShown($event)"></app-task-form>
 
   <div class="tasks-board__wrap" *ngIf="tasks.length; else noTasks"
-       [ngClass]="isFormShown && tasks.length > 0? 'translated' : 'not-translated'">
+       [ngClass]="isFormShown && tasks.length > 0 ? 'translated' : 'not-translated'">
     <div class="tasks-board__task" *ngFor="let task of tasks"> 
-      <app-task [task]="task"></app-task>
+      <app-task [task]="task"
+                (remove)="onRemoveTask($event)"></app-task>
     </div>
   </div> 
 
