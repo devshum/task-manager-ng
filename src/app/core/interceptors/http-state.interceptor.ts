@@ -14,13 +14,14 @@ export class HttpStateInterceptor implements HttpInterceptor {
 
   constructor(
     private _loaderService: LoaderService
-  ) {}
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this._loaderService.isLoading.next(true);
-    return next.handle(request).pipe(
-      finalize(() => this._loaderService.isLoading.next(false))
-    );
+    // this._loaderService.isLoading.next(true);
+    return next.handle(request);
+    // .pipe(
+    //   finalize(() => this._loaderService.isLoading.next(false))
+    // );
   }
 }
 

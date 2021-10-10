@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
+import { debounce, debounceTime, filter } from 'rxjs/operators';
+import { Observable, timer } from 'rxjs';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -12,6 +14,7 @@ import { TaskView, TaskPostData } from '../../../core/models/task.interface';
 export class TaskDashboardComponent implements OnInit {
   tasks: TaskView[];
   isFormShown = false;
+  loading$: Observable<boolean | null>;
 
   constructor(
     private _tasksService: TasksDashboardService,
@@ -19,7 +22,12 @@ export class TaskDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loaderService.start();
     this._getTasksList();
+
+    this.loading$ = this.loaderService.loading.pipe(
+      filter(load => load !== null),
+      debounce(load => load ? timer(0) : timer(500)));
   }
 
   onAddTask(event: TaskPostData): void {
@@ -45,6 +53,9 @@ export class TaskDashboardComponent implements OnInit {
   private _getTasksList(): void {
     this._tasksService
       .getTasks()
-      .subscribe(data => { this.tasks = data; });
+      .subscribe(data => {
+        this.tasks = data;
+        this.loaderService.end();
+      });
   }
 }
