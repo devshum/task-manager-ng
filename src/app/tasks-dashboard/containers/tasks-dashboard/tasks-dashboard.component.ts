@@ -9,7 +9,7 @@ import { TaskView, TaskPostData } from '../../../core/models/task.interface';
 })
 
 export class TaskDashboardComponent implements OnInit {
-  tasks: TaskView[] = [];
+  tasks: TaskView[];
   isFormShown = false;
 
   constructor(
