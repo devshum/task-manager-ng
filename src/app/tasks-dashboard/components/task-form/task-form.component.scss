@@ -70,12 +70,5 @@
       transition: $transition .5s;
     }
 
-    &.opened-initial {
-      transition: $transition;
-    }
-
-    &.closed {
-      transition: $transition;
-    }
   }
 }

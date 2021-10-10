@@ -18,29 +18,10 @@
   <ng-template #noTasks>
     <div class="tasks-board__message">
       <span class="tasks-board__message-content"
-        >Press the button above to open the form to add
-        <span>a new task</span> 🙂</span
+        >You don't have any tasks or the filter doesnt't match your parameter 🙂</span
       >
     </div>
   </ng-template>
 </div>
 
-<div class="preloader-filter" *ngIf="loading$ | async">
-  <div class="preloader-filter__bg">
-    <div class="preloader-filter__icon-box">
-      <div
-        class="preloader-filter__icon"
-        [inlineSVG]="'preloader-icon.svg'"
-      ></div>
-      <div class="preloader-filter__circle preloader-filter__circle--1">
-        &nbsp;
-      </div>
-      <div class="preloader-filter__circle preloader-filter__circle--2">
-        &nbsp;
-      </div>
-      <div class="preloader-filter__circle preloader-filter__circle--3">
-        &nbsp;
-      </div>
-    </div>
-  </div>
-</div>
+<app-preloader *ngIf="loading$ | async"></app-preloader>
