@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpStateInterceptor } from './core/interceptors/http-state.interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -13,7 +15,9 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     TaskDashboardModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpStateInterceptor, multi:true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
