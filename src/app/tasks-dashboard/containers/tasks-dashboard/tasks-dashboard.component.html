@@ -15,8 +15,6 @@
     </div>
   </div>
 
-  <div *ngIf="loaderService.isLoading | async" class="loader">&nbsp;</div>
-
   <ng-template #noTasks>
     <div class="tasks-board__message">
       <span class="tasks-board__message-content"
@@ -25,4 +23,15 @@
       >
     </div>
   </ng-template>
+</div>
+
+<div class="preloader-filter" *ngIf="loaderService.isLoading | async">
+  <div class="preloader-filter__bg">
+      <div class="preloader-filter__icon-box">
+          <div class="preloader-filter__icon" [inlineSVG]="'preloader-icon.svg'"></div>
+          <div class="preloader-filter__circle preloader-filter__circle--1">&nbsp;</div>
+          <div class="preloader-filter__circle preloader-filter__circle--2">&nbsp;</div>
+          <div class="preloader-filter__circle preloader-filter__circle--3">&nbsp;</div>
+      </div>
+  </div>
 </div>
