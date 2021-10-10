@@ -11,6 +11,8 @@
     </div>
   </div> 
 
+  <div *ngIf="loaderService.isLoading | async" class="loader">&nbsp;</div>
+
   <ng-template #noTasks>
     <div class="tasks-board__message">
       <span class="tasks-board__message-content">Press the button above to open the form to add <span>a new task</span> 🙂</span>

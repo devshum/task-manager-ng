@@ -1,6 +1,7 @@
+import { LoaderService } from './../../../core/services/loader/loader.service';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { TasksDashboardService } from './../../../core/services/tasks-dashboard.service';
+import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
 @Component({
   selector: 'app-tasks-dashboard',
@@ -13,7 +14,8 @@ export class TaskDashboardComponent implements OnInit {
   isFormShown = false;
 
   constructor(
-    private _tasksService: TasksDashboardService
+    private _tasksService: TasksDashboardService,
+    public loaderService: LoaderService
   ) { }
 
   ngOnInit(): void {
