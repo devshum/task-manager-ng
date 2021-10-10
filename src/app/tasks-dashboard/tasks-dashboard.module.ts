@@ -9,12 +9,14 @@ import { ButtonComponent } from './components/button/button.component';
 import { TasksDashboardService } from '../core/services/tasks-dashboard/tasks-dashboard.service';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { PreloaderComponent } from './components/preloader/preloader.component';
 @NgModule({
   declarations: [
     TaskComponent,
     TaskFormComponent,
     ButtonComponent,
-    TaskDashboardComponent
+    TaskDashboardComponent,
+    PreloaderComponent
   ],
   imports: [
     CommonModule,

@@ -1,9 +1,9 @@
 import { LoaderService } from './../../../core/services/loader/loader.service';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
-import { debounce, debounceTime, filter } from 'rxjs/operators';
+import { debounce, filter } from 'rxjs/operators';
 import { Observable, timer } from 'rxjs';
 @Component({
   selector: 'app-tasks-dashboard',
@@ -27,7 +27,7 @@ export class TaskDashboardComponent implements OnInit {
 
     this.loading$ = this.loaderService.loading.pipe(
       filter(load => load !== null),
-      debounce(load => load ? timer(0) : timer(500)));
+      debounce(load => load ? timer(0) : timer(800)));
   }
 
   onAddTask(event: TaskPostData): void {

@@ -36,7 +36,6 @@ export class TaskFormComponent implements OnInit{
 
   handleSubmit(): void {
     this.form.markAllAsTouched();
-
     if(this.form.valid) {
       this.addTask.emit(this.form.value);
     }

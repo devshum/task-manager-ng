@@ -11,3 +11,13 @@
     transform: scale(1);
   }
 }
+
+@keyframes preloader {
+  50%{
+    background-size: 80%;
+  }
+
+  100%{
+    background-position: 125% 0;
+  }
+}
