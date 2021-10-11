@@ -1,29 +1,36 @@
-<div class="task">
-  <button class="task__title">{{task.name}}</button>
+<form class="task">
+  <div class="task__title">{{task.name}}</div>
 
   <div class="task__content">
-    <button class="task__date">
+    <div class="task__date">
       <span class="task__date-label">Planned for:</span>
       <span>{{ task.date | date: "d MMMM, y" }}</span>
-    </button>
+    </div>
     
-    <button class="task__status" 
+    <div class="task__status" 
             [ngClass]="{
               'task__status--pending': task.status === taskStatus.pending,
               'task__status--progress': task.status === taskStatus.inProgress
             }">
       <span>{{task.status}}</span>
-    </button>
+    </div>
   
-    <button class="task__importance" 
+    <div class="task__importance" 
             [ngClass]="{
               'task__importance--minor': task.importance === taskImportance.minor,
               'task__importance--normal': task.importance === taskImportance.normal,
               'task__importance--critical': task.importance === taskImportance.critical
             }">
       <span>{{task.importance}}</span>
-    </button>
+    </div>
   
-    <button class="task__btn" (click)="removeTask()"></button>
+    <nav class="task__nav">
+      <div class="task__nav-edit">
+        <button class="task__edit icon" [inlineSVG]="'icon-edit.svg'" (click)="removeTask()"></button>
+        <!-- <button class="task__done icon" [inlineSVG]="'icon-done.svg'" (click)="removeTask()"></button> -->
+      </div>
+      <button class="task__delete icon" [inlineSVG]="'icon-delete.svg'" (click)="removeTask()"></button>  
+    </nav>
   </div>
-</div>
+</form>
+

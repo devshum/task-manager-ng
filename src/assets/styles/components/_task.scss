@@ -1,0 +1,42 @@
+.task {
+  &__delete {
+    svg {
+      height: 100%;
+
+      .lid {
+        transition: $transition;
+      }
+
+      &:hover {
+        .lid {
+          transform: translateY(-30px);
+        }
+      }
+
+      path {
+        fill: #ED2939;
+      }
+    }
+  }
+
+  &__edit {
+    svg {
+      path {
+        fill: $c-blue;
+      }
+    }
+  }
+
+  &__done {
+    svg {
+      path {
+        fill: $c-green-10;
+        transition: $transition;
+        
+        &:hover {
+          fill: $c-green;
+        }
+      }
+    }
+  }
+}

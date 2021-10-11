@@ -6,13 +6,13 @@
   grid-column-gap: 5vw;
 
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 
   padding: 22px 0;
 
   &__content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr) max-content;
+    grid-template-columns: repeat(4, 1fr);
 
     justify-items: center;
     align-items: center;
@@ -25,6 +25,7 @@
     font-size: 14px;
     line-height: 17px;
     text-align: left;
+    margin-left: 24px;
 
     &::before {
       display: block;
@@ -41,6 +42,8 @@
   }
 
   &__date {
+    text-align: center;
+    
     p:not(:last-child) {
       margin-right: 5px;
     }
@@ -58,12 +61,12 @@
 
     &--pending {
       color: $c-orange;
-      background-color: rgba(242, 153, 74, 0.2);
+      background-color: $c-orange-10;
     }
 
     &--progress {
       color: $c-aqua;
-      background-color: rgba(86, 204, 242, 0.2);
+      background-color: $c-blue-10;
     }
   }
 
@@ -109,72 +112,47 @@
     }
   }
 
-  &__btn {
-    display: flex;
-    justify-content: center;
-  
-    border-radius: 50%;
-    color: $c-gray;
-  
-    min-height: 22px;
-    min-width: 22px;
-  
-    position: relative;
+  &__delete,
+  &__edit,
+  &__done {
+    @extend %btn-reset;
+  }
+
+  &__edit {
+    transition: $transition;
 
     &:hover {
-      background-color: $c-gray-10;
-    }
+      transform: translateX(5px);
 
-    &:hover {
-      &::before {
-        color: $c-white;
+      &::after {
+        width: 50%;
       }
     }
+  }
 
-    &::before {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    
-      content: '...';
+  &__edit,
+  &__done {
+    margin-right: 10px;
+  }
+
+  &__edit {
+    position: relative;
+
+    &::after {
+      content: '';
       position: absolute;
-      font-size: 24px;
-      width: inherit;
-      height: 8px;
+      transition: $transition;
+      background-color: $c-blue;
+      height: 1px;
+      width: 0;
+      bottom: 8px;
+      right: 19px;
     }
   }
 
-  &__title,
-  &__date,
-  &__status,
-  &__importance,
-  &__btn,
-  &__btn::before {
-    transition: $transition;
-  }
+  &__nav {
+    display: flex;
 
-  &__title,
-  &__date,
-  &__status,
-  &__importance {
-    &:hover {
-      transform: translateY(-2px);
-    }
-  }
-
-  &__date,
-  &__title,
-  &__importance {
-    background-color: unset;
-  }
-
-  &__status,
-  &__importance,
-  &__btn,
-  &__date,
-  &__title {
-    font-family: inherit;
-    cursor: pointer;
-    border: 0;
+    height: 35px;
   }
 }
