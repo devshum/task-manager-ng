@@ -16,7 +16,7 @@ export class LoaderService {
     this._loading.next(false);
   }
 
-  get loading(): Observable<boolean | null> {
+  get loadingStatus(): Observable<boolean | null> {
     return this._loading.asObservable();
   }
 }

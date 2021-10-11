@@ -1,9 +1,8 @@
 import { LoaderService } from './../../../core/services/loader/loader.service';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
-import { debounce, filter } from 'rxjs/operators';
 import { Observable, timer } from 'rxjs';
 @Component({
   selector: 'app-tasks-dashboard',
@@ -18,19 +17,16 @@ export class TaskDashboardComponent implements OnInit {
 
   constructor(
     private _tasksService: TasksDashboardService,
-    public loaderService: LoaderService
+    private _loaderService: LoaderService
   ) { }
 
   ngOnInit(): void {
-    this.loaderService.start();
+    this._loaderService.start();
     this._getTasksList();
-
-    this.loading$ = this.loaderService.loading.pipe(
-      filter(load => load !== null),
-      debounce(load => load ? timer(0) : timer(800)));
   }
 
   onAddTask(event: TaskPostData): void {
+    this._loaderService.start();
     this._tasksService
       .addTask(event)
       .subscribe(() => {
@@ -39,6 +35,7 @@ export class TaskDashboardComponent implements OnInit {
   }
 
   onRemoveTask(event: TaskView): void {
+    this._loaderService.start();
     this._tasksService
       .removeTask(event)
       .subscribe(() => {
@@ -55,7 +52,7 @@ export class TaskDashboardComponent implements OnInit {
       .getTasks()
       .subscribe(data => {
         this.tasks = data;
-        this.loaderService.end();
+        this._loaderService.end();
       });
   }
 }
