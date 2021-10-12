@@ -2,7 +2,8 @@
 @import '../../../../assets/styles/base/animations';
 
 .task-form {
-  margin-bottom: 16px;
+  display: grid;
+  grid-row-gap: 5px;
   position: relative;
 
   z-index: 1;
@@ -56,6 +57,11 @@
   }
 
   &__form {
+    display: grid;
+    grid-template-columns: repeat(4, max-content) 1fr;
+    align-items: center;
+    grid-column-gap: 16px;
+
     opacity: 0;
     visibility: hidden;
     transition: $transition;
@@ -69,6 +75,9 @@
     &.opened {
       transition: $transition .5s;
     }
+  }
 
+  app-button {
+    justify-self: end;
   }
 }

@@ -19,7 +19,15 @@ export class TaskFormComponent implements OnInit{
   form: FormGroup;
   isFormShown = false;
   currentDate = new Date();
-
+  statusOptions: string[] = [
+    EnumStatus.pending,
+    EnumStatus.inProgress
+  ];
+  importanceOptions: string[] = [
+    EnumImportance.minor,
+    EnumImportance.normal,
+    EnumImportance.critical
+  ];
   constructor(
     private _fb: FormBuilder,
     private datePipe: DatePipe
@@ -38,6 +46,13 @@ export class TaskFormComponent implements OnInit{
     this.form.markAllAsTouched();
     if(this.form.valid) {
       this.addTask.emit(this.form.value);
+
+      this.form.reset({
+        name: '',
+        date: '',
+        status: EnumStatus.pending,
+        importance: EnumImportance.minor
+      });
     }
   }
 
@@ -64,7 +79,7 @@ export class TaskFormComponent implements OnInit{
   private _initForm(): void {
     this.form = this._fb.group(
       {
-        name: ['', [Validators.required, Validators.maxLength(200)]],
+        name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         date: ['', [Validators.required]], status: [EnumStatus.pending, []],
         importance: [EnumImportance.minor, []]
       });

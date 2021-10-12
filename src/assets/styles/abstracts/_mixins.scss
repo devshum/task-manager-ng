@@ -15,3 +15,12 @@
     border-radius: 8px;
   }
 }
+
+@mixin removeAutofill() {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px $c-white inset !important;
+  }
+}

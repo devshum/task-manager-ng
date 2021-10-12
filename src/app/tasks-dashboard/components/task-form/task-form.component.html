@@ -22,39 +22,52 @@
                 [formShown]="isFormShown"></app-button>
   </div>
  
-  <form class="task-form__form"
+  <form class="task-form__form form"
         [ngClass]="isFormShown && tasks.length ? 'opened' : 'closed'"
         [class.opened-initial]="isFormShown && !tasks.length"
         (ngSubmit)="handleSubmit()"
         [formGroup]="form">
-    <span>
+    <span class="form__input-wrap">
       <input type="text"
              name="name"
-             formControlName="name">
+             formControlName="name"
+             class="input"
+             placeholder="Enter your task name...">
       
-      <span *ngIf="valid(name, 'required')">required</span>
-      <span *ngIf="valid(name, 'maxlength')">not more than {{name.errors?.maxlength.requiredLength }} carracthers in allowed</span>
+      <span class="form__input-error" 
+            [class.shown]="valid(name, 'required')">
+            required
+      </span>
+
+      <!-- <span class="form__input-error" 
+            [class.shown]="valid(name, 'maxlength')" >
+            {{ valid(name, 'maxlength') && name.errors?.maxlength.requiredLength }}
+            characters is allowed
+      </span> -->
+
+      <span class="form__input-error" 
+            [class.shown]="valid(name, 'pattern')">
+            english characters are allowed
+      </span>
     </span>
 
-    <span>
+    <span class="form__input-wrap">
       <input type="date"
              name="date"
              [min]="today"
-             formControlName="date">
+             formControlName="date"
+             class="form__input-date input">
 
-      <span *ngIf="valid(date, 'required')">required</span>
+      <span class="form__input-error" 
+            [class.shown]="valid(date, 'required')">
+            required
+      </span>
     </span>
 
-    <select name="status" formControlName="status">
-      <option value="pending">pending</option>
-      <option value="in progress">in progress</option>
-    </select>
+    <ngx-select-dropdown formControlName="status" [options]="statusOptions"></ngx-select-dropdown>
 
-    <select name="importance" formControlName="importance">
-      <option value="minor">minor</option>
-      <option value="normal">normal</option>
-      <option value="critical">critical</option>
-    </select>
+
+    <ngx-select-dropdown formControlName="importance" [options]="importanceOptions"></ngx-select-dropdown>
 
     <app-button [text]="'Add'"
                 [type]="'submit'">
