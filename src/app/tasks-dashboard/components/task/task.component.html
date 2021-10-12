@@ -1,4 +1,5 @@
-<form class="task">
+<!-- TODO Change to form when patch -->
+<div class="task">
   <div class="task__title">{{task.name}}</div>
 
   <div class="task__content">
@@ -26,11 +27,11 @@
   
     <nav class="task__nav">
       <div class="task__nav-edit">
-        <button class="task__edit icon" [inlineSVG]="'icon-edit.svg'" (click)="removeTask()"></button>
-        <!-- <button class="task__done icon" [inlineSVG]="'icon-done.svg'" (click)="removeTask()"></button> -->
+        <button class="task__edit icon" [inlineSVG]="'icon-edit.svg'"></button>
+        <!-- <button class="task__done icon" [inlineSVG]="'icon-done.svg'"</button> -->
       </div>
       <button class="task__delete icon" [inlineSVG]="'icon-delete.svg'" (click)="removeTask()"></button>  
     </nav>
   </div>
-</form>
+</div>
 

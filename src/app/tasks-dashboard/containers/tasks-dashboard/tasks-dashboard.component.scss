@@ -4,11 +4,11 @@
   background-color: $c-white;
   border-radius: 30px;
   overflow: hidden;
-  padding: 86px;
+  padding: 56px;
   height: 80vh;
   width: 90vw;
 
-  box-shadow: 0px 4px 4px $shadow-1;
+  box-shadow: $box-shadow;
   position: relative;
 
   &__wrap {
@@ -30,7 +30,9 @@
     }
   }
 
-  &__task {
+  app-task {
+    display: block;
+    
     &:not(:last-child) {
       border-bottom: 1px solid $c-gray-20;
     }
@@ -51,7 +53,7 @@
   }
 
   &__message-content {
-    font-size: 32px;
+    font-size: 24px;
 
     span {
       font-weight: bold;

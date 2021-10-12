@@ -1,0 +1,72 @@
+.ngx-dropdown {
+  &-button {
+    display: flex !important;
+    align-items: center;
+
+    height: 35px;
+    font-family: inherit;
+    box-shadow: 0 0 0 2px rgba($c-green, .5);
+
+    width: 120px !important;
+    border: unset !important;
+    border-radius: 8px !important;
+
+    .display-text {
+      width: 100% !important;
+    }
+
+    .nsdicon-angle-down {
+      vertical-align: unset !important;
+      display: unset !important;
+
+      &::before {
+        background: url('../../icons/icon-dropdown.svg') no-repeat center;
+        background-size: contain;
+
+        vertical-align: unset !important;
+        border-style: unset !important;
+        border-width: unset !important;
+        transform: unset !important;
+        width: 11px !important;
+      }
+    }
+  }
+
+  &-list-container {
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    box-shadow: $box-shadow !important;
+    border: 1px solid rgba($c-gray, .2) !important;
+
+    .available-items {
+      margin-top: unset !important;
+      margin-bottom: unset !important;
+
+      li {
+        padding: 10px 5px !important;
+        transition: $transition;
+        border-radius: 8px;
+  
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+  
+        &:hover {
+          background-color: rgba($c-blue, .5);
+        }
+      }
+    }
+
+    .selected-items {
+      display: none;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}

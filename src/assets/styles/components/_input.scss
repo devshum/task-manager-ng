@@ -1,0 +1,32 @@
+.input {
+  font-family: inherit;
+  border-radius: 8px;
+  outline: unset;
+  border: unset;
+  padding: 10px;
+
+  font-size: 12px;
+
+  transition: $transition;
+
+  &::placeholder {
+    font-size: inherit;
+    color: $c-gray;
+  }
+
+  &.ng-pristine {
+    border: 2px solid rgba($c-blue, .5);
+  }
+
+  &.ng-valid {
+    border: 2px solid rgba($c-green, .5);
+  }
+
+  &.ng-invalid:not(.ng-pristine),
+  &.ng-touched:not(.ng-valid) {
+    border: 2px solid rgba($c-red, .5);
+  }
+
+  @include removeAutofill;
+}
+

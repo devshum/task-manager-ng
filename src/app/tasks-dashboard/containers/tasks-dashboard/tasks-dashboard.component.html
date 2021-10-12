@@ -10,15 +10,15 @@
     *ngIf="tasks.length > 0; else noTasks"
     [ngClass]="isFormShown ? 'translated' : 'not-translated'"
   >
-    <div class="tasks-board__task" *ngFor="let task of tasks">
-      <app-task [task]="task" (remove)="onRemoveTask($event)"></app-task>
-    </div>
+   
+  <app-task *ngFor="let task of tasks" [task]="task" (remove)="onRemoveTask($event)"></app-task>
+
   </div>
 
   <ng-template #noTasks>
     <div class="tasks-board__message">
       <span class="tasks-board__message-content"
-        >You don't have any tasks or the filter doesnt't match your parameter 🙂</span
+        >You don't have any tasks or the filter doesn't match any chosen parameter 🙂</span
       >
     </div>
   </ng-template>
