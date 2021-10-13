@@ -3,13 +3,13 @@
     display: flex !important;
     align-items: center;
 
-    height: 35px;
+    height: 3.5rem;
     font-family: inherit;
-    box-shadow: 0 0 0 2px rgba($c-green, .5);
+    box-shadow: 0 0 0 .2rem rgba($c-green, .5);
 
-    width: 120px !important;
+    width: 12rem !important;
     border: unset !important;
-    border-radius: 8px !important;
+    border-radius: .8rem !important;
 
     .display-text {
       width: 100% !important;
@@ -27,32 +27,32 @@
         border-style: unset !important;
         border-width: unset !important;
         transform: unset !important;
-        width: 11px !important;
+        width: 1.1rem !important;
       }
     }
   }
 
   &-list-container {
-    margin-top: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    margin-top: .5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
 
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
     box-shadow: $box-shadow !important;
-    border: 1px solid rgba($c-gray, .2) !important;
+    border: .1rem solid rgba($c-gray, .2) !important;
 
     .available-items {
       margin-top: unset !important;
       margin-bottom: unset !important;
 
       li {
-        padding: 10px 5px !important;
+        padding: 1rem .5rem !important;
         transition: $transition;
-        border-radius: 8px;
+        border-radius: .8rem;
   
         &:not(:last-child) {
-          margin-bottom: 5px;
+          margin-bottom: .5rem;
         }
   
         &:hover {

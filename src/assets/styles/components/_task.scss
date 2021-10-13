@@ -9,12 +9,12 @@
 
       &:hover {
         .lid {
-          transform: translateY(-30px);
+          transform: translateY(-3rem);
         }
       }
 
       path {
-        fill: #ED2939;
+        fill: $c-red-10;
       }
     }
   }

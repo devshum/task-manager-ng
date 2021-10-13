@@ -1,11 +1,11 @@
 .input {
   font-family: inherit;
-  border-radius: 8px;
+  border-radius: .8rem;
   outline: unset;
   border: unset;
-  padding: 10px;
+  padding: 1rem;
 
-  font-size: 12px;
+  font-size: 1.2rem;
 
   transition: $transition;
 
@@ -15,16 +15,16 @@
   }
 
   &.ng-pristine {
-    border: 2px solid rgba($c-blue, .5);
+    border: .2rem solid rgba($c-blue, .5);
   }
 
   &.ng-valid {
-    border: 2px solid rgba($c-green, .5);
+    border: .2rem solid rgba($c-green, .5);
   }
 
   &.ng-invalid:not(.ng-pristine),
   &.ng-touched:not(.ng-valid) {
-    border: 2px solid rgba($c-red, .5);
+    border: .2rem solid rgba($c-red, .5);
   }
 
   @include removeAutofill;

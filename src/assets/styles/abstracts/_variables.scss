@@ -22,6 +22,7 @@ $c-aqua: #56CCF2;
 $c-blue-10: rgba(86, 204, 242, 0.2);
 
 $c-red: #EB5757;
+$c-red-10: #ED2939;
 
 $c-gray: #DCD9D9;
 $c-gray-10: #DFDFDF;
@@ -30,7 +31,7 @@ $c-gray-30: #1D262C;
 
 // SHADOW
 $shadow-1: rgba(0, 0, 0, 0.25);
-$box-shadow: 0px 4px 4px $shadow-1;
+$box-shadow: 0 .4rem .4rem $shadow-1;
 
 // TRANSITIONS
 $transition: all .5s;
