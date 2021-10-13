@@ -8,7 +8,7 @@
 
   &__input-error {
     position: absolute;
-    bottom: -15px;
+    bottom: -1.5rem;
 
     opacity: 0;
     color: $c-red;
@@ -22,7 +22,7 @@
   }
 
   &__input-date {
-    height: 38px;
+    height: 3.8rem;
     color: $c-gray;
 
     &.ng-valid {

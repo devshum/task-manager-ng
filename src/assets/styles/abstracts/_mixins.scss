@@ -4,15 +4,15 @@
   scrollbar-color: $c-purple-20 $c-white;
   
   &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
   }
   
   &::-webkit-scrollbar-thumb {
     background-color: $c-purple-20;
-    border: 3px solid transparent;
+    border: .3rem solid transparent;
     background-clip: content-box;
-    border-radius: 8px;
+    border-radius: .8rem;
   }
 }
 
@@ -21,6 +21,6 @@
   &:-webkit-autofill:hover, 
   &:-webkit-autofill:focus, 
   &:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px $c-white inset !important;
+    -webkit-box-shadow: 0 0 0 3rem $c-white inset !important;
   }
 }

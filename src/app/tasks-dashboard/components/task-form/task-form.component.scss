@@ -3,7 +3,7 @@
 
 .task-form {
   display: grid;
-  grid-row-gap: 5px;
+  grid-row-gap: .5rem;
   position: relative;
 
   z-index: 1;
@@ -16,10 +16,10 @@
   }
 
   &__title {
-    line-height: 56px;
+    line-height: 5.6rem;
     font-weight: 800;
     color: $c-gray-30;
-    font-size: 34px;
+    font-size: 3.4rem;
   
     transition: $transition;
 
@@ -38,7 +38,7 @@
 
   &__amount {
     position: absolute;
-    margin-left: 10px;
+    margin-left: 1rem;
     color: $c-purple-10;
   }
 
@@ -49,10 +49,10 @@
   }
 
   &__filter-wrap {
-    margin-left: 180px;
+    margin-left: 18rem;
 
     // select {
-    //   margin-left: 12px;
+    //   margin-left: 1.2rem;
     // }
   }
 
@@ -60,7 +60,7 @@
     display: grid;
     grid-template-columns: repeat(4, max-content) 1fr;
     align-items: center;
-    grid-column-gap: 16px;
+    grid-column-gap: 1.6rem;
 
     opacity: 0;
     visibility: hidden;
