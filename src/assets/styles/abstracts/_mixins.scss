@@ -1,4 +1,4 @@
-@mixin customScroll() {
+@mixin customScroll {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: $c-purple-20 $c-white;
@@ -16,11 +16,16 @@
   }
 }
 
-@mixin removeAutofill() {
+@mixin removeAutofill {
   &:-webkit-autofill,
   &:-webkit-autofill:hover, 
   &:-webkit-autofill:focus, 
   &:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 3rem $c-white inset !important;
   }
+}
+
+@mixin visibility-hidden {
+  opacity: 0;
+  visibility: hidden;
 }

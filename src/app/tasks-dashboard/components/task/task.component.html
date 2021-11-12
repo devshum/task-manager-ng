@@ -1,13 +1,12 @@
 <div class="task">
-  <app-form *ngIf="isTaskEditOpen"
+  <app-form [styleClass]="isTaskEditOpen ? 'opened' : ''"
             [task]="task"
-            [defaultForm]="true"
             [btnLabel]="'Edit'"
             [resetForm]="false"
             (hookTaskData)="onHookEdit($event)">
   </app-form>
 
-  <div class="task__content" *ngIf="!isTaskEditOpen">
+  <div class="task__content" [ngClass]="!isTaskEditOpen ? 'opened' : 'closed'">
     <div class="task__title">{{task.name}}</div>
 
     <div class="task__content-info">
