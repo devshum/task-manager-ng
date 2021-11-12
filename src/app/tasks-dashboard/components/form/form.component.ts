@@ -16,7 +16,6 @@ export class FormComponent implements OnInit {
   @Input() task: TaskView;
   @Input() tasks: TaskView[] = [];
   @Input() formShown: boolean;
-  @Input() defaultForm: boolean;
   @Input() resetForm: boolean;
   @Input() btnLabel: string;
   @Input() styleClass: string;

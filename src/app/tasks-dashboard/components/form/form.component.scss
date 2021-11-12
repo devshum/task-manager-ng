@@ -6,15 +6,15 @@
   align-items: center;
   grid-column-gap: 1.6rem;
 
-  opacity: 0;
   height: 3.8rem;
-  visibility: hidden;
   position: relative;
   transition: $transition;
 
+  @include visibility-hidden;
+
   &.opened,
   &.opened-initial,
-  &.default {
+  &.opened {
     opacity: 1;
     visibility: visible;
   }
@@ -34,10 +34,10 @@
     position: absolute;
     bottom: -1.5rem;
 
-    opacity: 0;
     color: $c-red;
-    visibility: hidden;
     transition: $transition;
+
+    @include visibility-hidden;
 
     &.shown {
       opacity: 1;

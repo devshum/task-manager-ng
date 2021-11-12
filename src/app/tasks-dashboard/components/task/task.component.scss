@@ -13,6 +13,15 @@
     align-items: center;
 
     height: 3.8rem;
+    transition: $transition;
+
+    &.closed {
+      @include visibility-hidden;
+    }
+
+    &.opened {
+      transition: $transition .5s;
+    }
   }
 
   &__content-info {
@@ -158,7 +167,12 @@
 
   &__nav {
     display: flex;
+    justify-self: end;
 
     height: 3.5rem;
   }
+}
+
+app-form {
+  position: absolute;
 }

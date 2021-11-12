@@ -1,7 +1,7 @@
 <form class="form"
+      [ngClass]="styleClass"
       [class.opened]="formShown && tasks.length"
       [class.opened-initial]="formShown && !tasks.length"
-      [class.default]="defaultForm"
       (ngSubmit)="handleSubmit()"
       [formGroup]="form">
     <span class="form__input-wrap">
