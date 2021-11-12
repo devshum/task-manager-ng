@@ -31,13 +31,16 @@
     svg {
       path {
         fill: $c-blue;
+        transition: $transition;
       }
     }
 
     &:hover {
-      transform: scale(1.1);
+      svg {
+        path {
+          fill: darken($c-blue, 10%);
+        }
+      }
     }
-
-    transition: $transition;
   }
 }

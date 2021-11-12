@@ -13,7 +13,6 @@
 
   position: relative;
   cursor: pointer;
-  transition: $transition;
 
   &.animated {
     animation: pulse 1s infinite;

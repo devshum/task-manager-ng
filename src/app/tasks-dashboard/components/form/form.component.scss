@@ -15,8 +15,7 @@
   &.opened,
   &.opened-initial,
   &.opened {
-    opacity: 1;
-    visibility: visible;
+    @include visibility-visible;
   }
 
   &.opened {
@@ -40,8 +39,7 @@
     @include visibility-hidden;
 
     &.shown {
-      opacity: 1;
-      visibility: visible;
+      @include visibility-visible;
     }
   }
 

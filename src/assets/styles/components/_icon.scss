@@ -3,5 +3,17 @@
   align-items: center;
   
   height: 100%;
-  width: 2rem;
+  transition: $transition;
+
+  &.shown {
+    @include visibility-visible;
+
+    transition: $transition .5s;
+  }
+
+  &.hidden {  
+    position: absolute;
+    
+    @include visibility-hidden;
+  }
 }

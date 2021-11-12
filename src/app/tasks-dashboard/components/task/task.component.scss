@@ -131,11 +131,23 @@
   &__edit,
   &__done {
     @extend %btn-reset;
+
+    height: 2.5rem;
+    width: 2rem;
+  }
+
+  &__edit,
+  &__done {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__delete {
+    transform: translateY(2px);
   }
 
   &__edit {
-    transition: $transition;
-
     &:hover {
       transform: translateX(.5rem);
 
@@ -145,14 +157,7 @@
     }
   }
 
-  &__edit,
-  &__done {
-    margin-right: 1rem;
-  }
-
   &__edit {
-    position: relative;
-
     &::after {
       content: '';
       position: absolute;
@@ -160,7 +165,7 @@
       background-color: $c-blue;
       height: .1rem;
       width: 0;
-      bottom: .8rem;
+      bottom: .3rem;
       right: 1.9rem;
     }
   }
@@ -168,8 +173,17 @@
   &__nav {
     display: flex;
     justify-self: end;
+    align-items: center;
 
     height: 3.5rem;
+  }
+
+  &__nav-edit {
+    position: relative;
+
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
   }
 }
 
