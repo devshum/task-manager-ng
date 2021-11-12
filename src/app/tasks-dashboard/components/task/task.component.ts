@@ -11,13 +11,22 @@ import { EnumStatus } from 'src/app/core/enums/task.statuses';
 export class TaskComponent {
   @Input() task: TaskView;
   @Output() remove: EventEmitter<TaskView> = new EventEmitter<TaskView>();
-
+  @Output() hookEditData: EventEmitter<any> = new EventEmitter<any>();
   taskImportance = EnumImportance;
   taskStatus = EnumStatus;
+  isTaskEditOpen = false;
 
   constructor() {}
 
   removeTask(): void {
     this.remove.emit(this.task);
+  }
+
+  toggleTaskEdit(): void {
+    this.isTaskEditOpen = !this.isTaskEditOpen;
+  }
+
+  onHookEdit(event: any): void {
+    this.hookEditData.emit({event, id: this.task.id});
   }
 }

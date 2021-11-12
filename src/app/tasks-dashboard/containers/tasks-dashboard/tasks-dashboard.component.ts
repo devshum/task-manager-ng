@@ -43,6 +43,15 @@ export class TaskDashboardComponent implements OnInit {
       });
   }
 
+  onEditTask(event: TaskView | any): void {
+    this._loaderService.start();
+    this._tasksService
+      .editTask(event)
+      .subscribe(() => {
+        this._getTasksList();
+      });
+  }
+
   onFormShown(event: boolean) {
     this.isFormShown = event;
   }

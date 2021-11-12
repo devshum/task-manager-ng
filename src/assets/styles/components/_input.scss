@@ -9,6 +9,8 @@
 
   transition: $transition;
 
+  border: .2rem solid rgba(transparent, .5);
+
   &::placeholder {
     font-size: inherit;
     color: $c-gray;

@@ -1,0 +1,65 @@
+@import '../../../../assets/styles/setup';
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(4, max-content) 1fr;
+  align-items: center;
+  grid-column-gap: 1.6rem;
+
+  opacity: 0;
+  height: 3.8rem;
+  visibility: hidden;
+  position: relative;
+  transition: $transition;
+
+  &.opened,
+  &.opened-initial,
+  &.default {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.opened {
+    transition: $transition .5s;
+  }
+
+  &__input-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__input-error {
+    position: absolute;
+    bottom: -1.5rem;
+
+    opacity: 0;
+    color: $c-red;
+    visibility: hidden;
+    transition: $transition;
+
+    &.shown {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__input-date {
+    background-color: $c-white;
+    height: 3.8rem;
+    color: $c-gray;
+
+    &.ng-valid {
+      color: $c-black;
+    }
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+app-button {
+  height: 100%;
+}

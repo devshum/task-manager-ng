@@ -2,30 +2,36 @@
 
 .task {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 5vw;
-
-  justify-content: space-between;
-  align-items: center;
-
+  grid-template-columns: 1fr max-content;
   padding: 1.6rem 0;
 
   &__content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 2fr;
 
     justify-items: center;
     align-items: center;
+
+    height: 3.8rem;
+  }
+
+  &__content-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 5vw;
+
+    justify-content: space-between;
+    align-items: stretch;
   }
 
   &__title {
     display: grid;
     grid-template-columns: max-content 1fr;
+    justify-self: start;
 
     font-size: 1.4rem;
     line-height: 1.7rem;
     text-align: left;
-    margin-left: 2.4rem;
 
     &::before {
       display: block;

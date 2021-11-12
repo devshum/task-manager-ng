@@ -37,4 +37,9 @@ export class TasksDashboardService {
     return this._http
       .delete<TaskView>(`${this._apiUrl}/tasks/${task.id}`);
   }
+
+  editTask(task: any): Observable<TaskView> {
+    return this._http
+      .patch<TaskView>(`${this._apiUrl}/tasks/${task.id}`, task.event);
+  }
 }

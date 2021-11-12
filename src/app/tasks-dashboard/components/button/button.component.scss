@@ -8,6 +8,7 @@
   color: $c-white;
   line-height: .9rem;
   font-size: 1.2rem;
+  height: 3.8rem;
   border: 0;
 
   position: relative;
@@ -27,6 +28,8 @@
   }
 
   &__icon {
+    height: 1.8rem;
+    width: 1.8rem;
     margin-right: .8rem;
   }
 
