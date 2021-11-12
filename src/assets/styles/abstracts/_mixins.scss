@@ -29,3 +29,8 @@
   opacity: 0;
   visibility: hidden;
 }
+
+@mixin visibility-visible {
+  opacity: 1;
+  visibility: visible;
+}
