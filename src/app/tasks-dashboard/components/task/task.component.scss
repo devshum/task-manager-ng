@@ -149,8 +149,6 @@
 
   &__edit {
     &:hover {
-      transform: translateX(.5rem);
-
       &::after {
         width: 50%;
       }

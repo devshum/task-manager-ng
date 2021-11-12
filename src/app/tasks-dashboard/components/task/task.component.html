@@ -38,12 +38,12 @@
     <div class="task__nav-edit" (click)="toggleTaskEdit()">
       <i class="task__edit icon" 
          [inlineSVG]="'icon-edit.svg'"
-         [ngClass]="isTaskEditOpen ? 'shown' : 'hidden'">
+         [ngClass]="isTaskEditOpen ? 'hidden' : 'shown'">
       </i>
 
       <i class="task__done icon" 
          [inlineSVG]="'icon-close.svg'"
-         [ngClass]="isTaskEditOpen ? 'hidden' : 'shown'">
+         [ngClass]="isTaskEditOpen ? 'shown' : 'hidden'">
       </i>
     </div>
     
