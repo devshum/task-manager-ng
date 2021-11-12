@@ -1,37 +1,57 @@
-<!-- TODO Change to form when patch -->
 <div class="task">
-  <div class="task__title">{{task.name}}</div>
+  <app-form *ngIf="isTaskEditOpen"
+            [task]="task"
+            [defaultForm]="true"
+            [btnLabel]="'Edit'"
+            [resetForm]="false"
+            (hookTaskData)="onHookEdit($event)">
+  </app-form>
 
-  <div class="task__content">
-    <div class="task__date">
-      <span class="task__date-label">Planned for:</span>
-      <span>{{ task.date | date: "d MMMM, y" }}</span>
+  <div class="task__content" *ngIf="!isTaskEditOpen">
+    <div class="task__title">{{task.name}}</div>
+
+    <div class="task__content-info">
+      <div class="task__date">
+        <span class="task__date-label">Planned for:</span>
+        <span>{{ task.date | date: "d MMMM, y" }}</span>
+      </div>
+      
+      <div class="task__status" 
+              [ngClass]="{
+                'task__status--pending': task.status === taskStatus.pending,
+                'task__status--progress': task.status === taskStatus.inProgress
+              }">
+        <span>{{task.status}}</span>
+      </div>
+    
+      <div class="task__importance" 
+              [ngClass]="{
+                'task__importance--minor': task.importance === taskImportance.minor,
+                'task__importance--normal': task.importance === taskImportance.normal,
+                'task__importance--critical': task.importance === taskImportance.critical
+              }">
+        <span>{{task.importance}}</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="task__nav">
+    <div class="task__nav-edit" (click)="toggleTaskEdit()">
+      <a class="task__edit icon" 
+              [inlineSVG]="'icon-edit.svg'"
+              *ngIf="!isTaskEditOpen">
+      </a>
+
+      <a class="task__done icon" 
+              [inlineSVG]="'icon-close.svg'"
+              *ngIf="isTaskEditOpen">
+      </a>
     </div>
     
-    <div class="task__status" 
-            [ngClass]="{
-              'task__status--pending': task.status === taskStatus.pending,
-              'task__status--progress': task.status === taskStatus.inProgress
-            }">
-      <span>{{task.status}}</span>
-    </div>
-  
-    <div class="task__importance" 
-            [ngClass]="{
-              'task__importance--minor': task.importance === taskImportance.minor,
-              'task__importance--normal': task.importance === taskImportance.normal,
-              'task__importance--critical': task.importance === taskImportance.critical
-            }">
-      <span>{{task.importance}}</span>
-    </div>
-  
-    <nav class="task__nav">
-      <div class="task__nav-edit">
-        <button class="task__edit icon" [inlineSVG]="'icon-edit.svg'"></button>
-        <!-- <button class="task__done icon" [inlineSVG]="'icon-done.svg'"</button> -->
-      </div>
-      <button class="task__delete icon" [inlineSVG]="'icon-delete.svg'" (click)="removeTask()"></button>  
-    </nav>
-  </div>
+    <a class="task__delete icon" 
+       [inlineSVG]="'icon-delete.svg'" 
+       (click)="removeTask()">
+    </a>  
+  </nav>
 </div>
 

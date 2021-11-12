@@ -11,13 +11,15 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { FormComponent } from './components/form/form.component';
 @NgModule({
   declarations: [
     TaskComponent,
     TaskFormComponent,
     ButtonComponent,
     TaskDashboardComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,

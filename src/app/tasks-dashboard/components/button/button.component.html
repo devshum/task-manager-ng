@@ -1,7 +1,15 @@
 <button [type]="type ? type : 'button'" class="button" 
         [class.animated]="tasks === 0 && !formShown"> 
   <div class="button__wrapper">
-    <i [inlineSVG]="'icon-btn.svg'" class="button__icon">&nbsp;</i>
+    <i [inlineSVG]="'icon-btn.svg'" 
+       class="button__icon"
+       *ngIf="!formShown">&nbsp;
+    </i>
+
+    <i [inlineSVG]="'icon-btn-close.svg'" 
+       class="button__icon"
+       *ngIf="formShown">&nbsp;
+    </i>
     <span>{{ text }}</span>
   </div>
 </button>

@@ -1,0 +1,51 @@
+<form class="form"
+      [class.opened]="formShown && tasks.length"
+      [class.opened-initial]="formShown && !tasks.length"
+      [class.default]="defaultForm"
+      (ngSubmit)="handleSubmit()"
+      [formGroup]="form">
+    <span class="form__input-wrap">
+      <input type="text"
+             name="name"
+             formControlName="name"
+             class="input"
+             placeholder="Enter your task name...">
+      
+      <span class="form__input-error" 
+            [class.shown]="valid(name, 'required')">
+            the field is required
+      </span>
+
+      <!-- <span class="form__input-error" 
+            [class.shown]="valid(name, 'maxlength')" >
+            {{ valid(name, 'maxlength') && name.errors?.maxlength.requiredLength }}
+            characters is allowed
+      </span> -->
+
+      <span class="form__input-error" 
+            [class.shown]="valid(name, 'pattern')">
+            english characters are allowed
+      </span>
+    </span>
+
+    <span class="form__input-wrap">
+      <input type="date"
+             name="date"
+             [min]="today"
+             formControlName="date"
+             class="form__input-date input">
+
+      <span class="form__input-error" 
+            [class.shown]="valid(date, 'required')">
+            the field is required
+      </span>
+    </span>
+
+    <ngx-select-dropdown formControlName="status" [options]="statusOptions"></ngx-select-dropdown>
+
+    <ngx-select-dropdown formControlName="importance" [options]="importanceOptions"></ngx-select-dropdown>
+
+    <app-button [text]="btnLabel"
+                [type]="'submit'">
+    </app-button>
+</form>

@@ -50,31 +50,6 @@
 
   &__filter-wrap {
     margin-left: 18rem;
-
-    // select {
-    //   margin-left: 1.2rem;
-    // }
-  }
-
-  &__form {
-    display: grid;
-    grid-template-columns: repeat(4, max-content) 1fr;
-    align-items: center;
-    grid-column-gap: 1.6rem;
-
-    opacity: 0;
-    visibility: hidden;
-    transition: $transition;
-
-    &.opened,
-    &.opened-initial {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    &.opened {
-      transition: $transition .5s;
-    }
   }
 
   app-button {

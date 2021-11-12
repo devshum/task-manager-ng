@@ -30,13 +30,14 @@
   &__done {
     svg {
       path {
-        fill: $c-green-10;
-        transition: $transition;
-        
-        &:hover {
-          fill: $c-green;
-        }
+        fill: $c-blue;
       }
     }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    transition: $transition;
   }
 }
