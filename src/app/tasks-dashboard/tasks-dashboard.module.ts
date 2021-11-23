@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { FormComponent } from './components/form/form.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     TaskComponent,
@@ -25,7 +26,8 @@ import { FormComponent } from './components/form/form.component';
     CommonModule,
     InlineSVGModule.forRoot({ baseUrl: '/assets/icons/', bypassHttpClientInterceptorChain: true }),
     ReactiveFormsModule,
-    SelectDropDownModule
+    SelectDropDownModule,
+    FormsModule
   ],
   exports: [
     TaskDashboardComponent,

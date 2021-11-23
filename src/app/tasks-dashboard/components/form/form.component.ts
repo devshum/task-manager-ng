@@ -23,6 +23,7 @@ export class FormComponent implements OnInit {
   form: FormGroup;
   statusOptions: string[] = [
     EnumStatus.pending,
+    EnumStatus.closed,
     EnumStatus.inProgress
   ];
   importanceOptions: string[] = [

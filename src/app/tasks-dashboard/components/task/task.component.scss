@@ -3,7 +3,26 @@
 .task {
   display: grid;
   grid-template-columns: 1fr max-content;
+  align-items: center;
+  
   padding: 1.6rem 0;
+  position: relative;
+
+  &.closed {
+    .task {
+      &__content {
+        &::after {
+          content: '';
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: rgba($c-white, .8);
+        }
+      }
+    }
+  }
 
   &__content {
     display: grid;
@@ -82,6 +101,11 @@
     &--progress {
       color: $c-aqua;
       background-color: $c-blue-10;
+    }
+
+    &--closed {
+      color: $c-white;
+      background-color: $c-red;
     }
   }
 

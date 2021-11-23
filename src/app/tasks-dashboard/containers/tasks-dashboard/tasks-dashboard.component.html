@@ -3,6 +3,7 @@
     [tasks]="tasks"
     (hookTask)="onAddTask($event)"
     (formShown)="onFormShown($event)"
+    (selectStatus)="onSelectStatus($event)"
   ></app-task-form>
 
   <div
@@ -15,7 +16,6 @@
             [task]="task" 
             (remove)="onRemoveTask($event)"
             (hookEditData)="onEditTask($event)"></app-task>
-
   </div>
 
   <ng-template #noTasks>

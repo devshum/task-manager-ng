@@ -1,4 +1,4 @@
-<div class="task">
+<div class="task" [class.closed]="task.status === taskStatus.closed">
   <app-form [styleClass]="isTaskEditOpen ? 'opened' : ''"
             [task]="task"
             [btnLabel]="'Edit'"
@@ -18,7 +18,8 @@
       <div class="task__status" 
               [ngClass]="{
                 'task__status--pending': task.status === taskStatus.pending,
-                'task__status--progress': task.status === taskStatus.inProgress
+                'task__status--progress': task.status === taskStatus.inProgress,
+                'task__status--closed': task.status === taskStatus.closed
               }">
         <span>{{task.status}}</span>
       </div>

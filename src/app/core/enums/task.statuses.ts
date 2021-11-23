@@ -1,5 +1,6 @@
 export enum EnumStatus {
   closed = 'closed',
   pending = 'pending',
-  inProgress = 'in progress'
+  inProgress = 'in progress',
+  all = 'all'
 }
