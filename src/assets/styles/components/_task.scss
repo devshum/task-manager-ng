@@ -43,4 +43,25 @@
       }
     }
   }
+
+  &__filter {
+    margin-left: 1.8rem;
+
+    circle {
+      will-change: transform;
+      transition: $transition;
+    }
+    rect {
+      transform-origin: 50% 50%;
+    }
+    svg {
+      &:hover .fltr-crcl1 {
+        transform: translateX(.6rem)
+      }
+
+      &:hover .fltr-crcl2 {
+        transform: translateX(-.6rem)
+      }
+    }
+  }
 }
