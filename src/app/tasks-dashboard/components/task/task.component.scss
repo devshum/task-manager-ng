@@ -33,6 +33,7 @@
 
     height: 3.8rem;
     transition: $transition;
+    z-index: 2;
 
     &.closed {
       @include visibility-hidden;
@@ -196,6 +197,7 @@
     align-items: center;
 
     height: 3.5rem;
+    z-index: 2;
   }
 
   &__nav-edit {

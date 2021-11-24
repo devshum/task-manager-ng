@@ -18,6 +18,9 @@
     transition: $transition;
     padding-right: .6rem;
 
+    z-index: 1;
+    position: relative;
+
     @include customScroll;
 
     &.translated {
