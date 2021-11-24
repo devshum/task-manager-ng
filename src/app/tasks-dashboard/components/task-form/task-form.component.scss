@@ -37,7 +37,7 @@
   }
 
   &__amount {
-    position: absolute;
+    display: inline-block;
     margin-left: 1rem;
     color: $c-purple-10;
   }

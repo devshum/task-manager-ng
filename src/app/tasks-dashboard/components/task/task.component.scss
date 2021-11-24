@@ -154,8 +154,6 @@
   &__delete,
   &__edit,
   &__done {
-    @extend %btn-reset;
-
     height: 2.5rem;
     width: 2rem;
   }
@@ -168,7 +166,7 @@
   }
 
   &__delete {
-    transform: translateY(2px);
+    transform: translateY(.2rem);
   }
 
   &__edit {
