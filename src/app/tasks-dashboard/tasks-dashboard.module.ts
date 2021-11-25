@@ -13,6 +13,7 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 @NgModule({
   declarations: [
     TaskComponent,
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     ButtonComponent,
     TaskDashboardComponent,
     PreloaderComponent,
-    FormComponent
+    FormComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,

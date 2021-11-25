@@ -13,6 +13,7 @@ export class TaskFormComponent implements OnInit {
   @Output() formShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() selectStatus: EventEmitter<string> = new EventEmitter<string>();
   isFormShown = false;
+  isSideNavShown = false;
   selectedStatus: string;
   statusOptions: string[] = [
     EnumStatus.all,
@@ -41,6 +42,14 @@ export class TaskFormComponent implements OnInit {
 
   onHookTask(event: TaskPostData): void {
     this.hookTask.emit(event);
+  }
+
+  openSideNav(): void {
+    this.isSideNavShown = !this.isSideNavShown;
+  }
+
+  onSideNavShown(event: boolean): void {
+    this.isSideNavShown = event;
   }
 
   get suffix(): string {

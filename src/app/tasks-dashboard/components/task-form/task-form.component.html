@@ -9,8 +9,8 @@
           {{ tasks.length }} {{ suffix }}
         </span>
       </h1>
-      <i class="task__filter icon" 
-        [inlineSVG]="'icon-filter.svg'">
+      <i class="task__filter icon" (click)="openSideNav()" 
+         [inlineSVG]="'icon-filter.svg'">
       </i>
     </div>
 
@@ -36,3 +36,6 @@
             [resetForm]="true"
             (hookTaskData)="onHookTask($event)"></app-form>
 </section>
+
+<app-sidenav [sideNavShown]="isSideNavShown"
+             (isSideNavShown)="onSideNavShown($event)"></app-sidenav>

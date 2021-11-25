@@ -1,0 +1,31 @@
+@import '../../../../assets/styles/setup';
+
+.sidenav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+
+  @include visibility-hidden;
+
+  &.opened {
+    @include visibility-visible;
+  }
+
+  &__bg {
+    background-color: rgba($c-black, .5);
+    height: inherit;
+    width: inherit;
+  }
+
+  &__content {
+    background-color: $c-white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5.6rem;
+    height: 100%;
+  }
+}

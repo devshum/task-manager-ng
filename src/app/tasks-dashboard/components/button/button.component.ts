@@ -9,7 +9,7 @@ export class ButtonComponent {
   @Input() text: string;
   @Input() type: string;
   @Input() tasks: number;
-  @Input() formShown: boolean;
+  @Input() formShown = false;
 
   constructor() { }
 }
