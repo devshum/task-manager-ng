@@ -10,12 +10,17 @@
   position: relative;
   transition: $transition;
 
+  z-index: 3; 
+  pointer-events: none;
+
   @include visibility-hidden;
 
   &.opened,
   &.opened-initial,
   &.opened {
     @include visibility-visible;
+
+    pointer-events: unset;
   }
 
   &.opened {
