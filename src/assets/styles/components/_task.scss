@@ -45,7 +45,24 @@
   }
 
   &__filter {
+    display: flex;
+    align-items: center;
+
     margin-left: 1.8rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    &:hover {
+     svg {
+      .fltr-crcl1 {
+        transform: translateX(.6rem)
+      }
+
+     .fltr-crcl2 {
+        transform: translateX(-.6rem)
+      }
+     }
+    }
 
     circle {
       will-change: transform;
@@ -53,15 +70,6 @@
     }
     rect {
       transform-origin: 50% 50%;
-    }
-    svg {
-      &:hover .fltr-crcl1 {
-        transform: translateX(.6rem)
-      }
-
-      &:hover .fltr-crcl2 {
-        transform: translateX(-.6rem)
-      }
     }
   }
 }

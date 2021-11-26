@@ -26,6 +26,7 @@ export class TaskDashboardComponent implements OnInit {
   }
 
   onAddTask(event: TaskPostData): void {
+    this._loaderService.start();
     this._tasksService
       .addTask(event)
       .subscribe(() => {
@@ -34,6 +35,7 @@ export class TaskDashboardComponent implements OnInit {
   }
 
   onRemoveTask(event: TaskView): void {
+    this._loaderService.start();
     this._tasksService
       .removeTask(event)
       .subscribe(() => {
@@ -42,6 +44,7 @@ export class TaskDashboardComponent implements OnInit {
   }
 
   onEditTask(event: TaskView | any): void {
+    this._loaderService.start();
     this._tasksService
       .editTask(event)
       .subscribe(() => {
@@ -59,7 +62,6 @@ export class TaskDashboardComponent implements OnInit {
   }
 
   private _getTasksList(filterParams: any): void {
-    this._loaderService.start();
     this._tasksService
       .getTasks(filterParams)
       .subscribe(data => {

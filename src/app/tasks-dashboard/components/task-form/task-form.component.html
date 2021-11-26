@@ -9,9 +9,13 @@
           {{ tasks.length }} {{ suffix }}
         </span>
       </h1>
-      <i class="task__filter icon" (click)="openSideNav()" 
-         [inlineSVG]="'icon-filter.svg'">
-      </i>
+     
+      <div class="task__filter" *ngIf="tasks.length" (click)="openSideNav()">
+        <i class="icon" 
+           [inlineSVG]="'icon-filter.svg'">
+        </i>
+        <span>Filter</span>
+      </div>
     </div>
 
     <div class="task-form__filter-wrap">
