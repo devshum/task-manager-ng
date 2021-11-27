@@ -13,7 +13,7 @@ export class TaskFormComponent implements OnInit {
   @Output() formShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() selectStatus: EventEmitter<string> = new EventEmitter<string>();
   isFormShown = false;
-  isSideNavShown = false;
+  isSideNavShown = true;
   selectedStatus: string;
   statusOptions: string[] = [
     EnumStatus.all,

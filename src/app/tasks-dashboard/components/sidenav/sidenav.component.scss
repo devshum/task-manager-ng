@@ -7,23 +7,50 @@
   height: 100%;
   width: 100%;
   z-index: 2;
-
-  @include visibility-hidden;
+  visibility: hidden;
 
   &.opened {
-    @include visibility-visible;
+    visibility: visible;
+
+    .sidenav {
+      &__content {
+        right: 0;
+        transition: $transition .2s;
+      }
+
+      &__bg {
+        @include visibility-visible;
+
+        transition: $transition;
+      }
+    }
+  }
+
+  &.closed {
+    .sidenav {
+      &__content {
+        transition: $transition ease-in;
+      }
+
+      &__bg {
+        transition: $transition .5s;
+      }
+    }
   }
 
   &__bg {
     background-color: rgba($c-black, .5);
     height: inherit;
     width: inherit;
+    cursor: pointer;
+
+    @include visibility-hidden;
   }
 
   &__content {
     background-color: $c-white;
     position: absolute;
-    right: 0;
+    right: -100%;
     top: 0;
     padding: 5.6rem;
     height: 100%;
