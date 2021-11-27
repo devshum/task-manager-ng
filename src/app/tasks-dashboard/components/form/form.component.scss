@@ -2,7 +2,7 @@
 
 .form {
   display: grid;
-  grid-template-columns: repeat(4, max-content) 1fr;
+  grid-template-columns: 20rem repeat(3, 12rem) 1fr;
   align-items: center;
   grid-column-gap: 1.6rem;
 
@@ -32,6 +32,10 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+
+    input {
+      height: 3.8rem;
+    }
   }
 
   &__input-error {
@@ -49,8 +53,12 @@
   }
 
   &__input-date {
+    display: grid;
+    grid-template-columns: 60% 20%;
+    align-items: center;
+    grid-template-rows: 13px;
+    
     background-color: $c-white;
-    height: 3.8rem;
     color: $c-gray;
 
     &.ng-valid {
