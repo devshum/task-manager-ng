@@ -23,6 +23,10 @@ export class TaskFormComponent implements OnInit {
   ];
   constructor() {}
 
+  get suffix(): string {
+    return this.tasks.length > 1 ? 'tasks' : 'task';
+  }
+
   ngOnInit(): void {
     this.selectedStatus = EnumStatus.all;
   }
@@ -50,9 +54,5 @@ export class TaskFormComponent implements OnInit {
 
   onSideNavShown(event: boolean): void {
     this.isSideNavShown = event;
-  }
-
-  get suffix(): string {
-    return this.tasks.length > 1 ? 'tasks' : 'task';
   }
 }

@@ -36,6 +36,18 @@ export class FormComponent implements OnInit {
     private datePipe: DatePipe
   ) { }
 
+  get name(): AbstractControl {
+    return this.form.get('name') as AbstractControl;
+  }
+
+  get date(): AbstractControl {
+    return this.form.get('date') as AbstractControl;
+  }
+
+  get today(): string | null {
+    return this.datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+  }
+
   ngOnInit(): void {
     this._initForm();
   }
@@ -60,22 +72,10 @@ export class FormComponent implements OnInit {
     return control.hasError(type) && control.invalid && (control.dirty || control.touched);
   }
 
-  get name(): AbstractControl {
-    return this.form.get('name') as AbstractControl;
-  }
-
-  get date(): AbstractControl {
-    return this.form.get('date') as AbstractControl;
-  }
-
-  get today(): string | null {
-    return this.datePipe.transform(this.currentDate, 'yyyy-MM-dd');
-  }
-
   private _initForm(): void {
     this.form = this._fb.group(
       {
-        name: [this.task ? this.task.name : '', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        name: [this.task ? this.task.name : '', [Validators.required, Validators.pattern('[-_a-zA-Z0-9 ]*')]],
         date: [this.task ? this.task.date : '', [Validators.required]],
         status: [this.task ? this.task.status : EnumStatus.pending, []],
         importance: [this.task ? this.task.importance : EnumImportance.minor, []]

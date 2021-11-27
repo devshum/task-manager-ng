@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { HttpStateInterceptor } from './core/interceptors/http-state.interceptor';
 @NgModule({
   declarations: [
     AppComponent

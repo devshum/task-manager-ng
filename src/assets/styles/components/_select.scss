@@ -5,11 +5,12 @@
 
     height: 3.5rem;
     font-family: inherit;
-    box-shadow: 0 0 0 .2rem rgba($c-green, .5);
+    border: 1px solid $c-green;
 
     width: 12rem !important;
-    border: unset !important;
+    border: 0.2rem solid rgba($c-green, 0.5) !important;
     border-radius: .8rem !important;
+    min-height: 3.8rem !important;
 
     .display-text {
       width: 100% !important;
