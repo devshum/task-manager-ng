@@ -1,8 +1,13 @@
-<div class="sidenav" [class.opened]="sideNavShown">
+<div class="sidenav" [ngClass]="sideNavShown ? 'opened' : 'closed'">
   <div class="sidenav__bg" (click)="closeSideNav()">&nbsp;</div>
   <div class="sidenav__content">
-    Filter by:
-
-    Sort by:
+    <div>
+      <p>Filter by status:</p>
+<!--       
+      <ngx-select-dropdown [(ngModel)]="selectedStatus"
+                           [options]="statusOptions"
+                           (change)="selectStatusHandler()">
+      </ngx-select-dropdown> -->
+    </div>
   </div>
 </div>
