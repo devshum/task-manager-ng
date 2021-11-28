@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TaskView, TaskPostData } from 'src/app/core/models/task.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { TaskQueryParams } from '../../models/task-query.interface';
+import { TaskQueryParams } from '../../models/taskQuery.interface';
 
 @Injectable({
   providedIn: 'root'

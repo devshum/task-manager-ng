@@ -10,7 +10,7 @@
         </span>
       </h1>
      
-      <div class="task__filter" *ngIf="tasks.length" (click)="openSideNav()">
+      <div class="task__filter" (click)="openSideNav()">
         <i class="icon" 
            [inlineSVG]="'icon-filter.svg'">
         </i>
@@ -20,7 +20,6 @@
 
     <div class="task-form__filter-wrap">
       
-
       <app-button [text]="!isFormShown ? 'Add new' : 'Hide form'"
                   (click)="toggleForm()"
                   [tasks]="tasks.length"
@@ -36,4 +35,4 @@
 </section>
 
 <app-sidenav [sideNavShown]="isSideNavShown"
-             (isSideNavShown)="onSideNavShown($event)"></app-sidenav>
+             (filterOptions)="onFilterOptions($event)"></app-sidenav>

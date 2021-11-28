@@ -1,13 +1,34 @@
-<div class="sidenav" [ngClass]="sideNavShown ? 'opened' : 'closed'">
-  <div class="sidenav__bg" (click)="closeSideNav()">&nbsp;</div>
+<form class="sidenav" 
+      [class.opened]="sideNavShown" 
+      [formGroup]="form" 
+      (ngSubmit)="handleFilterSubmit()">
   <div class="sidenav__content">
     <div>
       <p>Filter by status:</p>
-<!--       
-      <ngx-select-dropdown [(ngModel)]="selectedStatus"
-                           [options]="statusOptions"
-                           (change)="selectStatusHandler()">
-      </ngx-select-dropdown> -->
+      
+      <ngx-select-dropdown formControlName="status" 
+                           [options]="statusOptions">
+      </ngx-select-dropdown>
     </div>
+
+    <div>
+      <p>Filter by importance:</p>
+      
+      <ngx-select-dropdown formControlName="importance" 
+                           [options]="importanceOptions">
+      </ngx-select-dropdown>
+    </div>
+
+    <div>
+      <p>Sort by planned date:</p>
+      
+      <ngx-select-dropdown formControlName="date" 
+                           [options]="dateOptions">
+      </ngx-select-dropdown>
+    </div>
+
+    <app-button [text]="'Apply'" 
+                [type]="'submit'">
+    </app-button>
   </div>
-</div>
+</form>
