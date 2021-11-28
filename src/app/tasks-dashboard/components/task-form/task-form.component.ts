@@ -1,47 +1,29 @@
 import { TaskView, TaskPostData } from './../../../core/models/task.interface';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { EnumStatus } from 'src/app/core/enums/task.statuses';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.scss']
 })
 
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent {
   @Input() tasks: TaskView[] = [];
   @Output() hookTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
   @Output() formShown: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() selectStatus: EventEmitter<string> = new EventEmitter<string>();
+  @Output() filterOptions: EventEmitter<TaskFilterParams> = new EventEmitter<TaskFilterParams>();
   isFormShown = false;
   isSideNavShown = true;
-  selectedStatus: string;
-  statusOptions: string[] = [
-    EnumStatus.all,
-    EnumStatus.pending,
-    EnumStatus.closed,
-    EnumStatus.inProgress
-  ];
+  filteredOptions: TaskFilterParams;
   constructor() {}
 
   get suffix(): string {
     return this.tasks.length > 1 ? 'tasks' : 'task';
   }
 
-  ngOnInit(): void {
-    this.selectedStatus = EnumStatus.all;
-  }
-
   toggleForm(): void {
     this.isFormShown = !this.isFormShown;
     this.formShown.emit(this.isFormShown);
-  }
-
-  selectStatusHandler(): void {
-    if(this.selectedStatus === EnumStatus.all) {
-      this.selectStatus.emit('');
-    } else {
-      this.selectStatus.emit(this.selectedStatus);
-    }
   }
 
   onHookTask(event: TaskPostData): void {
@@ -52,7 +34,9 @@ export class TaskFormComponent implements OnInit {
     this.isSideNavShown = !this.isSideNavShown;
   }
 
-  onSideNavShown(event: boolean): void {
-    this.isSideNavShown = event;
+  onFilterOptions(event: TaskFilterParams): void {
+    this.filteredOptions = event;
+
+    this.filterOptions.emit(this.filteredOptions);
   }
 }

@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
 import { Observable } from 'rxjs';
+import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -13,7 +14,6 @@ import { Observable } from 'rxjs';
 export class TaskDashboardComponent implements OnInit {
   tasks: TaskView[];
   isFormShown = false;
-  selectedStatus: string;
   loading$: Observable<boolean | null>;
 
   constructor(
@@ -56,9 +56,11 @@ export class TaskDashboardComponent implements OnInit {
     this.isFormShown = event;
   }
 
-  onSelectStatus(event: string): void {
-    this.selectedStatus = event;
-    this._getTasksList({status: this.selectedStatus});
+  onFilterOptions(event: TaskFilterParams): void {
+    this._loaderService.start();
+    this._getTasksList({status: event.status,
+                        importance: event.importance,
+                        sort: event.date});
   }
 
   private _getTasksList(filterParams: any): void {
