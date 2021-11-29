@@ -64,6 +64,16 @@ export class SidenavComponent implements OnInit {
     this.filterOptions.emit(this.form.value);
   }
 
+  resetFilter() {
+    this.form.reset({
+      status: [EnumStatus.all, []],
+      importance: [EnumImportance.all, []],
+      date: [EnumDate.default, []]
+    });
+
+    this.filterOptions.emit({status: '', importance: '', date: '-createdAt'});
+  }
+
   private _initForm(): void {
     this.form = this._fb.group(
       {
