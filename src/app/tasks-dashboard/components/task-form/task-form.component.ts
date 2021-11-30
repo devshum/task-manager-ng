@@ -12,8 +12,9 @@ export class TaskFormComponent {
   @Output() hookTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
   @Output() formShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() filterOptions: EventEmitter<TaskFilterParams> = new EventEmitter<TaskFilterParams>();
+  @Output() sideNavShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   isFormShown = false;
-  isSideNavShown = true;
+  isSideNavShown = false;
   filteredOptions: TaskFilterParams;
   constructor() {}
 
@@ -32,11 +33,6 @@ export class TaskFormComponent {
 
   openSideNav(): void {
     this.isSideNavShown = !this.isSideNavShown;
-  }
-
-  onFilterOptions(event: TaskFilterParams): void {
-    this.filteredOptions = event;
-
-    this.filterOptions.emit(this.filteredOptions);
+    this.sideNavShown.emit(this.isSideNavShown);
   }
 }

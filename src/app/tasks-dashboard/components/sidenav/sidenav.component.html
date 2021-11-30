@@ -3,24 +3,24 @@
       [formGroup]="form" 
       (ngSubmit)="handleFilterSubmit()">
   <div class="sidenav__content">
-    <div>
-      <p>Filter by status:</p>
+    <div class="sidenav__item-wrap">
+      <span class="sidenav__item-label">Filter by status:</span>
       
       <ngx-select-dropdown formControlName="status" 
                            [options]="statusOptions">
       </ngx-select-dropdown>
     </div>
 
-    <div>
-      <p>Filter by importance:</p>
+    <div class="sidenav__item-wrap">
+      <span class="sidenav__item-label">Filter by importance:</span>
       
       <ngx-select-dropdown formControlName="importance" 
                            [options]="importanceOptions">
       </ngx-select-dropdown>
     </div>
 
-    <div>
-      <p>Sort by planned date:</p>
+    <div class="sidenav__item-wrap">
+      <span class="sidenav__item-label">Sort by planned date:</span>
       
       <ngx-select-dropdown formControlName="date" 
                            [options]="dateOptions">
@@ -31,6 +31,9 @@
                 [type]="'submit'">
     </app-button>
 
-    <button type="submit" (click)="resetFilter()">reset</button>
+    <button type="submit" class="sidenav__reset" (click)="resetFilter()">
+      <span class="sidenav__reset-icon">×</span>
+      <span>reset</span>
+    </button>
   </div>
 </form>

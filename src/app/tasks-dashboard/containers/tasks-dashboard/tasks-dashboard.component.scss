@@ -9,8 +9,14 @@
   width: 90vw;
 
   box-shadow: $box-shadow;
-  position: relative;
   animation: moveTowards 1s;
+  transition: $transition;
+
+  &.slided {
+    margin-top: 94px;
+    box-shadow: unset;
+    transform: scale(.9);
+  }
 
   &__wrap {
     transform: translateY(-2rem);
@@ -62,5 +68,17 @@
       font-weight: bold;
       color: $c-purple-20;
     }
+  }
+}
+
+app-sidenav {
+  position: absolute;
+  top: -100%;
+  width: 100%;
+  left: 0;
+  transition: $transition;
+
+  &.slided {
+    top: 0;
   }
 }

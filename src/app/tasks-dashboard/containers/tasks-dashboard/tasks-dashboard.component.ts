@@ -14,6 +14,7 @@ import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 export class TaskDashboardComponent implements OnInit {
   tasks: TaskView[];
   isFormShown = false;
+  isSideNavShown = false;
   loading$: Observable<boolean | null>;
 
   constructor(
@@ -54,6 +55,10 @@ export class TaskDashboardComponent implements OnInit {
 
   onFormShown(event: boolean): void {
     this.isFormShown = event;
+  }
+
+  onSideNavShown(event: boolean): void {
+    this.isSideNavShown = event;
   }
 
   onFilterOptions(event: TaskFilterParams): void {

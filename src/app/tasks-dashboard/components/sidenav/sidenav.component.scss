@@ -1,29 +1,42 @@
 @import '../../../../assets/styles/setup';
 
 .sidenav {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  z-index: 2;
+  &__content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 
-  &.opened {
-    .sidenav {
-      &__content {
-        left: 0;
+    background-color: $c-white;
+    padding: 2rem 2.4rem;
+    width: 100%;
+
+    & > * {
+      &:not(:last-child) {
+        margin-right: 1.6rem;
       }
     }
   }
 
-  &__content {
-    display: flex;
-    align-items: flex-end;
+  &__item-label {
+    display: inline-block;
 
-    background-color: $c-white;
-    position: absolute;
-    left: -100%;
-    top: 0;
-    padding: 2rem 2.4rem;
-    width: 100%;
+    margin-bottom: .4rem;
+  }
+
+  &__reset {
+    color: $c-gray-10;
+    background-color: unset;
+    transition: $transition;
+    border: unset;
+    cursor: pointer;
+    height: 3.8rem;
+
+    &:hover {
+      color: $c-gray-30;
+    }
+  }
+
+  &__reset-icon {
+    margin-right: .2rem;
   }
 }
