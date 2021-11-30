@@ -14,7 +14,11 @@
         <i class="icon" 
            [inlineSVG]="'icon-filter.svg'">
         </i>
-        <span>Filter</span>
+
+        <div [ngSwitch]="isSideNavShown">
+          <span *ngSwitchCase="true">Close filter</span>
+          <span *ngSwitchDefault>Open filter</span>
+        </div>
       </div>
     </div>
 
@@ -33,6 +37,3 @@
             [resetForm]="true"
             (hookTaskData)="onHookTask($event)"></app-form>
 </section>
-
-<app-sidenav [sideNavShown]="isSideNavShown"
-             (filterOptions)="onFilterOptions($event)"></app-sidenav>

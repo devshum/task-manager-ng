@@ -34,7 +34,6 @@
 
   &:hover {
     &::after {
-      background-color: $c-purple-20;
       transform: scaleX(1.2);
       opacity: 0;
     }

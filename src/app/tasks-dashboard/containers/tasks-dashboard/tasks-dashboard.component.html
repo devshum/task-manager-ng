@@ -1,8 +1,10 @@
-<div class="tasks-board" *ngIf="tasks !== undefined">
+<div class="tasks-board" *ngIf="tasks !== undefined"  
+                         [ngClass]="isSideNavShown ? 'slided' : 'non-slided'">
   <app-task-form
     [tasks]="tasks"
     (hookTask)="onAddTask($event)"
     (formShown)="onFormShown($event)"
+    (sideNavShown)="onSideNavShown($event)"
     (filterOptions)="onFilterOptions($event)"
   ></app-task-form>
 
@@ -28,3 +30,6 @@
 </div>
 
 <app-preloader></app-preloader>
+
+<app-sidenav [class.slided]="isSideNavShown"
+             (filterOptions)="onFilterOptions($event)"></app-sidenav>
