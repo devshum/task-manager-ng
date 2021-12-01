@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { TaskView, TaskPostData } from 'src/app/core/models/task.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TaskQueryParams } from '../../models/taskQuery.interface';
+import { TaskResponse } from '../../models/taskResponse.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class TasksDashboardService {
     private _http: HttpClient,
   ) { }
 
-  getTasks(query?: Partial<TaskQueryParams>): Observable<TaskView[]> {
+  getTasks(query?: Partial<TaskQueryParams>): Observable<TaskResponse> {
     const options = {
       params: new HttpParams()
         .set('importance', query?.importance || '')
@@ -25,7 +26,7 @@ export class TasksDashboardService {
         .set('sort', query?.sort || '')
     };
 
-    return this._http.get<TaskView[]>(`${this._apiUrl}/tasks`, options);
+    return this._http.get<TaskResponse>(`${this._apiUrl}/tasks`, options);
   }
 
   addTask(task: TaskPostData): Observable<TaskView> {

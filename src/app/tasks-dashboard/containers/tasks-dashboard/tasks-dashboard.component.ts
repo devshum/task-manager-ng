@@ -72,7 +72,7 @@ export class TaskDashboardComponent implements OnInit {
     this._tasksService
       .getTasks(filterParams)
       .subscribe(data => {
-        this.tasks = data;
+        this.tasks = data.result;
         this._loaderService.end();
     });
   }
