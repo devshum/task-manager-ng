@@ -1,9 +1,10 @@
-import { TaskDashboardModule } from './tasks-dashboard/tasks-dashboard.module';
+import { TaskDashboardModule } from './module-tasks-dashboard/tasks-dashboard.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 @NgModule({
   declarations: [
     AppComponent
