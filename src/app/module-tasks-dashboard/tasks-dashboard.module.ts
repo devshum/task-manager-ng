@@ -14,6 +14,9 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AppRoutingModule } from '../app-routing.module';
+
 @NgModule({
   declarations: [
     TaskComponent,
@@ -22,14 +25,16 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     TaskDashboardComponent,
     PreloaderComponent,
     FormComponent,
-    SidenavComponent
+    SidenavComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
     InlineSVGModule.forRoot({ baseUrl: '/assets/icons/', bypassHttpClientInterceptorChain: true }),
     ReactiveFormsModule,
     SelectDropDownModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   exports: [
     TaskDashboardComponent,
