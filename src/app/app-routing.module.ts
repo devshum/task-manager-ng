@@ -4,7 +4,8 @@ import { TaskDashboardComponent } from './module-tasks-dashboard/containers/task
 import { NotFoundComponent } from './module-tasks-dashboard/components/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: 'tasks', component: TaskDashboardComponent, pathMatch: 'full' },
+  { path: '', redirectTo: '/tasks', pathMatch: 'full' },
+  { path: 'tasks', component: TaskDashboardComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
