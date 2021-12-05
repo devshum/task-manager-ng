@@ -12,6 +12,8 @@
   animation: moveTowards 1s;
   transition: $transition;
 
+  position: relative;
+
   &.slided {
     margin-top: 94px;
     box-shadow: unset;
@@ -81,4 +83,18 @@ app-sidenav {
   &.slided {
     top: 0;
   }
+}
+
+.btn-prev,
+.btn-next {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.btn-prev {
+  left: 10px;
+}
+.btn-next {
+  right: 10px;
 }

@@ -15,6 +15,13 @@ export class TaskDashboardComponent implements OnInit {
   tasks: TaskView[];
   isFormShown = false;
   isSideNavShown = false;
+  currentPage = 1;
+  pageLimit = 4;
+  totalTasksPerPage: TaskView[];
+  pages: number;
+  status: string;
+  importance: string;
+  sort = '-createdAt';
   loading$: Observable<boolean | null>;
 
   constructor(
@@ -23,7 +30,11 @@ export class TaskDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._getTasksList({sort: '-createdAt'});
+    this._getTasksList({
+      sort: this.sort,
+      page: this.currentPage,
+      limit: this.pageLimit
+    });
   }
 
   onAddTask(event: TaskPostData): void {
@@ -31,16 +42,30 @@ export class TaskDashboardComponent implements OnInit {
     this._tasksService
       .addTask(event)
       .subscribe(() => {
-        this._getTasksList({sort: '-createdAt'});
+        this._getTasksList({
+          sort: this.sort,
+          page: this.currentPage,
+          limit: this.pageLimit
+        });
       });
   }
 
   onRemoveTask(event: TaskView): void {
+    if(this.totalTasksPerPage.length === 1 && this.currentPage > 1) {
+      this.pages--;
+      this.currentPage = this.pages;
+    }
     this._loaderService.start();
     this._tasksService
       .removeTask(event)
       .subscribe(() => {
-        this._getTasksList({sort: '-createdAt'});
+        this._getTasksList({
+          status: this.status,
+          importance: this.importance,
+          sort: this.sort,
+          page: this.currentPage,
+          limit: this.pageLimit
+        });
       });
   }
 
@@ -49,7 +74,11 @@ export class TaskDashboardComponent implements OnInit {
     this._tasksService
       .editTask(event)
       .subscribe(() => {
-        this._getTasksList({sort: '-createdAt'});
+         this._getTasksList({
+          sort: this.sort,
+          page: this.currentPage,
+          limit: this.pageLimit
+        });
       });
   }
 
@@ -62,10 +91,27 @@ export class TaskDashboardComponent implements OnInit {
   }
 
   onFilterOptions(event: TaskFilterParams): void {
+    this.currentPage = 1;
+    this.status = event.status;
+    this.importance = event.importance;
+    this.sort = event.date;
+
     this._loaderService.start();
-    this._getTasksList({status: event.status,
-                        importance: event.importance,
-                        sort: event.date});
+    this._getTasksList({
+      status: this.status,
+      importance: this.importance,
+      sort: this.sort,
+      page: this.currentPage,
+      limit: this.pageLimit
+    });
+  }
+
+  prevPage(): void {
+    this._updatePage('prev');
+  }
+
+  nextPage(): void {
+    this._updatePage('next');
   }
 
   private _getTasksList(filterParams: any): void {
@@ -73,7 +119,34 @@ export class TaskDashboardComponent implements OnInit {
       .getTasks(filterParams)
       .subscribe(data => {
         this.tasks = data.result;
+        this.pages = Math.ceil(data.total / data.limit);
+        this.totalTasksPerPage = data.result;
         this._loaderService.end();
-    });
+      });
+  }
+
+  private _updatePage(val: string): void {
+    this._loaderService.start();
+    if (val === 'prev') {
+      this.currentPage--;
+      this._getTasksList({
+        status: this.status,
+        importance: this.importance,
+        sort: this.sort,
+        page: this.currentPage,
+        limit: this.pageLimit
+      });
+    }
+
+    if (val === 'next') {
+      this.currentPage++;
+      this._getTasksList({
+        status: this.status,
+        importance: this.importance,
+        sort: this.sort,
+        page: this.currentPage,
+        limit: this.pageLimit
+      });
+    }
   }
 }

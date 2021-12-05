@@ -58,7 +58,7 @@ export class SidenavComponent implements OnInit {
     }
 
     if(this.form.value.date === EnumDate.default) {
-      this.form.value.date = '';
+      this.form.value.date = '-createdAt';
     }
 
     this.filterOptions.emit(this.form.value);

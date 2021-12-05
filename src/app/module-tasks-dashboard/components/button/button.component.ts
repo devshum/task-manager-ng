@@ -10,6 +10,7 @@ export class ButtonComponent {
   @Input() type: string;
   @Input() tasks: number;
   @Input() formShown = false;
+  @Input() sideNavShown = false;
 
   constructor() { }
 }
