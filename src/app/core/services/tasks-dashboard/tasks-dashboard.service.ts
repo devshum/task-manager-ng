@@ -24,6 +24,8 @@ export class TasksDashboardService {
         .set('importance', query?.importance || '')
         .set('status', query?.status || '')
         .set('sort', query?.sort || '')
+        .set('page', query?.page || '')
+        .set('limit', query?.limit || '')
     };
 
     return this._http.get<TaskResponse>(`${this._apiUrl}/tasks`, options);

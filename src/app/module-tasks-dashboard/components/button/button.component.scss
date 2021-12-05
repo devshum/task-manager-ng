@@ -11,11 +11,17 @@
   height: 3.8rem;
   border: 0;
 
+  transition: $transition;
   position: relative;
   cursor: pointer;
 
   &.animated {
     animation: pulse 1s infinite;
+  }
+
+  &.disabled {
+    background-color: rgba($c-purple-20, .1);
+    pointer-events: none;
   }
 
   &__wrapper {

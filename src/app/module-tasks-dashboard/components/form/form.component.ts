@@ -15,7 +15,8 @@ export class FormComponent implements OnInit {
   @Output() hookTaskData: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
   @Input() task: TaskView;
   @Input() tasks: TaskView[] = [];
-  @Input() formShown: boolean;
+  @Input() formShown = false;
+  @Input() sideNavShown = false;
   @Input() resetForm: boolean;
   @Input() btnLabel: string;
   @Input() styleClass: string;

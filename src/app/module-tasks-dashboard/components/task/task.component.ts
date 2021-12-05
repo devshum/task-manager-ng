@@ -10,6 +10,7 @@ import { EnumStatus } from 'src/app/core/enums/task.statuses';
 
 export class TaskComponent {
   @Input() task: TaskView;
+  @Input() sideNavShown = false;
   @Output() remove: EventEmitter<TaskView> = new EventEmitter<TaskView>();
   @Output() hookEditData: EventEmitter<any> = new EventEmitter<any>();
   taskImportance = EnumImportance;

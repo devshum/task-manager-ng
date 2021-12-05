@@ -1,5 +1,6 @@
 <button [type]="type ? type : 'button'" class="button" 
-        [class.animated]="tasks === 0 && !formShown"> 
+        [class.animated]="tasks === 0 && !formShown"
+        [class.disabled]="sideNavShown"> 
   <div class="button__wrapper">
     <i [inlineSVG]="'icon-btn.svg'" 
        class="button__icon icon"
