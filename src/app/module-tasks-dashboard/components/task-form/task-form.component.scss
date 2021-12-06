@@ -49,7 +49,34 @@
   }
 
   &__filter-wrap {
+    position: relative;
+  }
+
+  &__filter {
     display: flex;
+    align-items: center;
+
+    margin-left: 1.8rem;
+    font-size: 1.2rem;
+   
+    animation: appearDelay 1s .6s;
+    animation-fill-mode: backwards;
+
+    cursor: pointer;
+  }
+
+  &__spinner {
+    position: absolute;
+    left: 1.8rem;
+    top: 50%;
+    
+    animation: mockLoading 1s;
+    animation-fill-mode: forwards;
+  
+    transform: translateY(-50%);
+    font-size: 5rem;
+    height: 3.5rem;
+    width: 3.5rem;
   }
 
   app-button {
