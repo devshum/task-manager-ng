@@ -9,16 +9,22 @@
           {{ tasks.length }} {{ suffix }}
         </span>
       </h1>
-     
-      <div class="task__filter" (click)="openSideNav()">
-        <i class="icon" 
-           [inlineSVG]="'icon-filter.svg'">
-        </i>
 
-        <div [ngSwitch]="isSideNavShown">
-          <span *ngSwitchCase="true">Close filter</span>
-          <span *ngSwitchDefault>Open filter</span>
+      <div class="task-form__filter-wrap">
+        <div class="task-form__filter" (click)="openSideNav()">
+          <i class="icon" 
+             [inlineSVG]="'icon-filter.svg'">
+          </i>
+  
+          <div [ngSwitch]="isSideNavShown">
+            <span *ngSwitchCase="true">Close filter</span>
+            <span *ngSwitchDefault>Open filter</span>
+          </div>
         </div>
+  
+        <i class="task-form__spinner"
+           [inlineSVG]="'icon-spinner.svg'">&nbsp;
+        </i>
       </div>
     </div>
 
