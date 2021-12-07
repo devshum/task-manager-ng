@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ToastMessage } from '../../toast.interface';
-import { ToastService } from '../../toast.service';
+import { ToastMessage } from '../../../../core/models/toast.interface';
+import { ToastService } from '../../../../core/services/toast/toast.service';
 
 
 @Component({

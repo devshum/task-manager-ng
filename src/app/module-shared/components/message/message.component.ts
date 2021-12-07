@@ -3,7 +3,7 @@ import {
   AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter,
   Input, NgZone, OnDestroy, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
-import { ToastMessage } from '../../toast.interface';
+import { ToastMessage } from '../../../../core/models/toast.interface';
 
 @Component({
   selector: 'app-message',
