@@ -1,4 +1,4 @@
-export type ToastSeverity = 'success' | 'warn' | 'error' | 'info';
+export type ToastSeverity = 'add' | 'edit' | 'delete';
 
 export interface Toast {
     id: string;
