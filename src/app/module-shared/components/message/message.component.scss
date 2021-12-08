@@ -1,4 +1,21 @@
+@import '../../../../assets/styles/setup';
+
 .message {
+  padding: 32px;
+  border-radius: 10px;
+
+  &--edit {
+    background-color: $c-blue;
+  }
+
+  &--delete {
+    background-color: $c-red-10;
+  }
+
+  &--add {
+    background-color: $c-green;
+  }
+
   &__title {
   }
   &__message {

@@ -5,6 +5,10 @@ import { TasksDashboardService } from './../../../core/services/tasks-dashboard/
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
 import { Observable } from 'rxjs';
 import { TaskFilterParams } from 'src/app/core/models/filter.interface';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
+import { EnumToastEdit } from 'src/app/core/enums/toast.edit';
+import { EnumToastDelete } from 'src/app/core/enums/toast.delete';
+import { EnumToastAdd } from 'src/app/core/enums/toast.add';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -23,10 +27,32 @@ export class TaskDashboardComponent implements OnInit {
   importance: string;
   sort = '-createdAt';
   loading$: Observable<boolean | null>;
+  editToastData: any = {
+    id: EnumToastEdit.id,
+    severity: EnumToastEdit.severity,
+    life: EnumToastEdit.life,
+    title: EnumToastEdit.title,
+    message: EnumToastEdit.message
+  };
+  addToastData: any = {
+    id: EnumToastAdd.id,
+    severity: EnumToastAdd.severity,
+    life: EnumToastAdd.life,
+    title: EnumToastAdd.title,
+    message: EnumToastAdd.message
+  };
+  deleteToastData: any = {
+    id: EnumToastDelete.id,
+    severity: EnumToastDelete.severity,
+    life: EnumToastDelete.life,
+    title: EnumToastDelete.title,
+    message: EnumToastDelete.message
+  };
 
   constructor(
     private _tasksService: TasksDashboardService,
-    private _loaderService: LoaderService
+    private _loaderService: LoaderService,
+    private _toastService: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +73,7 @@ export class TaskDashboardComponent implements OnInit {
           page: this.currentPage,
           limit: this.pageLimit
         });
+        this._toastService.add(this.addToastData);
       });
   }
 
@@ -66,6 +93,7 @@ export class TaskDashboardComponent implements OnInit {
           page: this.currentPage,
           limit: this.pageLimit
         });
+        this._toastService.add(this.deleteToastData);
       });
   }
 
@@ -79,6 +107,7 @@ export class TaskDashboardComponent implements OnInit {
           page: this.currentPage,
           limit: this.pageLimit
         });
+        this._toastService.add(this.editToastData);
       });
   }
 

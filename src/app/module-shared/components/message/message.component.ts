@@ -3,7 +3,7 @@ import {
   AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter,
   Input, NgZone, OnDestroy, OnInit, Output, ViewEncapsulation
 } from '@angular/core';
-import { ToastMessage } from '../../../../core/models/toast.interface';
+import { ToastMessage } from 'src/app/core/models/toast.interface';
 
 @Component({
   selector: 'app-message',
@@ -34,7 +34,6 @@ export class MessageComponent implements OnInit, AfterViewInit, OnDestroy {
             index: this.index,
             message: this.message
           });
-          console.log('on Close');
         }, this.message.life || 3000);
       });
     }
