@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { InlineSVGModule } from 'ng-inline-svg';
 import { NgModule } from '@angular/core';
 import { TaskComponent } from './components/task/task.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
@@ -31,7 +30,6 @@ import { ToastModule } from '../module-shared/toast.module';
   ],
   imports: [
     CommonModule,
-    InlineSVGModule.forRoot({ baseUrl: '/assets/icons/', bypassHttpClientInterceptorChain: true }),
     ReactiveFormsModule,
     SelectDropDownModule,
     FormsModule,

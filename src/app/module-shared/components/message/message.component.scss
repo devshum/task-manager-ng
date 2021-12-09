@@ -1,8 +1,16 @@
 @import '../../../../assets/styles/setup';
 
 .message {
-  padding: 32px;
-  border-radius: 10px;
+  padding: 1.6rem;
+  border-radius: 1rem;
+  box-shadow: 0 .1rem .2rem rgba($c-black, .07), 
+              0 .2rem .4rem rgba($c-black, .07), 
+              0 .4rem .8rem rgba($c-black, .07), 
+              0 .8rem 1.6rem rgba($c-black, .07),
+              0 1.6rem 3.2rem rgba($c-black, .07), 
+              0 3.2rem 6.4rem rgba($c-black, .07);
+  color: $c-white;
+  position: relative;
 
   &--edit {
     background-color: $c-blue;
@@ -17,7 +25,21 @@
   }
 
   &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: .4rem;
   }
+
   &__message {
+    font-size: .8rem;
+    font-size: 1.3rem;
+  }
+
+  &__close {
+    position: absolute;
+    right: .8rem;
+    top: .8rem;   
+    width: 1.2rem;
+    cursor: pointer;
   }
 }

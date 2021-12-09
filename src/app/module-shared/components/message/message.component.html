@@ -1,5 +1,8 @@
 <div class="message" [ngClass]="'message--' + message.severity">
-  <div class="message__close" (click)="onCloseMessage($event)">x</div>
+  <i class="message__close" 
+     [inlineSVG]="'icon-cross.svg'" 
+     (click)="onCloseMessage($event)">
+  </i>
   <div class="message__title">{{ message.title }}</div>
   <div class="message__description">{{ message.message }}</div>
 </div>
