@@ -1,6 +1,12 @@
 .toast {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 2.4rem;
+  bottom: 2.4rem;
+
+  app-message {
+    &:not(:last-child) {
+      display: block;
+      margin-bottom: .8rem;
+    }
+  }
 }
