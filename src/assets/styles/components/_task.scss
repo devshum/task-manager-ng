@@ -43,26 +43,4 @@
       }
     }
   }
-
-  &__filter {
-    &:hover {
-     svg {
-      .fltr-crcl1 {
-        transform: translateX(.6rem)
-      }
-
-     .fltr-crcl2 {
-        transform: translateX(-.6rem)
-      }
-     }
-    }
-
-    circle {
-      will-change: transform;
-      transition: $transition;
-    }
-    rect {
-      transform-origin: 50% 50%;
-    }
-  }
 }

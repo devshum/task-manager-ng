@@ -1,8 +1,9 @@
 <div class="toast">
   <app-message
-  *ngFor="let message of messages; let index = index"
-  [message]="message"
-  [index]="index"
-  (onClose)="onMessageClose($event)"
-  ></app-message>
+    @fadeDelay
+    *ngFor="let message of messages; let index = index" 
+    [message]="message"
+    [index]="index"
+    (onClose)="onMessageClose($event)"
+  ></app-message> 
 </div>

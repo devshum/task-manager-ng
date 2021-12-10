@@ -65,7 +65,7 @@ export class MessageComponent implements OnInit, AfterViewInit, OnDestroy {
     event.preventDefault();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.clearTimeout();
   }
 

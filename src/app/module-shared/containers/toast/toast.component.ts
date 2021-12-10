@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ToastMessage } from 'src/app/core/models/toast.interface';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
-
+import { fadeDelay } from 'src/app/core/animations/animations';
 @Component({
   selector: 'app-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  animations: [fadeDelay],
 })
 export class ToastComponent implements OnInit {
 

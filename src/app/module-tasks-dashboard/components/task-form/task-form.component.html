@@ -1,19 +1,27 @@
 <section class="task-form">
   <div class="task-form__header">
-    <div class="task-form__title-wrap"> 
-      <h1 class="task-form__title" [class.hovered]="tasks.length">
-        <span *ngIf="tasks.length">You’ve got</span>
-        <span *ngIf="!tasks.length">You haven't got tasks yet!</span>
+    <h1 class="task-form__title" [class.hovered]="tasks.length">
+      <span class="d-block" 
+            @fadeCommon 
+            *ngIf="!tasks.length">
+        You haven't got tasks yet!
+      </span>
 
-        <span class="task-form__amount" *ngIf="tasks.length">
+      <span class="d-block"
+            @fadeCommon 
+            *ngIf="tasks.length">
+        <span >You’ve got</span>
+        <span class="task-form__amount">
           {{ tasks.length }} {{ suffix }}
         </span>
-      </h1>
+      </span>
+    </h1>
 
+    <div class="task-form__btn-wrap">
       <div class="task-form__filter-wrap">
         <div class="task-form__filter" (click)="openSideNav()">
           <i class="icon" 
-             [inlineSVG]="'icon-filter.svg'">
+              [inlineSVG]="'icon-filter.svg'">
           </i>
   
           <div [ngSwitch]="isSideNavShown">
@@ -23,17 +31,15 @@
         </div>
   
         <i class="task-form__spinner"
-           [inlineSVG]="'icon-spinner.svg'">&nbsp;
+            [inlineSVG]="'icon-spinner.svg'">&nbsp;
         </i>
       </div>
-    </div>
 
-    <div class="task-form__filter-wrap">
-      
       <app-button [text]="!isFormShown ? 'Add new' : 'Hide form'"
                   (click)="toggleForm()"
                   [tasks]="tasks.length"
-                  [formShown]="isFormShown"></app-button>
+                  [formShown]="isFormShown">
+      </app-button>
     </div>
   </div>
  
