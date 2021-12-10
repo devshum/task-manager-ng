@@ -1,11 +1,15 @@
+@import '../../../../assets/styles/setup';
+
 .toast {
   position: absolute;
   right: 2.4rem;
   bottom: 2.4rem;
+ 
 
   app-message {
+    display: block;
+    
     &:not(:last-child) {
-      display: block;
       margin-bottom: .8rem;
     }
   }

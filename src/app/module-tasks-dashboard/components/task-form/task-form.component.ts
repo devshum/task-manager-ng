@@ -1,10 +1,12 @@
 import { TaskView, TaskPostData } from './../../../core/models/task.interface';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TaskFilterParams } from 'src/app/core/models/filter.interface';
+import { fadeCommon } from './../../../core/animations/animations';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.scss']
+  styleUrls: ['./task-form.component.scss'],
+  animations: [fadeCommon]
 })
 
 export class TaskFormComponent {

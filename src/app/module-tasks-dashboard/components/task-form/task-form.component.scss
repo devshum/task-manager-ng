@@ -16,6 +16,8 @@
   }
 
   &__title {
+    display: grid;
+
     line-height: 5.6rem;
     font-weight: 800;
     color: $c-gray-30;
@@ -34,6 +36,11 @@
         }
       }
     }
+
+    span {
+      grid-column: 1 / -1;
+      grid-row: 1 / 1;
+    }
   }
 
   &__amount {
@@ -42,7 +49,7 @@
     color: $c-purple-10;
   }
 
-  &__title-wrap,
+  &__btn-wrap,
   &__filter-wrap {
     display: flex;
     align-items: center;
@@ -56,7 +63,7 @@
     display: flex;
     align-items: center;
 
-    margin-left: 1.8rem;
+    margin-right: 1.8rem;
     font-size: 1.2rem;
    
     animation: appearDelay 1s .6s;

@@ -9,10 +9,12 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { EnumToastEdit } from 'src/app/core/enums/toast.edit';
 import { EnumToastDelete } from 'src/app/core/enums/toast.delete';
 import { EnumToastAdd } from 'src/app/core/enums/toast.add';
+import { fadeDelay, fadeCommon } from 'src/app/core/animations/animations';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
-  styleUrls: ['./tasks-dashboard.component.scss']
+  styleUrls: ['./tasks-dashboard.component.scss'],
+  animations: [fadeDelay, fadeCommon],
 })
 
 export class TaskDashboardComponent implements OnInit {
