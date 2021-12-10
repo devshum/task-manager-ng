@@ -24,6 +24,7 @@ export class TaskDashboardComponent implements OnInit {
   currentPage = 1;
   pageLimit = 4;
   totalTasksPerPage: TaskView[];
+  totalTasks: number;
   pages: number;
   status: string;
   importance: string;
@@ -152,6 +153,7 @@ export class TaskDashboardComponent implements OnInit {
         this.tasks = data.result;
         this.pages = Math.ceil(data.total / data.limit);
         this.totalTasksPerPage = data.result;
+        this.totalTasks = data.total;
         this._loaderService.end();
       });
   }

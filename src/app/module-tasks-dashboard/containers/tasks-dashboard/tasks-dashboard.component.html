@@ -1,8 +1,9 @@
 <div class="tasks-board" @fadeCommon
-                        *ngIf="tasks !== undefined"  
+                         *ngIf="tasks !== undefined"  
                          [ngClass]="isSideNavShown ? 'slided' : 'non-slided'">
   <app-task-form
     [tasks]="tasks"
+    [totalTasks]="totalTasks"
     (hookTask)="onAddTask($event)"
     (formShown)="onFormShown($event)"
     (sideNavShown)="onSideNavShown($event)"
@@ -38,5 +39,5 @@
 <app-preloader></app-preloader>
 <app-toast></app-toast>
 
-<app-sidenav [class.slided]="isSideNavShown"
+<app-sidenav [ngClass]="isSideNavShown ? 'slided' : 'non-slided'"
              (filterOptions)="onFilterOptions($event)"></app-sidenav>

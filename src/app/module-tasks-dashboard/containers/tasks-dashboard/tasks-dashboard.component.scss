@@ -10,7 +10,6 @@
 
   box-shadow: $box-shadow;
   animation: moveTowards 1s;
-  transition: $transition;
 
   position: relative;
 
@@ -18,6 +17,11 @@
     margin-top: 9.4rem;
     box-shadow: unset;
     transform: scale(.9);
+    transition: $transition;
+  }
+
+  &.non-slided {
+    transition: $transition .3s;
   }
 
   &__wrap {
@@ -37,7 +41,7 @@
     }
 
     &.not-translated {
-      transition: $transition .5s;
+      transition: $transition .2s;
     }
   }
 
@@ -75,13 +79,17 @@
 
 app-sidenav {
   position: absolute;
-  top: -100%;
+  top: -100px;
   width: 100%;
   left: 0;
-  transition: $transition;
 
   &.slided {
     top: 0;
+    transition: $transition .3s;
+  }
+
+  &.non-slided {
+    transition: $transition;
   }
 }
 

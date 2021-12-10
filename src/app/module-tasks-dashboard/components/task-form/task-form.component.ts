@@ -11,6 +11,7 @@ import { fadeCommon } from './../../../core/animations/animations';
 
 export class TaskFormComponent {
   @Input() tasks: TaskView[] = [];
+  @Input() totalTasks: number;
   @Output() hookTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
   @Output() formShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() filterOptions: EventEmitter<TaskFilterParams> = new EventEmitter<TaskFilterParams>();
