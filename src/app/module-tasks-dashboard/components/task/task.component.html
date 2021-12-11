@@ -1,5 +1,6 @@
 <div class="task" [class.closed]="task.status === taskStatus.closed">
-  <app-form [styleClass]="isTaskEditOpen ? 'opened' : ''"
+  <app-form class="task__form-wrap"
+            [styleClass]="isTaskEditOpen ? 'opened' : ''"
             [task]="task"
             [btnLabel]="'Edit'"
             [resetForm]="false"

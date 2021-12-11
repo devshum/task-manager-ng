@@ -6,7 +6,7 @@
   bottom: 2.4rem;
  
 
-  app-message {
+  &__message-wrap {
     display: block;
     
     &:not(:last-child) {

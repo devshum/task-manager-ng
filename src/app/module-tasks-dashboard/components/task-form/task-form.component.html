@@ -35,7 +35,8 @@
         </i>
       </div>
 
-      <app-button [text]="!isFormShown ? 'Add new' : 'Hide form'"
+      <app-button class="task-form__button-wrap"
+                  [text]="!isFormShown ? 'Add new' : 'Hide form'"
                   (click)="toggleForm()"
                   [tasks]="tasks.length"
                   [formShown]="isFormShown">
