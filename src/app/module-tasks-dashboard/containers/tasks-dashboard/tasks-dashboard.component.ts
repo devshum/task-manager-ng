@@ -1,5 +1,5 @@
 import { LoaderService } from './../../../core/services/loader/loader.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
@@ -18,6 +18,7 @@ import { fadeDelay, fadeCommon } from 'src/app/core/animations/animations';
 })
 
 export class TaskDashboardComponent implements OnInit {
+  @Output() updatedCurrentPage: EventEmitter<number> = new EventEmitter<number>();
   tasks: TaskView[];
   isFormShown = false;
   isSideNavShown = false;
@@ -138,12 +139,16 @@ export class TaskDashboardComponent implements OnInit {
     });
   }
 
-  prevPage(): void {
-    this._updatePage('prev');
-  }
-
-  nextPage(): void {
-    this._updatePage('next');
+  onUpdatedCurrentPage(event: number): void {
+    this.currentPage = event;
+    this._loaderService.start();
+    this._getTasksList({
+      status: this.status,
+      importance: this.importance,
+      sort: this.sort,
+      page: this.currentPage,
+      limit: this.pageLimit
+    });
   }
 
   private _getTasksList(filterParams: any): void {
@@ -156,30 +161,5 @@ export class TaskDashboardComponent implements OnInit {
         this.totalTasks = data.total;
         this._loaderService.end();
       });
-  }
-
-  private _updatePage(val: string): void {
-    this._loaderService.start();
-    if (val === 'prev') {
-      this.currentPage--;
-      this._getTasksList({
-        status: this.status,
-        importance: this.importance,
-        sort: this.sort,
-        page: this.currentPage,
-        limit: this.pageLimit
-      });
-    }
-
-    if (val === 'next') {
-      this.currentPage++;
-      this._getTasksList({
-        status: this.status,
-        importance: this.importance,
-        sort: this.sort,
-        page: this.currentPage,
-        limit: this.pageLimit
-      });
-    }
   }
 }

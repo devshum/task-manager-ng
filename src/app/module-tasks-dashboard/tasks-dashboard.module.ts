@@ -16,6 +16,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ToastModule } from '../module-shared/toast.module';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ToastModule } from '../module-shared/toast.module';
     PreloaderComponent,
     FormComponent,
     SidenavComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,

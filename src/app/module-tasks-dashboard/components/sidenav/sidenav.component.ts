@@ -11,8 +11,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SidenavComponent implements OnInit {
   @Input() sideNavShown = false;
-  @Output() selectStatus: EventEmitter<string> = new EventEmitter<string>();
-  @Output() selectImportance: EventEmitter<string> = new EventEmitter<string>();
   @Output() filterOptions: EventEmitter<TaskFilterParams> = new EventEmitter<TaskFilterParams>();
   form: FormGroup;
   statusOptions: string[] = [
