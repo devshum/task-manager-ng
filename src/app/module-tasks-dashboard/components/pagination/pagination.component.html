@@ -1,4 +1,13 @@
 <div class="pagination">
-  <div class="btn-prev" (click)="prevPage()" *ngIf="currentPage > 1">page {{ currentPage - 1 }}</div>
-  <div class="btn-next" (click)="nextPage()" *ngIf="pages > 1 && currentPage < pages">page {{ currentPage + 1 }} </div>
+  <div class="pagination__btn-prev" 
+       (click)="prevPage()" 
+       [class.shown]="currentPage > 1" > page 
+       {{ currentPage > 1 ? currentPage - 1 : '' }}
+  </div>
+
+  <div class="pagination__btn-next" 
+       (click)="nextPage()" 
+       [class.shown]="pages > 1 && currentPage < pages" > page 
+       {{ currentPage < pages ? currentPage + 1 : '' }}
+  </div>
 </div>
