@@ -45,7 +45,7 @@
     }
   }
 
-  app-task {
+  &__task-wrap {
     display: block;
     
     &:not(:last-child) {
@@ -75,22 +75,23 @@
       color: $c-purple-20;
     }
   }
-}
 
-app-sidenav {
-  position: absolute;
-  top: -100px;
-  width: 100%;
-  left: 0;
-
-  &.slided {
-    top: 0;
-    transition: $transition .3s;
+  &__sidenav {
+    position: absolute;
+    top: -100px;
+    width: 100%;
+    left: 0;
+  
+    &.slided {
+      top: 0;
+      transition: $transition .3s;
+    }
+  
+    &.non-slided {
+      transition: $transition;
+    }
   }
-
-  &.non-slided {
-    transition: $transition;
-  }
+  
 }
 
 .btn-prev,

@@ -18,6 +18,7 @@
    
   <app-task @fadeDelay
             *ngFor="let task of tasks" 
+            class="tasks-board__task-wrap"
             [task]="task" 
             [sideNavShown]="isSideNavShown"
             (remove)="onRemoveTask($event)"
@@ -39,5 +40,6 @@
 <app-preloader></app-preloader>
 <app-toast></app-toast>
 
-<app-sidenav [ngClass]="isSideNavShown ? 'slided' : 'non-slided'"
+<app-sidenav class="tasks-board__sidenav"
+             [ngClass]="isSideNavShown ? 'slided' : 'non-slided'"
              (filterOptions)="onFilterOptions($event)"></app-sidenav>

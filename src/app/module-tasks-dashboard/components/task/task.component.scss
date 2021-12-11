@@ -176,9 +176,7 @@
         width: 50%;
       }
     }
-  }
 
-  &__edit {
     &::after {
       content: '';
       position: absolute;
@@ -207,8 +205,8 @@
     height: 2rem;
     margin-right: 1rem;
   }
-}
 
-app-form {
-  position: absolute;
+  &__form-wrap {
+    position: absolute;
+  }
 }
