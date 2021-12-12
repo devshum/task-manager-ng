@@ -22,6 +22,7 @@ export class TaskDashboardComponent implements OnInit {
   tasks: TaskView[];
   isFormShown = false;
   isSideNavShown = false;
+  isNavbarOpened = false;
   currentPage = 1;
   pageLimit = 4;
   totalTasksPerPage: TaskView[];
@@ -121,6 +122,10 @@ export class TaskDashboardComponent implements OnInit {
 
   onFormShown(event: boolean): void {
     this.isFormShown = event;
+  }
+
+  onNavbarOpened(event: boolean): void {
+    this.isNavbarOpened = event;
   }
 
   onSideNavShown(event: boolean): void {
