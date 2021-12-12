@@ -1,16 +1,6 @@
 @import '../../../../assets/styles/setup';
 
 .tasks-board {
-  background-color: $c-white;
-  padding: 5.6rem 7.8rem;
-  border-radius: 3rem;
-  overflow: hidden;
-  height: 80vh;
-  width: 90vw;
-
-  box-shadow: $box-shadow;
-  animation: moveTowards 1s;
-
   position: relative;
 
   &.slided {

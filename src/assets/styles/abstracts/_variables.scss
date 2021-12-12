@@ -5,13 +5,13 @@ $c-white: #FFFFFF;
 $c-pink: #EDC1D3;
 $c-blue: #91BDEC; 
 
-$c-purple-10: rgba(136, 76, 178, 0.7);
+$c-purple-10: rgba(136, 76, 178, .7);
 $c-purple-20: #884CB2;
-$c-purple: rgba(243, 71, 122, 0.7);
+$c-purple: rgba(243, 71, 122, .7);
 $c-purple-10: #fa27e8;
 
 $c-orange: #F2994A;
-$c-orange-10: rgba(242, 153, 74, 0.2);
+$c-orange-10: rgba(242, 153, 74, .2);
 
 $c-yellow: #F2C94C;
 
@@ -19,7 +19,7 @@ $c-green: #219653;
 $c-green-10: #00BC4C;
 
 $c-aqua: #56CCF2;
-$c-blue-10: rgba(86, 204, 242, 0.2);
+$c-blue-10: rgba(86, 204, 242, .2);
 
 $c-red: #EB5757;
 $c-red-10: #ED2939;
@@ -28,9 +28,10 @@ $c-gray: #DCD9D9;
 $c-gray-10: #DFDFDF;
 $c-gray-20: #E0E0E0;
 $c-gray-30: #1D262C;
+$c-gray-40: #ffffff40;
 
 // SHADOW
-$shadow-1: rgba(0, 0, 0, 0.25);
+$shadow-1: rgba(0, 0, 0, .25);
 $box-shadow: 0 .4rem .4rem $shadow-1;
 
 // TRANSITIONS
