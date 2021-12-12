@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ToastComponent } from './containers/toast/toast.component';
 import { MessageComponent } from './components/message/message.component';
 import { ToastService } from '../core/services/toast/toast.service';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     ToastComponent,
-    MessageComponent
+    MessageComponent,
+    NavigationComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ToastService } from '../core/services/toast/toast.service';
   providers: [ToastService],
   exports: [
     ToastComponent,
-    InlineSVGModule
+    InlineSVGModule,
+    NavigationComponent
   ]
 })
 export class ToastModule { }
