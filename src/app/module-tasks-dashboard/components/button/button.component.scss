@@ -15,6 +15,10 @@
   position: relative;
   cursor: pointer;
 
+  &:hover {
+    background-color: $c-purple;
+  }
+
   &.animated {
     animation: pulse 1s infinite;
   }

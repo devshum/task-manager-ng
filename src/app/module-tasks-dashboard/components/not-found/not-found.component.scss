@@ -1,0 +1,54 @@
+@import '../../../../assets/styles/setup.scss';
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &__title {
+    font-size: 16rem;
+    color: transparent;
+    line-height: 12rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(115.67deg, $c-pink 7.14%, $c-blue 99.42%);
+    background-clip: text;
+    text-shadow: .1rem .1rem .2rem rgba($c-gray-40, .25);
+  }
+
+  &__subtitle,
+  &__paragraph {
+    color: $c-gray-30;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  &__paragraph {
+    font-size: 2rem;
+  }
+
+  &__button {
+    display: block;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    border: .1rem solid $c-blue;
+    font-weight: 500;
+    color: $c-blue;
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+    transition: $transition;
+
+    &:hover {
+      border: .1rem solid transparent;
+      background-color: $c-purple;
+      color: $c-white;
+    }
+  }
+}
