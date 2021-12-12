@@ -68,6 +68,10 @@ export class TaskDashboardComponent implements OnInit {
   }
 
   onAddTask(event: TaskPostData): void {
+    if(this.totalTasksPerPage.length === this.pageLimit) {
+      this.pages++;
+      this.currentPage = this.pages;
+    }
     this._loaderService.start();
     this._tasksService
       .addTask(event)
