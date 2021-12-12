@@ -1,0 +1,15 @@
+.sidenav-wrap {
+  position: absolute;
+  top: -10rem;
+  width: 100%;
+  left: 0;
+
+  &.slided {
+    top: 0;
+    transition: $transition .3s;
+  }
+
+  &.non-slided {
+    transition: $transition;
+  }
+}

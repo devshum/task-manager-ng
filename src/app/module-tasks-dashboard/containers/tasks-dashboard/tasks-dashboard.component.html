@@ -41,8 +41,10 @@
 <app-preloader></app-preloader>
 <app-toast></app-toast>
 
-<app-sidenav class="tasks-board__sidenav"
+<app-sidenav class="sidenav-wrap d-block"
              [ngClass]="isSideNavShown ? 'slided' : 'non-slided'"
              (filterOptions)="onFilterOptions($event)"></app-sidenav>
+             
+<app-navigation [navbarOpened]="isNavbarOpened"></app-navigation>
 
-<app-navigation></app-navigation>
+<app-burger (isNavbarOpened)="onNavbarOpened($event)"></app-burger>

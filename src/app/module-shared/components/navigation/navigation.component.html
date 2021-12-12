@@ -1,1 +1,23 @@
-<p>navigation works!</p>
+<nav class="navigation" [class.opened]="navbarOpened">
+  <div class="navigation__bg">&nbsp;</div>
+
+  <ul class="navigation__links">
+      <li class="navigation__link">
+        <a (click)="goToLink('https://github.com/devshum')">GitHub</a>
+      </li>
+
+      <li class="navigation__link">
+        <a (click)="goToLink('https://codepen.io/vladshumdev')">CodePen</a>
+      </li>
+  </ul>
+
+  <div class="navigation__copyright">
+    Powered by 
+    <a (click)="goToLink('https://angular.io')">
+      <i [inlineSVG]="'icon-angular.svg'" 
+        class="navigation__icon">
+        &nbsp;
+      </i>
+    </a>
+  </div>
+</nav>

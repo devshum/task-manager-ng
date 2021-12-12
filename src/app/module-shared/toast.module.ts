@@ -5,12 +5,14 @@ import { ToastComponent } from './containers/toast/toast.component';
 import { MessageComponent } from './components/message/message.component';
 import { ToastService } from '../core/services/toast/toast.service';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { BurgerComponent } from './components/burger/burger.component';
 
 @NgModule({
   declarations: [
     ToastComponent,
     MessageComponent,
-    NavigationComponent
+    NavigationComponent,
+    BurgerComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   exports: [
     ToastComponent,
     InlineSVGModule,
-    NavigationComponent
+    NavigationComponent,
+    BurgerComponent
   ]
 })
 export class ToastModule { }

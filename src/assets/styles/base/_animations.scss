@@ -81,3 +81,21 @@
   }
 }
 
+@keyframes moveToLeft {
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  50% {
+    transform: translateX(-10%);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+

@@ -1,0 +1,125 @@
+@import '../../../../assets/styles/setup';
+
+.navigation {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: $transition;
+
+  @include visibility-hidden;
+
+  &.opened {
+    @include visibility-visible;
+    
+    .navigation {
+      &__bg {
+        clip-path: circle(100%);
+      }
+
+      &__links,
+      &__copyright {
+        @include visibility-visible;
+      }
+    }
+  }
+
+  &__bg {
+    clip-path: circle(0rem at 100% 0rem);
+    background: linear-gradient(115.67deg, $c-pink 7.14%, $c-blue 99.42%);
+    height: 100%;
+    transition: $transition;
+  }
+
+  &__links {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    @include visibility-hidden;
+  }
+
+  &__link {
+    list-style-type: none;
+    margin: 3rem 0;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: $c-white;
+      font-size: 2.4rem;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: .1rem;
+      font-weight: bold;
+      transition: $transition;
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: '';
+        height: .4rem;
+        width: 0%;
+        background-color: $c-red;
+        left: 0;
+        border-radius: .2rem;
+        transition: 0.3s ease all;
+      }
+
+      &::before{
+        top: -.5rem;
+      }
+
+      &::after{
+        bottom: -.5rem;
+      }
+
+      &:hover {
+        color: $c-red;
+
+        &::before,
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__links,
+  &__copyright {
+    position: absolute;
+
+    transition: $transition .5s;
+  }
+
+  &__copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3.2rem;
+
+    color: $c-red;
+    font-size: 1.6rem;
+
+    @include visibility-hidden;
+  }
+
+  &__icon {
+    display: inline-block;
+    height: 5.6rem;
+    width: 5.6rem;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+}
