@@ -30,7 +30,7 @@ export class TaskDashboardComponent implements OnInit {
   pages: number;
   status: string;
   importance: string;
-  sort = '-createdAt';
+  sort = '-issue';
   loading$: Observable<boolean | null>;
   editToastData: any = {
     id: EnumToastEdit.id,
@@ -66,6 +66,18 @@ export class TaskDashboardComponent implements OnInit {
       page: this.currentPage,
       limit: this.pageLimit
     });
+  }
+
+  onFormShown(event: boolean): void {
+    this.isFormShown = event;
+  }
+
+  onNavbarOpened(event: boolean): void {
+    this.isNavbarOpened = event;
+  }
+
+  onSideNavShown(event: boolean): void {
+    this.isSideNavShown = event;
   }
 
   onAddTask(event: TaskPostData): void {
@@ -120,23 +132,11 @@ export class TaskDashboardComponent implements OnInit {
       });
   }
 
-  onFormShown(event: boolean): void {
-    this.isFormShown = event;
-  }
-
-  onNavbarOpened(event: boolean): void {
-    this.isNavbarOpened = event;
-  }
-
-  onSideNavShown(event: boolean): void {
-    this.isSideNavShown = event;
-  }
-
   onFilterOptions(event: TaskFilterParams): void {
     this.currentPage = 1;
     this.status = event.status;
     this.importance = event.importance;
-    this.sort = event.date;
+    this.sort = event.issue;
 
     this._loaderService.start();
     this._getTasksList({
