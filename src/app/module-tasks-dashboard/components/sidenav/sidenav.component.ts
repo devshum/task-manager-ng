@@ -1,8 +1,8 @@
 import { TaskFilterParams } from '../../../core/models/filter.interface';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { EnumStatus } from 'src/app/core/enums/task.statuses';
+import { EnumIssue } from 'src/app/core/enums/task.issue';
 import { EnumImportance } from 'src/app/core/enums/task.importances';
-import { EnumDate } from 'src/app/core/enums/task.date';
 import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-sidenav',
@@ -25,10 +25,9 @@ export class SidenavComponent implements OnInit {
     EnumImportance.normal,
     EnumImportance.critical
   ];
-  dateOptions: string[] = [
-    EnumDate.default,
-    EnumDate.oldest,
-    EnumDate.newest
+  issueOptions: string[] = [
+    EnumIssue.oldest,
+    EnumIssue.newest
   ];
   constructor(
     private _fb: FormBuilder
@@ -47,16 +46,13 @@ export class SidenavComponent implements OnInit {
       this.form.value.status = '';
     }
 
-    if(this.form.value.date === EnumDate.newest) {
-      this.form.value.date = 'date';
+
+    if(this.form.value.issue === EnumIssue.newest) {
+      this.form.value.issue = 'issue';
     }
 
-    if(this.form.value.date === EnumDate.oldest) {
-      this.form.value.date = '-date';
-    }
-
-    if(this.form.value.date === EnumDate.default) {
-      this.form.value.date = '-createdAt';
+    if(this.form.value.issue === EnumIssue.oldest) {
+      this.form.value.issue = '-issue';
     }
 
     this.filterOptions.emit(this.form.value);
@@ -66,10 +62,10 @@ export class SidenavComponent implements OnInit {
     this.form.reset({
       status: [EnumStatus.all, []],
       importance: [EnumImportance.all, []],
-      date: [EnumDate.default, []]
+      issue: [EnumIssue.oldest, []]
     });
 
-    this.filterOptions.emit({status: '', importance: '', date: '-createdAt'});
+    this.filterOptions.emit({status: '', importance: '', issue: '-issue'});
   }
 
   private _initForm(): void {
@@ -77,7 +73,7 @@ export class SidenavComponent implements OnInit {
       {
         status: [EnumStatus.all, []],
         importance: [EnumImportance.all, []],
-        date: [EnumDate.default, []]
+        issue: [EnumIssue.oldest, []]
       });
   }
 }

@@ -17,7 +17,7 @@
   >
    
     <app-task @fadeDelay
-              *ngFor="let task of tasks" 
+              *ngFor="let task of tasks"
               class="tasks-board__task-wrap"
               [task]="task" 
               [sideNavShown]="isSideNavShown"
@@ -45,6 +45,8 @@
              [ngClass]="isSideNavShown ? 'slided' : 'non-slided'"
              (filterOptions)="onFilterOptions($event)"></app-sidenav>
              
-<app-navigation [navbarOpened]="isNavbarOpened"></app-navigation>
+<app-navigation *ngIf="tasks !== undefined" 
+                [navbarOpened]="isNavbarOpened">
+</app-navigation>
 
 <app-burger (isNavbarOpened)="onNavbarOpened($event)"></app-burger>
