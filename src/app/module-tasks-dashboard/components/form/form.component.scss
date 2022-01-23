@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 20rem repeat(3, 12rem) 1fr;
   align-items: center;
-  column-gap: 1.6rem;
+  grid-column-gap: 1.6rem;
 
   height: 3.8rem;
   position: relative;
