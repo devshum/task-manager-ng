@@ -47,7 +47,7 @@
   &__content-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 5vw;
+    column-gap: 5vw;
 
     justify-content: space-between;
     align-items: stretch;
