@@ -8,7 +8,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class BurgerComponent {
   @Output() isNavbarOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
   navbarOpened = false;
-  
   constructor() { }
 
   openNavbar() {

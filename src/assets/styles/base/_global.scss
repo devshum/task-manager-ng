@@ -27,5 +27,6 @@ body {
   text-rendering: optimizeLegibility;
   font-weight: 400;
   color: $c-black;
+  overflow-y: hidden;
   font-size: 1.1rem;
 }
