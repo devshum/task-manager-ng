@@ -46,7 +46,7 @@
 
   &__content-info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 10rem 1fr;
     grid-column-gap: 5vw;
 
     justify-content: space-between;
@@ -123,6 +123,7 @@
     font-size: 1.2rem;
     line-height: 1.4rem;
     align-items: center;
+    justify-self: center;
 
     &::before {
       content: '';
