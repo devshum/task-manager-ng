@@ -37,7 +37,7 @@
   </div>
 
   <nav class="task__nav">
-    <div class="task__nav-edit" (click)="toggleTaskEdit()">
+    <button class="task__nav-edit" (click)="toggleTaskEdit()" aria-label="button to edit a task">
       <i class="task__edit icon" 
          [inlineSVG]="'icon-edit.svg'"
          [ngClass]="isTaskEditOpen || sideNavShown ? 'hidden' : 'shown'">
@@ -47,12 +47,13 @@
          [inlineSVG]="'icon-close.svg'"
          [ngClass]="isTaskEditOpen ? 'shown' : 'hidden'">
       </i>
-    </div>
+    </button>
     
-    <a class="task__delete icon" 
-       [inlineSVG]="'icon-delete.svg'" 
-       (click)="removeTask()">
-    </a>  
+    <button class="task__delete icon" 
+            [inlineSVG]="'icon-delete.svg'" 
+            (click)="removeTask()"
+            aria-label="button to delete a task">
+    </button>  
   </nav>
 </div>
 

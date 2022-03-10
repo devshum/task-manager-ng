@@ -19,16 +19,18 @@
 
     <div class="task-form__btn-wrap">
       <div class="task-form__filter-wrap">
-        <div class="task-form__filter" (click)="openSideNav()">
+        <button class="task-form__filter" 
+                (click)="openSideNav()"
+                aria-label="button to open a filter">
           <i class="icon" 
               [inlineSVG]="'icon-filter.svg'">
           </i>
   
-          <div [ngSwitch]="isSideNavShown">
+          <span [ngSwitch]="isSideNavShown">
             <span *ngSwitchCase="true">Close filter</span>
             <span *ngSwitchDefault>Open filter</span>
-          </div>
-        </div>
+          </span>
+        </button>
   
         <i class="task-form__spinner"
             [inlineSVG]="'icon-spinner.svg'">&nbsp;
