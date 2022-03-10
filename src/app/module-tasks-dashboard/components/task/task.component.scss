@@ -210,4 +210,10 @@
   &__form-wrap {
     position: absolute;
   }
+
+  &__nav-edit,
+  &__delete {
+    background: unset;
+    border: unset;
+  }
 }
