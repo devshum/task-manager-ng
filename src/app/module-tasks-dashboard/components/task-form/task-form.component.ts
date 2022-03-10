@@ -22,7 +22,7 @@ export class TaskFormComponent {
   constructor() {}
 
   get suffix(): string {
-    return this.tasks.length > 1 ? 'tasks' : 'task';
+    return this.totalTasks > 1 ? 'tasks' : 'task';
   }
 
   toggleForm(): void {
