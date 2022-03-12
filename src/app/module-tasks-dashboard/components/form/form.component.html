@@ -3,7 +3,8 @@
       [class.opened]="formShown && tasks.length"
       [class.opened-initial]="formShown && !tasks.length"
       (ngSubmit)="handleSubmit()"
-      [formGroup]="form">
+      [formGroup]="form"
+      autocomplete="off">
     <span class="form__input-wrap">
       <input type="text"
              name="name"
