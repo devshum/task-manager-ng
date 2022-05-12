@@ -30,7 +30,7 @@ export class TaskDashboardComponent implements OnInit {
   pages: number;
   status: string;
   importance: string;
-  sort = '-issue';
+  sort = 'issue';
   loading$: Observable<boolean | null>;
   editToastData: any = {
     id: EnumToastEdit.id,

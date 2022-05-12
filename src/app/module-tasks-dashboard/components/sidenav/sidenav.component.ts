@@ -48,11 +48,11 @@ export class SidenavComponent implements OnInit {
 
 
     if(this.form.value.issue === EnumIssue.newest) {
-      this.form.value.issue = 'issue';
+      this.form.value.issue = '-issue';
     }
 
     if(this.form.value.issue === EnumIssue.oldest) {
-      this.form.value.issue = '-issue';
+      this.form.value.issue = 'issue';
     }
 
     this.filterOptions.emit(this.form.value);
