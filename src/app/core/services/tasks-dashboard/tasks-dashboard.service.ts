@@ -12,7 +12,9 @@ import { TaskResponse } from '../../models/taskResponse.interface';
 })
 
 export class TasksDashboardService {
-  public tasksUpdated$: Subject<string> = new Subject();
+  tasks$: Subject<string> = new Subject<string>();
+  tasksObserver = this.tasks$.asObservable();
+
   private _apiUrl = environment.apiUrl;
 
   constructor(
@@ -35,7 +37,7 @@ export class TasksDashboardService {
   addTask(task: TaskPostData) {
     this._http.post<TaskView>(`${this._apiUrl}/tasks`, task)
                 .subscribe(() =>
-                    this.tasksUpdated$.next('ADD_TASK'));
+                    this.tasks$.next('ADD_TASK'));
   }
 
   removeTask(task: TaskView): Observable<TaskView> {

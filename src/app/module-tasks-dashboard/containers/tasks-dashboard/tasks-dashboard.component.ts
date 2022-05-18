@@ -61,7 +61,7 @@ export class TaskDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._tasksService.tasksUpdated$.subscribe(action => {
+    this._tasksService.tasksObserver.subscribe(action => {
       switch (action) {
         case 'ADD_TASK':
           this._onAddTask();

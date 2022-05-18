@@ -16,7 +16,7 @@ export class PreloaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-     this._loaderService.loadingStatus.pipe(
+     this._loaderService.loadingObserver.pipe(
       filter(load => load !== null),
       debounce(load => load ? timer(0) : timer(500))
     ).subscribe((isLoad: boolean) => this.load = isLoad);
