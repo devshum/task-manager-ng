@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { TaskView } from 'src/app/core/models/task.interface';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumImportance } from 'src/app/core/enums/task.importances';
 import { EnumStatus } from 'src/app/core/enums/task.statuses';
 import { DatePipe } from '@angular/common';
-import { TaskPostData } from 'src/app/core/models/task.interface';
 
 @Component({
   selector: 'app-form',
@@ -12,7 +12,6 @@ import { TaskPostData } from 'src/app/core/models/task.interface';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Output() hookTaskData: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
   @Input() task: TaskView;
   @Input() tasks: TaskView[] = [];
   @Input() formShown = false;
@@ -34,7 +33,8 @@ export class FormComponent implements OnInit {
   ];
   constructor(
     private _fb: FormBuilder,
-    private datePipe: DatePipe
+    private _datePipe: DatePipe,
+    private _tasksService: TasksDashboardService
   ) { }
 
   get name(): AbstractControl {
@@ -46,7 +46,7 @@ export class FormComponent implements OnInit {
   }
 
   get today(): string | null {
-    return this.datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+    return this._datePipe.transform(this.currentDate, 'yyyy-MM-dd');
   }
 
   ngOnInit(): void {
@@ -56,7 +56,7 @@ export class FormComponent implements OnInit {
   handleSubmit(): void {
     this.form.markAllAsTouched();
     if(this.form.valid) {
-      this.hookTaskData.emit(this.form.value);
+      this._tasksService.addTask(this.form.value);
 
       if(this.resetForm) {
         this.form.reset({

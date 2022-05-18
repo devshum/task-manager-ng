@@ -61,6 +61,22 @@ export class TaskDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this._tasksService.tasksObserver.subscribe(action => {
+      switch (action) {
+        case 'ADD_TASK':
+          this._onAddTask();
+          break;
+        default:
+          break;
+      }
+
+      this._getTasksList({
+        sort: this.sort,
+        page: this.currentPage,
+        limit: this.pageLimit
+      });
+    });
+
     this._getTasksList({
       sort: this.sort,
       page: this.currentPage,
@@ -78,25 +94,6 @@ export class TaskDashboardComponent implements OnInit {
 
   onSideNavShown(event: boolean): void {
     this.isSideNavShown = event;
-  }
-
-  onAddTask(event: TaskPostData): void {
-    if(this.totalTasksPerPage.length === this.pageLimit && this.currentPage === this.pages) {
-      this.currentPage++;
-    } else if (this.currentPage !== this.pages) {
-      this.currentPage = this.pages;
-    }
-    this._loaderService.start();
-    this._tasksService
-      .addTask(event)
-      .subscribe(() => {
-        this._getTasksList({
-          sort: this.sort,
-          page: this.currentPage,
-          limit: this.pageLimit
-        });
-        this._toastService.add(this.addToastData);
-      });
   }
 
   onRemoveTask(event: TaskView): void {
@@ -161,7 +158,19 @@ export class TaskDashboardComponent implements OnInit {
     });
   }
 
+  private _onAddTask(): void {
+    if(this.totalTasksPerPage.length === this.pageLimit && this.currentPage === this.pages) {
+      this.currentPage++;
+    } else if (this.currentPage !== this.pages) {
+      this.currentPage = this.pages;
+    }
+
+    this._toastService.add(this.addToastData);
+  }
+
   private _getTasksList(filterParams: any): void {
+    this._loaderService.start();
+
     this._tasksService
       .getTasks(filterParams)
       .subscribe(data => {

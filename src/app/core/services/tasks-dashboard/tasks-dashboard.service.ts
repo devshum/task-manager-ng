@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TaskView, TaskPostData } from 'src/app/core/models/task.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -12,6 +12,9 @@ import { TaskResponse } from '../../models/taskResponse.interface';
 })
 
 export class TasksDashboardService {
+  tasks$: Subject<string> = new Subject<string>();
+  tasksObserver = this.tasks$.asObservable();
+
   private _apiUrl = environment.apiUrl;
 
   constructor(
@@ -31,9 +34,10 @@ export class TasksDashboardService {
     return this._http.get<TaskResponse>(`${this._apiUrl}/tasks`, options);
   }
 
-  addTask(task: TaskPostData): Observable<TaskView> {
-    return this._http
-      .post<TaskView>(`${this._apiUrl}/tasks`, task);
+  addTask(task: TaskPostData) {
+    this._http.post<TaskView>(`${this._apiUrl}/tasks`, task)
+                .subscribe(() =>
+                    this.tasks$.next('ADD_TASK'));
   }
 
   removeTask(task: TaskView): Observable<TaskView> {
