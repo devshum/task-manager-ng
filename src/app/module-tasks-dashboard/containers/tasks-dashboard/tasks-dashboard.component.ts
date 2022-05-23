@@ -70,6 +70,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
         this._addTask();
       } else if(eventAction === 'delete') {
         this._removeTask();
+      } else if(eventAction === 'edit') {
+        this._editTask();
       }
 
       this._getTasksList({
@@ -96,20 +98,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
   onSideNavShown(event: boolean): void {
     this.isSideNavShown = event;
-  }
-
-  onEditTask(event: TaskView | any): void {
-    this._loaderService.start();
-    this._tasksService
-      .editTask(event)
-      .subscribe(() => {
-         this._getTasksList({
-          sort: this.sort,
-          page: this.currentPage,
-          limit: this.pageLimit
-        });
-        this._toastService.add(this.editToastData);
-      });
   }
 
   onFilterOptions(event: TaskFilterParams): void {
@@ -161,6 +149,10 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     }
 
     this._toastService.add(this.deleteToastData);
+  }
+
+  private _editTask(): void {
+    this._toastService.add(this.editToastData);
   }
 
   private _getTasksList(filterParams: any): void {

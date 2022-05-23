@@ -34,18 +34,18 @@ export class TasksDashboardService {
     return this._http.get<TaskResponse>(`${this._apiUrl}/tasks`, options);
   }
 
-  addTask(task: TaskPostData) {
+  addTask(task: TaskPostData): void {
     this._http.post<TaskView>(`${this._apiUrl}/tasks`, task)
               .subscribe(() => this.tasks$.next('add'));
   }
 
-  removeTask(taskId: number) {
+  removeTask(taskId: number): void {
     this._http.delete<TaskView>(`${this._apiUrl}/tasks/${taskId}`)
               .subscribe(() => this.tasks$.next('delete'));
   }
 
-  editTask(task: any): Observable<TaskView> {
-    return this._http
-      .patch<TaskView>(`${this._apiUrl}/tasks/${task.id}`, task.event);
+  editTask(id: number, newTask: TaskView): void {
+    this._http.patch<TaskView>(`${this._apiUrl}/tasks/${id}`, newTask)
+              .subscribe(() => this.tasks$.next('edit'));
   }
 }

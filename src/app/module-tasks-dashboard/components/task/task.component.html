@@ -3,8 +3,7 @@
             [styleClass]="isTaskEditOpen ? 'opened' : ''"
             [task]="task"
             [btnLabel]="'Edit'"
-            [resetForm]="false"
-            (hookTaskData)="onHookEdit($event)">
+            [resetForm]="false">
   </app-form>
 
   <div class="task__content" [ngClass]="!isTaskEditOpen ? 'opened' : 'closed'">

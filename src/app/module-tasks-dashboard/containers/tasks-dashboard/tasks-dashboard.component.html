@@ -19,8 +19,7 @@
               *ngFor="let task of tasks"
               class="tasks-board__task-wrap"
               [task]="task" 
-              [sideNavShown]="isSideNavShown"
-              (hookEditData)="onEditTask($event)">
+              [sideNavShown]="isSideNavShown" >
     </app-task>
   </div>
 
