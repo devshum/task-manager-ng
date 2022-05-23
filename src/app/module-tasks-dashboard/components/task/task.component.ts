@@ -1,3 +1,4 @@
+import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TaskView } from '../../../core/models/task.interface';
 import { EnumImportance } from '../../../core/enums/task.importances';
@@ -11,23 +12,19 @@ import { EnumStatus } from 'src/app/core/enums/task.statuses';
 export class TaskComponent {
   @Input() task: TaskView;
   @Input() sideNavShown = false;
-  @Output() remove: EventEmitter<TaskView> = new EventEmitter<TaskView>();
-  @Output() hookEditData: EventEmitter<any> = new EventEmitter<any>();
   taskImportance = EnumImportance;
   taskStatus = EnumStatus;
   isTaskEditOpen = false;
 
-  constructor() {}
+  constructor(
+    private _tasksService: TasksDashboardService
+  ) {}
 
   removeTask(): void {
-    this.remove.emit(this.task);
+    this._tasksService.removeTask(this.task.id);
   }
 
   toggleTaskEdit(): void {
     this.isTaskEditOpen = !this.isTaskEditOpen;
-  }
-
-  onHookEdit(event: any): void {
-    this.hookEditData.emit({event, id: this.task.id});
   }
 }

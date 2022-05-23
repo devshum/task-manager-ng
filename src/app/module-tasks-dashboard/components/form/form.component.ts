@@ -56,7 +56,12 @@ export class FormComponent implements OnInit {
   handleSubmit(): void {
     this.form.markAllAsTouched();
     if(this.form.valid) {
-      this._tasksService.addTask(this.form.value);
+
+      if(this.btnLabel === 'Add') {
+        this._tasksService.addTask(this.form.value);
+      } else if(this.btnLabel === 'Edit') {
+        this._tasksService.editTask(this.task.id, this.form.value);
+      }
 
       if(this.resetForm) {
         this.form.reset({
