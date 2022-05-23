@@ -1,15 +1,16 @@
 import { LoaderService } from './../../../core/services/loader/loader.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView, TaskPostData } from '../../../core/models/task.interface';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { EnumToastEdit } from 'src/app/core/enums/toast.edit';
 import { EnumToastDelete } from 'src/app/core/enums/toast.delete';
 import { EnumToastAdd } from 'src/app/core/enums/toast.add';
 import { fadeDelay, fadeCommon } from 'src/app/core/animations/animations';
+import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -17,7 +18,7 @@ import { fadeDelay, fadeCommon } from 'src/app/core/animations/animations';
   animations: [fadeDelay, fadeCommon],
 })
 
-export class TaskDashboardComponent implements OnInit {
+export class TaskDashboardComponent implements OnInit, OnDestroy {
   @Output() updatedCurrentPage: EventEmitter<number> = new EventEmitter<number>();
   tasks: TaskView[];
   isFormShown = false;
@@ -54,6 +55,8 @@ export class TaskDashboardComponent implements OnInit {
     message: EnumToastDelete.message
   };
 
+  private _unsubscribe$: Subject<any> = new Subject();
+
   constructor(
     private _tasksService: TasksDashboardService,
     private _loaderService: LoaderService,
@@ -61,13 +64,12 @@ export class TaskDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._tasksService.tasksObserver.subscribe(action => {
-      switch (action) {
-        case 'ADD_TASK':
-          this._onAddTask();
-          break;
-        default:
-          break;
+    this._tasksService.tasksObserver$.pipe(takeUntil(this._unsubscribe$)).subscribe(eventAction => {
+
+      if(eventAction === 'add') {
+        this._addTask();
+      } else if(eventAction === 'delete') {
+        this._removeTask();
       }
 
       this._getTasksList({
@@ -94,26 +96,6 @@ export class TaskDashboardComponent implements OnInit {
 
   onSideNavShown(event: boolean): void {
     this.isSideNavShown = event;
-  }
-
-  onRemoveTask(event: TaskView): void {
-    if(this.totalTasksPerPage.length === 1 && this.currentPage > 1) {
-      this.pages--;
-      this.currentPage = this.pages;
-    }
-    this._loaderService.start();
-    this._tasksService
-      .removeTask(event)
-      .subscribe(() => {
-        this._getTasksList({
-          status: this.status,
-          importance: this.importance,
-          sort: this.sort,
-          page: this.currentPage,
-          limit: this.pageLimit
-        });
-        this._toastService.add(this.deleteToastData);
-      });
   }
 
   onEditTask(event: TaskView | any): void {
@@ -158,7 +140,11 @@ export class TaskDashboardComponent implements OnInit {
     });
   }
 
-  private _onAddTask(): void {
+  ngOnDestroy(): void {
+    this._unsubscribe$.next();
+  }
+
+  private _addTask(): void {
     if(this.totalTasksPerPage.length === this.pageLimit && this.currentPage === this.pages) {
       this.currentPage++;
     } else if (this.currentPage !== this.pages) {
@@ -166,6 +152,15 @@ export class TaskDashboardComponent implements OnInit {
     }
 
     this._toastService.add(this.addToastData);
+  }
+
+  private _removeTask(): void {
+    if(this.totalTasksPerPage.length === 1 && this.currentPage > 1) {
+      this.pages--;
+      this.currentPage = this.pages;
+    }
+
+    this._toastService.add(this.deleteToastData);
   }
 
   private _getTasksList(filterParams: any): void {
