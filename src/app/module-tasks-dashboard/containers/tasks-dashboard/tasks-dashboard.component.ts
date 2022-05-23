@@ -66,6 +66,12 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._tasksService.tasksObserver$.pipe(takeUntil(this._unsubscribe$)).subscribe(eventAction => {
 
+      this._getTasksList({
+        sort: this.sort,
+        page: this.currentPage,
+        limit: this.pageLimit
+      });
+
       if(eventAction === 'add') {
         this._addTask();
       } else if(eventAction === 'delete') {
@@ -73,12 +79,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       } else if(eventAction === 'edit') {
         this._editTask();
       }
-
-      this._getTasksList({
-        sort: this.sort,
-        page: this.currentPage,
-        limit: this.pageLimit
-      });
     });
 
     this._getTasksList({
