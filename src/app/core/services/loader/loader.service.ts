@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class LoaderService {
   _loading$: Subject<boolean> = new Subject<boolean>();
-  loadingObserver = this._loading$.asObservable();
+  loadingObserver$ = this._loading$.asObservable();
 
   constructor() { }
 
