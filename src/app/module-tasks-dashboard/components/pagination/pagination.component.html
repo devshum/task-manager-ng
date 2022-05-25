@@ -8,6 +8,7 @@
 
   <button class="pagination__btn-next" 
        (click)="nextPage()" 
+       aria-label="button navigate a pagination"
        [class.shown]="pages > 1 && currentPage < pages" > page 
        {{ currentPage < pages ? currentPage + 1 : '' }}
   </button>

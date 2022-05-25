@@ -1,25 +1,26 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PaginationService } from './../../../core/services/pagination/pagination.service';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent {
+export class PaginationComponent implements OnInit {
   @Input() pages: number;
-  @Input() currentPage: number;
-  @Output() updatedCurrentPage: EventEmitter<number> = new EventEmitter<number>();
-  constructor() { }
+  public currentPage: number;
 
-  prevPage(): void {
-    this.currentPage--;
+  constructor(private _paginationService: PaginationService) {}
 
-    this.updatedCurrentPage.emit(this.currentPage);
+  ngOnInit(): void {
+    this._paginationService.currentPageObserver$.subscribe(page => this.currentPage = page);
   }
 
-  nextPage(): void {
-    this.currentPage++;
+  public prevPage(): void {
+    this._paginationService.prev();
+  }
 
-    this.updatedCurrentPage.emit(this.currentPage);
+  public nextPage(): void {
+    this._paginationService.next();
   }
 }
