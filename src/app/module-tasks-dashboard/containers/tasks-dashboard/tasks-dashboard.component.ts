@@ -32,7 +32,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   status: string;
   importance: string;
   sort = 'issue';
-  loading$: Observable<boolean | null>;
+  loading$: Observable<boolean>;
   editToastData: any = {
     id: EnumToastEdit.id,
     severity: EnumToastEdit.severity,
@@ -67,6 +67,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     this._tasksService.tasksObserver$.pipe(takeUntil(this._unsubscribe$)).subscribe(eventAction => {
 
       this._getTasksList({
+        status: this.status,
+        importance: this.importance,
         sort: this.sort,
         page: this.currentPage,
         limit: this.pageLimit
@@ -82,6 +84,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     });
 
     this._getTasksList({
+      status: this.status,
+      importance: this.importance,
       sort: this.sort,
       page: this.currentPage,
       limit: this.pageLimit
