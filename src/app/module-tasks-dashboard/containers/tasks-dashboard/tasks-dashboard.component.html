@@ -30,9 +30,7 @@
     >
   </div>
 
-  <app-pagination [pages]="pages"
-                  [currentPage]="currentPage"
-                  (updatedCurrentPage)="onUpdatedCurrentPage($event)"></app-pagination>
+  <app-pagination [pages]="pages"></app-pagination>
 </div>
 
 <app-preloader></app-preloader>
@@ -42,10 +40,6 @@
              [ngClass]="isSideNavShown ? 'slided' : 'non-slided'"
              (filterOptions)="onFilterOptions($event)"></app-sidenav>
              
-<app-navigation *ngIf="tasks !== undefined" 
-                [navbarOpened]="isNavbarOpened">
-</app-navigation>
+<app-navigation *ngIf="tasks !== undefined"></app-navigation>
 
-<app-burger (isNavbarOpened)="onNavbarOpened($event)"
-            *ngIf="tasks !== undefined" >
-</app-burger>
+<app-burger *ngIf="tasks !== undefined" ></app-burger>
