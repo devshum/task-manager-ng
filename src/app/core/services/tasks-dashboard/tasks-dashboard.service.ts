@@ -13,7 +13,6 @@ import { TaskResponse } from '../../models/taskResponse.interface';
 
 export class TasksDashboardService {
   tasks$: Subject<string> = new Subject<string>();
-  tasksObserver$ = this.tasks$.asObservable();
 
   private _apiUrl = environment.apiUrl;
 

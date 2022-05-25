@@ -6,20 +6,19 @@ import {  BehaviorSubject } from 'rxjs';
 })
 export class PaginationService {
   public currentPage = 1;
-  _currentPage$: BehaviorSubject<any> = new BehaviorSubject<any>(1);
-  currentPageObserver$ = this._currentPage$.asObservable();
+  public currentPage$: BehaviorSubject<any> = new BehaviorSubject<any>(1);
 
   constructor() { }
 
-  prev(): void {
+  public prev(): void {
     this.currentPage--;
 
-    this._currentPage$.next(this.currentPage);
+    this. currentPage$.next(this.currentPage);
   }
 
-  next(): void {
+  public next(): void {
     this.currentPage++;
 
-    this._currentPage$.next(this.currentPage);
+    this. currentPage$.next(this.currentPage);
   }
 }

@@ -17,7 +17,7 @@ export class ToastComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._toastService.messageObserver$.subscribe(messages => {
+    this._toastService.messages$.subscribe(messages => {
       if (messages) {
         if (Array.isArray(messages)) {
           this.add(messages);

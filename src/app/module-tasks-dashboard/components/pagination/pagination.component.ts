@@ -13,7 +13,7 @@ export class PaginationComponent implements OnInit {
   constructor(private _paginationService: PaginationService) {}
 
   ngOnInit(): void {
-    this._paginationService.currentPageObserver$.subscribe(page => this.currentPage = page);
+    this._paginationService.currentPage$.subscribe(page => this.currentPage = page);
   }
 
   public prevPage(): void {

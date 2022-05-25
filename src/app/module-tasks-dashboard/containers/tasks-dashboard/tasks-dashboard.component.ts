@@ -23,7 +23,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   tasks: TaskView[];
   isFormShown = false;
   isSideNavShown = false;
-  isNavbarOpened = false;
   currentPage: number;
   pageLimit = 4;
   totalTasksPerPage: TaskView[];
@@ -66,7 +65,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this._paginationService.currentPageObserver$
+    this._paginationService.currentPage$
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(page => {
       this.currentPage = page;
@@ -80,7 +79,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       });
     });
 
-    this._tasksService.tasksObserver$
+    this._tasksService.tasks$
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(eventAction => {
 
@@ -112,10 +111,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
   onFormShown(event: boolean): void {
     this.isFormShown = event;
-  }
-
-  onNavbarOpened(event: boolean): void {
-    this.isNavbarOpened = event;
   }
 
   onSideNavShown(event: boolean): void {
@@ -169,6 +164,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
     this._tasksService
       .getTasks(filterParams)
+      .pipe(takeUntil(this._unsubscribe$))
       .subscribe(data => {
         this.tasks = data.result;
         this.pages = Math.ceil(data.total / data.limit) || 1;

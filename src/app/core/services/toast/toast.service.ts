@@ -8,7 +8,6 @@ import { Toast, ToastMessage } from '../../models/toast.interface';
 export class ToastService {
 
   messages$ = new BehaviorSubject<ToastMessage | ToastMessage[]>([]);
-  messageObserver$ = this.messages$.asObservable();
   constructor() { }
 
 
