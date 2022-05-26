@@ -6,12 +6,11 @@ import { Toast, ToastMessage } from '../../models/toast.interface';
   providedIn: 'root'
 })
 export class ToastService {
+  public messages$ = new BehaviorSubject<ToastMessage | ToastMessage[]>([]);
 
-  messages$ = new BehaviorSubject<ToastMessage | ToastMessage[]>([]);
   constructor() { }
 
-
-  add(message: Partial<Toast>): void {
+  public add(message: Partial<Toast>): void {
     if (message) {
       this.messages$.next(new ToastMessage(message));
     }

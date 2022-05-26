@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LoaderService } from 'src/app/core/services/loader/loader.service';
-import { debounce, filter } from 'rxjs/operators';
-import { timer } from 'rxjs';
+import { debounce, filter, takeUntil } from 'rxjs/operators';
+import { timer, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-preloader',
@@ -10,6 +10,7 @@ import { timer } from 'rxjs';
 })
 export class PreloaderComponent implements OnInit {
   @Input() load = true;
+  private _unsubscribe$: Subject<any> = new Subject<any>();
 
   constructor(
     private _loaderService: LoaderService
@@ -17,6 +18,7 @@ export class PreloaderComponent implements OnInit {
 
   ngOnInit(): void {
      this._loaderService.loading$.pipe(
+      takeUntil(this._unsubscribe$),
       filter(load => load !== null),
       debounce(load => load ? timer(0) : timer(500))
     ).subscribe((isLoad: boolean) => this.load = isLoad);
