@@ -1,3 +1,4 @@
+import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
 import { FormService } from './../../../core/services/form/form.service';
 import { TasksService } from './../../../core/services/tasks/tasks.service';
 import { PaginationService } from './../../../core/services/pagination/pagination.service';
@@ -22,34 +23,34 @@ import { takeUntil } from 'rxjs/operators';
 })
 
 export class TaskDashboardComponent implements OnInit, OnDestroy {
-  tasks: TaskView[];
+  public tasks: TaskView[];
   public isFormShown: boolean;
-  isSideNavShown = false;
-  currentPage: number;
-  pageLimit = 4;
-  totalTasksPerPage: TaskView[];
-  totalTasks: number;
-  pages: number;
-  status: string;
-  importance: string;
-  sort = 'issue';
-  loading$: Observable<boolean>;
+  public isSideNavShown: boolean;
+  public currentPage: number;
+  public pageLimit = 4;
+  public totalTasksPerPage: TaskView[];
+  public totalTasks: number;
+  public pages: number;
+  public status: string;
+  public importance: string;
+  public sort = 'issue';
+  public loading$: Observable<boolean>;
 
-  editToastData: any = {
+  private _editToastData: any = {
     id: EnumToastEdit.id,
     severity: EnumToastEdit.severity,
     life: EnumToastEdit.life,
     title: EnumToastEdit.title,
     message: EnumToastEdit.message
   };
-  addToastData: any = {
+  private _addToastData: any = {
     id: EnumToastAdd.id,
     severity: EnumToastAdd.severity,
     life: EnumToastAdd.life,
     title: EnumToastAdd.title,
     message: EnumToastAdd.message
   };
-  deleteToastData: any = {
+  private _deleteToastData: any = {
     id: EnumToastDelete.id,
     severity: EnumToastDelete.severity,
     life: EnumToastDelete.life,
@@ -65,7 +66,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     private _toastService: ToastService,
     private _paginationService: PaginationService,
     private _tasksService: TasksService,
-    private _formService: FormService
+    private _formService: FormService,
+    private _sidenavService: SidenavService
   ) { }
 
   ngOnInit(): void {
@@ -107,6 +109,10 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(formStatus => this.isFormShown = formStatus);
 
+    this._sidenavService.sidenav$
+    .pipe(takeUntil(this._unsubscribe$))
+    .subscribe(sidenavStatus => this.isSideNavShown = sidenavStatus);
+
     this._getTasksList({
       status: this.status,
       importance: this.importance,
@@ -114,10 +120,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       page: this.currentPage,
       limit: this.pageLimit
     });
-  }
-
-  onSideNavShown(event: boolean): void {
-    this.isSideNavShown = event;
   }
 
   onFilterOptions(event: TaskFilterParams): void {
@@ -147,7 +149,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       this.currentPage = this.pages;
     }
 
-    this._toastService.add(this.addToastData);
+    this._toastService.add(this._addToastData);
   }
 
   private _removeTask(): void {
@@ -155,11 +157,11 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       this._paginationService.prev();
     }
 
-    this._toastService.add(this.deleteToastData);
+    this._toastService.add(this._deleteToastData);
   }
 
   private _editTask(): void {
-    this._toastService.add(this.editToastData);
+    this._toastService.add(this._editToastData);
   }
 
   private _getTasksList(filterParams: any): void {

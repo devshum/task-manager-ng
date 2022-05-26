@@ -1,3 +1,4 @@
+import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
 import { FormService } from './../../../core/services/form/form.service';
 import { TaskView } from './../../../core/models/task.interface';
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
@@ -22,7 +23,10 @@ export class TaskFormComponent implements OnInit, OnDestroy {
   filteredOptions: TaskFilterParams;
   private _unsubscribe$: Subject<any> = new Subject<any>();
 
-  constructor(private _formService: FormService) {}
+  constructor(
+    private _formService: FormService,
+    private _sidenavService: SidenavService
+  ) {}
 
   get suffix(): string {
     return this.totalTasks > 1 ? 'tasks' : 'task';
@@ -38,9 +42,8 @@ export class TaskFormComponent implements OnInit, OnDestroy {
     this._formService.toggleForm();
   }
 
-  public openSideNav(): void {
-    this.isSideNavShown = !this.isSideNavShown;
-    this.sideNavShown.emit(this.isSideNavShown);
+  public toggleSidenav(): void {
+    this._sidenavService.toggleSidenav();
   }
 
   ngOnDestroy(): void {

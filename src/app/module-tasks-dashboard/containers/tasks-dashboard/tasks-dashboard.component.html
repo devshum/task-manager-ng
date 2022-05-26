@@ -4,7 +4,6 @@
   <app-task-form
     [tasks]="tasks"
     [totalTasks]="totalTasks"
-    (sideNavShown)="onSideNavShown($event)"
     (filterOptions)="onFilterOptions($event)"
   ></app-task-form>
 
@@ -18,7 +17,7 @@
               *ngFor="let task of tasks"
               class="tasks-board__task-wrap"
               [task]="task" 
-              [sideNavShown]="isSideNavShown" >
+              [sideNavShown]="isSideNavShown">
     </app-task>
   </div>
 
