@@ -1,3 +1,4 @@
+import { TasksService } from './../../../core/services/tasks/tasks.service';
 import { PaginationService } from './../../../core/services/pagination/pagination.service';
 import { LoaderService } from './../../../core/services/loader/loader.service';
 import { Component, OnDestroy } from '@angular/core';
@@ -58,10 +59,11 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   private _unsubscribe$: Subject<any> = new Subject();
 
   constructor(
-    private _tasksService: TasksDashboardService,
+    private _tasksDashboardService: TasksDashboardService,
     private _loaderService: LoaderService,
     private _toastService: ToastService,
-    private _paginationService: PaginationService
+    private _paginationService: PaginationService,
+    private _tasksService: TasksService
   ) { }
 
   ngOnInit(): void {
@@ -82,7 +84,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     this._tasksService.tasks$
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(eventAction => {
-
       if(eventAction === 'add') {
         this._addTask();
       } else if(eventAction === 'delete') {
@@ -162,7 +163,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   private _getTasksList(filterParams: any): void {
     this._loaderService.start();
 
-    this._tasksService
+    this._tasksDashboardService
       .getTasks(filterParams)
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe(data => {

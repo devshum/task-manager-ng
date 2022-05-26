@@ -12,8 +12,6 @@ import { TaskResponse } from '../../models/taskResponse.interface';
 })
 
 export class TasksDashboardService {
-  tasks$: Subject<string> = new Subject<string>();
-
   private _apiUrl = environment.apiUrl;
 
   constructor(
@@ -33,18 +31,15 @@ export class TasksDashboardService {
     return this._http.get<TaskResponse>(`${this._apiUrl}/tasks`, options);
   }
 
-  addTask(task: TaskPostData): void {
-    this._http.post<TaskView>(`${this._apiUrl}/tasks`, task)
-              .subscribe(() => this.tasks$.next('add'));
+  addTask(task: TaskPostData): Observable<TaskView> {
+    return this._http.post<TaskView>(`${this._apiUrl}/tasks`, task);
   }
 
-  removeTask(taskId: number): void {
-    this._http.delete<TaskView>(`${this._apiUrl}/tasks/${taskId}`)
-              .subscribe(() => this.tasks$.next('delete'));
+  removeTask(taskId: number): Observable<TaskView> {
+    return this._http.delete<TaskView>(`${this._apiUrl}/tasks/${taskId}`);
   }
 
-  editTask(id: number, newTask: TaskView): void {
-    this._http.patch<TaskView>(`${this._apiUrl}/tasks/${id}`, newTask)
-              .subscribe(() => this.tasks$.next('edit'));
+  editTask(id: number, newTask: TaskView): Observable<TaskView>  {
+    return this._http.patch<TaskView>(`${this._apiUrl}/tasks/${id}`, newTask);
   }
 }
