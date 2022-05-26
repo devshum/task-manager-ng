@@ -1,3 +1,4 @@
+import { FormService } from './../../../core/services/form/form.service';
 import { TasksService } from './../../../core/services/tasks/tasks.service';
 import { PaginationService } from './../../../core/services/pagination/pagination.service';
 import { LoaderService } from './../../../core/services/loader/loader.service';
@@ -22,7 +23,7 @@ import { takeUntil } from 'rxjs/operators';
 
 export class TaskDashboardComponent implements OnInit, OnDestroy {
   tasks: TaskView[];
-  isFormShown = false;
+  public isFormShown: boolean;
   isSideNavShown = false;
   currentPage: number;
   pageLimit = 4;
@@ -63,7 +64,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     private _loaderService: LoaderService,
     private _toastService: ToastService,
     private _paginationService: PaginationService,
-    private _tasksService: TasksService
+    private _tasksService: TasksService,
+    private _formService: FormService
   ) { }
 
   ngOnInit(): void {
@@ -101,6 +103,10 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       });
     });
 
+    this._formService.form$
+    .pipe(takeUntil(this._unsubscribe$))
+    .subscribe(formStatus => this.isFormShown = formStatus);
+
     this._getTasksList({
       status: this.status,
       importance: this.importance,
@@ -108,10 +114,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       page: this.currentPage,
       limit: this.pageLimit
     });
-  }
-
-  onFormShown(event: boolean): void {
-    this.isFormShown = event;
   }
 
   onSideNavShown(event: boolean): void {
