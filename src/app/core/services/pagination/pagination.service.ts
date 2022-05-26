@@ -13,12 +13,18 @@ export class PaginationService {
   public prev(): void {
     this.currentPage--;
 
-    this. currentPage$.next(this.currentPage);
+    this.currentPage$.next(this.currentPage);
   }
 
   public next(): void {
     this.currentPage++;
 
-    this. currentPage$.next(this.currentPage);
+    this.currentPage$.next(this.currentPage);
+  }
+
+  public initial(): void {
+    this.currentPage = 1;
+
+    this.currentPage$.next(this.currentPage);
   }
 }

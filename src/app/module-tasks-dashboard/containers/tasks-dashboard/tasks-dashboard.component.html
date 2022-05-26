@@ -4,7 +4,6 @@
   <app-task-form
     [tasks]="tasks"
     [totalTasks]="totalTasks"
-    (filterOptions)="onFilterOptions($event)"
   ></app-task-form>
 
   <div
@@ -35,8 +34,8 @@
 <app-toast></app-toast>
 
 <app-sidenav class="sidenav-wrap"
-             [ngClass]="isSideNavShown ? 'slided' : 'non-slided'"
-             (filterOptions)="onFilterOptions($event)"></app-sidenav>
+             [ngClass]="isSideNavShown ? 'slided' : 'non-slided'">
+</app-sidenav>
              
 <app-navigation *ngIf="tasks !== undefined"></app-navigation>
 

@@ -1,3 +1,4 @@
+import { FilterOptionsService } from './../../../core/services/filter-options/filter-options.service';
 import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
 import { FormService } from './../../../core/services/form/form.service';
 import { TasksService } from './../../../core/services/tasks/tasks.service';
@@ -67,7 +68,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     private _paginationService: PaginationService,
     private _tasksService: TasksService,
     private _formService: FormService,
-    private _sidenavService: SidenavService
+    private _sidenavService: SidenavService,
+    private _optionsService: FilterOptionsService
   ) { }
 
   ngOnInit(): void {
@@ -75,7 +77,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(page => {
       this.currentPage = page;
-
       this._getTasksList({
         status: this.status,
         importance: this.importance,
@@ -105,6 +106,15 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       });
     });
 
+    this._optionsService.filter$
+    .pipe(takeUntil(this._unsubscribe$))
+    .subscribe(query => {
+      this.status = query.status;
+      this.importance = query.importance;
+      this.sort = query.issue;
+      this._paginationService.initial();
+    });
+
     this._formService.form$
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(formStatus => this.isFormShown = formStatus);
@@ -113,29 +123,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(sidenavStatus => this.isSideNavShown = sidenavStatus);
 
-    this._getTasksList({
-      status: this.status,
-      importance: this.importance,
-      sort: this.sort,
-      page: this.currentPage,
-      limit: this.pageLimit
-    });
-  }
-
-  onFilterOptions(event: TaskFilterParams): void {
-    this.currentPage = 1;
-    this.status = event.status;
-    this.importance = event.importance;
-    this.sort = event.issue;
-
-    this._loaderService.start();
-    this._getTasksList({
-      status: this.status,
-      importance: this.importance,
-      sort: this.sort,
-      page: this.currentPage,
-      limit: this.pageLimit
-    });
   }
 
   ngOnDestroy(): void {
