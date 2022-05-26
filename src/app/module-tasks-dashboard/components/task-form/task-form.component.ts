@@ -1,7 +1,10 @@
-import { TaskView, TaskPostData } from './../../../core/models/task.interface';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormService } from './../../../core/services/form/form.service';
+import { TaskView } from './../../../core/models/task.interface';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 import { fadeCommon } from './../../../core/animations/animations';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
@@ -9,33 +12,38 @@ import { fadeCommon } from './../../../core/animations/animations';
   animations: [fadeCommon]
 })
 
-export class TaskFormComponent {
+export class TaskFormComponent implements OnInit, OnDestroy {
   @Input() tasks: TaskView[] = [];
   @Input() totalTasks: number;
-  @Output() hookTask: EventEmitter<TaskPostData> = new EventEmitter<TaskPostData>();
-  @Output() formShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() filterOptions: EventEmitter<TaskFilterParams> = new EventEmitter<TaskFilterParams>();
   @Output() sideNavShown: EventEmitter<boolean> = new EventEmitter<boolean>();
-  isFormShown = false;
-  isSideNavShown = false;
+  public isFormShown: boolean;
+  public isSideNavShown = false;
   filteredOptions: TaskFilterParams;
-  constructor() {}
+  private _unsubscribe$: Subject<any> = new Subject<any>();
+
+  constructor(private _formService: FormService) {}
 
   get suffix(): string {
     return this.totalTasks > 1 ? 'tasks' : 'task';
   }
 
-  toggleForm(): void {
-    this.isFormShown = !this.isFormShown;
-    this.formShown.emit(this.isFormShown);
+  ngOnInit(): void {
+    this._formService.form$
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe(formStatus => this.isFormShown = formStatus);
   }
 
-  onHookTask(event: TaskPostData): void {
-    this.hookTask.emit(event);
+  public toggleForm(): void {
+    this._formService.toggleForm();
   }
 
-  openSideNav(): void {
+  public openSideNav(): void {
     this.isSideNavShown = !this.isSideNavShown;
     this.sideNavShown.emit(this.isSideNavShown);
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe$.next();
   }
 }
