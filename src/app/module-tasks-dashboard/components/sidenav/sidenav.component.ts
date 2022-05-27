@@ -1,3 +1,4 @@
+import { FilterOptionsService } from './../../../core/services/filter-options/filter-options.service';
 import { TaskFilterParams } from '../../../core/models/filter.interface';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { EnumStatus } from 'src/app/core/enums/task.statuses';
@@ -30,7 +31,8 @@ export class SidenavComponent implements OnInit {
     EnumIssue.newest
   ];
   constructor(
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _optionsService: FilterOptionsService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class SidenavComponent implements OnInit {
       this.form.value.issue = 'issue';
     }
 
-    this.filterOptions.emit(this.form.value);
+    this._optionsService.setOptions(this.form.value);
   }
 
   resetFilter() {
@@ -65,7 +67,8 @@ export class SidenavComponent implements OnInit {
       issue: [EnumIssue.oldest, []]
     });
 
-    this.filterOptions.emit({status: '', importance: '', issue: '-issue'});
+    this._optionsService.reset();
+
   }
 
   private _initForm(): void {

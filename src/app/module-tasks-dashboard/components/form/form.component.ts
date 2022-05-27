@@ -40,7 +40,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
   constructor(
     private _fb: FormBuilder,
-    private _datePipe: DatePipe,
+    private _dp: DatePipe,
     private _tasksDashboardService: TasksDashboardService,
     private _tasksService: TasksService
   ) { }
@@ -54,7 +54,7 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   get today(): string | null {
-    return this._datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+    return this._dp.transform(this.currentDate, 'yyyy-MM-dd');
   }
 
   ngOnInit(): void {
