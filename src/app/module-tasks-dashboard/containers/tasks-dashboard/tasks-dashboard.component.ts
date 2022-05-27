@@ -9,13 +9,12 @@ import { OnInit } from '@angular/core';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView } from '../../../core/models/task.interface';
 import { Observable, Subject } from 'rxjs';
-import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { EnumToastEdit } from 'src/app/core/enums/toast.edit';
 import { EnumToastDelete } from 'src/app/core/enums/toast.delete';
 import { EnumToastAdd } from 'src/app/core/enums/toast.add';
 import { fadeDelay, fadeCommon } from 'src/app/core/animations/animations';
-import { takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -73,30 +72,19 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this._paginationService.currentPage$
-    .pipe(takeUntil(this._unsubscribe$))
-    .subscribe(page => {
-      this.currentPage = page;
-      this._getTasksList({
-        status: this.status,
-        importance: this.importance,
-        sort: this.sort,
-        page: this.currentPage,
-        limit: this.pageLimit
-      });
-    });
-
-    this._tasksService.tasks$
-    .pipe(takeUntil(this._unsubscribe$))
-    .subscribe(eventAction => {
-      if(eventAction === 'add') {
-        this._addTask();
-      } else if(eventAction === 'delete') {
-        this._removeTask();
-      } else if(eventAction === 'edit') {
-        this._editTask();
-      }
-
+    this._tasksService.tasks$.pipe(
+      tap(eventAction => {
+        if(eventAction === 'add') {
+          this._addTask();
+        } else if(eventAction === 'delete') {
+          this._removeTask();
+        } else if(eventAction === 'edit') {
+          this._editTask();
+        }
+      }),
+      switchMap(() => this._paginationService.currentPage$),
+      tap((currentPage: number) => this.currentPage = currentPage)
+    ).subscribe(() => {
       this._getTasksList({
         status: this.status,
         importance: this.importance,
@@ -122,7 +110,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     this._sidenavService.sidenav$
     .pipe(takeUntil(this._unsubscribe$))
     .subscribe(sidenavStatus => this.isSideNavShown = sidenavStatus);
-
   }
 
   ngOnDestroy(): void {
