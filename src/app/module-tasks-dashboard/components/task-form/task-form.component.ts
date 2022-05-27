@@ -1,7 +1,7 @@
 import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
 import { FormService } from './../../../core/services/form/form.service';
 import { TaskView } from './../../../core/models/task.interface';
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 import { fadeCommon } from './../../../core/animations/animations';
 import { takeUntil } from 'rxjs/operators';
@@ -16,8 +16,6 @@ import { Subject } from 'rxjs';
 export class TaskFormComponent implements OnInit, OnDestroy {
   @Input() tasks: TaskView[] = [];
   @Input() totalTasks: number;
-  @Output() filterOptions: EventEmitter<TaskFilterParams> = new EventEmitter<TaskFilterParams>();
-  @Output() sideNavShown: EventEmitter<boolean> = new EventEmitter<boolean>();
   public isFormShown: boolean;
   public isSideNavShown = false;
   filteredOptions: TaskFilterParams;
