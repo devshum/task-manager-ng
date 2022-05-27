@@ -13,10 +13,10 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { NotFoundComponent } from '../module-not-found/components/not-found/not-found.component';
 import { ToastModule } from '../module-toast/toast.module';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { TasksDashboardRoutingModule } from './tasks-dashboard-routing.module';
 
 @NgModule({
   declarations: [
@@ -35,8 +35,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ReactiveFormsModule,
     SelectDropDownModule,
     FormsModule,
-    AppRoutingModule,
-    ToastModule
+    ToastModule,
+    TasksDashboardRoutingModule
   ],
   exports: [
     TaskDashboardComponent,
