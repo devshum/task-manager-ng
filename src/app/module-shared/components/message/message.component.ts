@@ -17,8 +17,8 @@ export class MessageComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() message: ToastMessage;
   @Input() index: number;
   @Output() onClose = new EventEmitter();
-  timeout: any;
-  constructor(private zone: NgZone) { }
+  private _timeout: any;
+  constructor(private _zone: NgZone) { }
 
   ngOnInit(): void { }
 
@@ -28,8 +28,8 @@ export class MessageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   initTimeout(): void {
     if (this.message) {
-      this.zone.runOutsideAngular(() => {
-        this.timeout = setTimeout(() => {
+      this._zone.runOutsideAngular(() => {
+        this._timeout = setTimeout(() => {
           this.onClose.emit({
             index: this.index,
             message: this.message
@@ -40,9 +40,9 @@ export class MessageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   clearTimeout(): void {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-      this.timeout = null;
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+      this._timeout = null;
     }
   }
 

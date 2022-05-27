@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class TasksService {
-  tasks$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public tasks$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor() { }
 }

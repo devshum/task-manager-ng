@@ -83,7 +83,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
         }
       }),
       switchMap(() => this._paginationService.currentPage$),
-      tap((currentPage: number) => this.currentPage = currentPage)
+      tap((currentPage: number) => this.currentPage = currentPage),
+      takeUntil(this._unsubscribe$)
     ).subscribe(() => {
       this._getTasksList({
         status: this.status,
