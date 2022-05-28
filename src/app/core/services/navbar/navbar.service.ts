@@ -10,7 +10,7 @@ export class NavbarService {
 
   constructor() { }
 
-  toggleNavbar(): void {
+  public toggleNavbar(): void {
     this._isNavbarOpened = !this._isNavbarOpened;
     this.navbar$.next(this._isNavbarOpened);
   }

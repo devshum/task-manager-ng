@@ -18,7 +18,7 @@ export class TasksDashboardService {
     private _http: HttpClient,
   ) { }
 
-  getTasks(query?: Partial<TaskQueryParams>): Observable<TaskResponse> {
+  public getTasks(query?: Partial<TaskQueryParams>): Observable<TaskResponse> {
     const options = {
       params: new HttpParams()
         .set('importance', query?.importance || '')
@@ -31,15 +31,15 @@ export class TasksDashboardService {
     return this._http.get<TaskResponse>(`${this._apiUrl}/tasks`, options);
   }
 
-  addTask(task: TaskPostData): Observable<TaskView> {
+  public addTask(task: TaskPostData): Observable<TaskView> {
     return this._http.post<TaskView>(`${this._apiUrl}/tasks`, task);
   }
 
-  removeTask(taskId: number): Observable<TaskView> {
+  public removeTask(taskId: number): Observable<TaskView> {
     return this._http.delete<TaskView>(`${this._apiUrl}/tasks/${taskId}`);
   }
 
-  editTask(id: number, newTask: TaskView): Observable<TaskView>  {
+  public editTask(id: number, newTask: TaskView): Observable<TaskView>  {
     return this._http.patch<TaskView>(`${this._apiUrl}/tasks/${id}`, newTask);
   }
 }
