@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,11 @@ export class LoaderService {
 
   constructor() { }
 
-  start(): void {
+  public start(): void {
     this.loading$.next(true);
   }
 
-  end(): void {
+  public end(): void {
     this.loading$.next(false);
   }
 }

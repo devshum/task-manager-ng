@@ -1,4 +1,4 @@
-import { NavbarService } from './../../../core/services/navbar/navbar.service';
+import { NavbarService } from '../../../core/services/navbar/navbar.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';

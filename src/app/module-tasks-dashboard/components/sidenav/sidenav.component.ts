@@ -1,5 +1,4 @@
 import { FilterOptionsService } from './../../../core/services/filter-options/filter-options.service';
-import { TaskFilterParams } from '../../../core/models/filter.interface';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { EnumStatus } from 'src/app/core/enums/task.statuses';
 import { EnumIssue } from 'src/app/core/enums/task.issue';
@@ -12,21 +11,20 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SidenavComponent implements OnInit {
   @Input() sideNavShown = false;
-  @Output() filterOptions: EventEmitter<TaskFilterParams> = new EventEmitter<TaskFilterParams>();
-  form: FormGroup;
-  statusOptions: string[] = [
+  public form: FormGroup;
+  public statusOptions: string[] = [
     EnumStatus.all,
     EnumStatus.pending,
     EnumStatus.closed,
     EnumStatus.inProgress
   ];
-  importanceOptions: string[] = [
+  public importanceOptions: string[] = [
     EnumImportance.all,
     EnumImportance.minor,
     EnumImportance.normal,
     EnumImportance.critical
   ];
-  issueOptions: string[] = [
+  public issueOptions: string[] = [
     EnumIssue.oldest,
     EnumIssue.newest
   ];
@@ -39,7 +37,7 @@ export class SidenavComponent implements OnInit {
     this._initForm();
   }
 
-  handleFilterSubmit(): void {
+  public handleFilterSubmit(): void {
     if(this.form.value.importance === EnumImportance.all) {
       this.form.value.importance = '';
     }

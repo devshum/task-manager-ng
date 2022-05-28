@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { TasksService } from './../../../core/services/tasks/tasks.service';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';

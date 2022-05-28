@@ -1,11 +1,11 @@
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastComponent } from './containers/toast/toast.component';
+import { ToastComponent } from './components/toast/toast.component';
 import { MessageComponent } from './components/message/message.component';
 import { ToastService } from '../core/services/toast/toast.service';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { BurgerComponent } from './components/burger/burger.component';
+import { NavigationComponent } from '../module-tasks-dashboard/components/navigation/navigation.component';
+import { BurgerComponent } from '../module-tasks-dashboard/components/burger/burger.component';
 
 @NgModule({
   declarations: [
