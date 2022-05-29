@@ -1,5 +1,5 @@
 import { FilterOptionsService } from './../../../core/services/filter-options/filter-options.service';
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EnumStatus } from 'src/app/core/enums/task.statuses';
 import { EnumIssue } from 'src/app/core/enums/task.issue';
 import { EnumImportance } from 'src/app/core/enums/task.importances';
@@ -7,7 +7,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+  styleUrls: ['./sidenav.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidenavComponent implements OnInit {
   @Input() sideNavShown = false;

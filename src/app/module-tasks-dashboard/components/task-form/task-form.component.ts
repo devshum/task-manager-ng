@@ -1,7 +1,7 @@
 import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
 import { FormService } from './../../../core/services/form/form.service';
 import { TaskView } from './../../../core/models/task.interface';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { TaskFilterParams } from 'src/app/core/models/filter.interface';
 import { fadeCommon } from './../../../core/animations/animations';
 import { takeUntil } from 'rxjs/operators';
@@ -10,7 +10,8 @@ import { Subject } from 'rxjs';
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.scss'],
-  animations: [fadeCommon]
+  animations: [fadeCommon],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class TaskFormComponent implements OnInit, OnDestroy {
