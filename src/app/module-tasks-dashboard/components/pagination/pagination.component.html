@@ -2,14 +2,14 @@
   <button class="pagination__btn-prev" 
        (click)="prevPage()" 
        aria-label="button navigate a pagination"
-       [class.shown]="currentPage > 1" > page 
-       {{ currentPage > 1 ? currentPage - 1 : '' }}
+       [class.shown]="currentPage > 1"> 
+       page {{ currentPage > 1 ? currentPage - 1 : '' }}
   </button>
 
   <button class="pagination__btn-next" 
        (click)="nextPage()" 
        aria-label="button navigate a pagination"
-       [class.shown]="pages > 1 && currentPage < pages" > page 
-       {{ currentPage < pages ? currentPage + 1 : '' }}
+       [class.shown]="pages > 1 && currentPage < pages">
+       page {{ currentPage < pages ? currentPage + 1 : '' }}
   </button>
 </div>

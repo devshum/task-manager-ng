@@ -4,7 +4,7 @@ import { FormService } from '../../../core/services/form/form.service';
 import { TasksService } from '../../../core/services/tasks/tasks.service';
 import { PaginationService } from '../../../core/services/pagination/pagination.service';
 import { LoaderService } from '../../../core/services/loader/loader.service';
-import { Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { TasksDashboardService } from '../../../core/services/tasks-dashboard/tasks-dashboard.service';
 import { TaskView } from '../../../core/models/task.interface';
@@ -19,6 +19,7 @@ import { switchMap, takeUntil, tap } from 'rxjs/operators';
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
   styleUrls: ['./tasks-dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeDelay, fadeCommon],
 })
 
@@ -28,12 +29,11 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   public isSideNavShown: boolean;
   public currentPage: number;
   public pageLimit = 4;
-  public totalTasksPerPage: TaskView[];
   public totalTasks: number;
   public pages: number;
   public status: string;
   public importance: string;
-  public sort = 'issue';
+  public sort = 'createdAt';
   public loading$: Observable<boolean>;
 
   private _editToastData: any = {
@@ -58,6 +58,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     message: EnumToastDelete.message
   };
 
+  private _lastPageTasks: TaskView[];
   private _unsubscribe$: Subject<any> = new Subject();
 
   constructor(
@@ -68,7 +69,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     private _tasksService: TasksService,
     private _formService: FormService,
     private _sidenavService: SidenavService,
-    private _optionsService: FilterOptionsService
+    private _optionsService: FilterOptionsService,
+    private _cd: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -100,8 +102,8 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     .subscribe(query => {
       this.status = query.status;
       this.importance = query.importance;
-      this.sort = query.issue;
-      this._paginationService.initial();
+      this.sort = query.data;
+      this._paginationService.initialPage();
     });
 
     this._formService.form$
@@ -118,18 +120,25 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   }
 
   private _addTask(): void {
-    if(this.totalTasksPerPage.length === this.pageLimit && this.currentPage === this.pages) {
-      this._paginationService.next();
-    } else if (this.currentPage !== this.pages) {
-      this.currentPage = this.pages;
+    if(this.currentPage === this.pages && this.tasks.length === this.pageLimit) {
+      this._paginationService.nextPage();
     }
+
+    if(this.currentPage !== this.pages && this._lastPageTasks.length !== this.pageLimit) {
+      this._paginationService.changePage(this.pages);
+    }
+
+    if(this.currentPage !== this.pages && this._lastPageTasks.length === this.pageLimit) {
+      this._paginationService.changePage(this.pages + 1);
+    }
+
 
     this._toastService.add(this._addToastData);
   }
 
   private _removeTask(): void {
-    if(this.totalTasksPerPage.length === 1 && this.currentPage > 1) {
-      this._paginationService.prev();
+    if(this.tasks.length === 1 && this.currentPage > 1) {
+      this._paginationService.prevPage();
     }
 
     this._toastService.add(this._deleteToastData);
@@ -144,13 +153,17 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
     this._tasksDashboardService
       .getTasks(filterParams)
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe(data => {
-        this.tasks = data.result;
-        this.pages = Math.ceil(data.total / data.limit) || 1;
-        this.totalTasksPerPage = data.result;
-        this.totalTasks = data.total;
-        this._loaderService.end();
-      });
+      .pipe(
+        takeUntil(this._unsubscribe$),
+        tap(data => {
+          this.tasks = data.result;
+          this.pages = Math.ceil(data.total / data.limit) || 1;
+          this.totalTasks = data.total;
+          this._loaderService.end();
+          this._cd.detectChanges();
+        }),
+        switchMap(() => this._tasksDashboardService.getTasks({page: this.pages, limit: this.pageLimit})),
+      )
+      .subscribe(data => this._lastPageTasks = data.result);
   }
 }

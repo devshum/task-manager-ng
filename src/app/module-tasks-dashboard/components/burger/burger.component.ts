@@ -1,18 +1,21 @@
 import { NavbarService } from '../../../core/services/navbar/navbar.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-burger',
   templateUrl: './burger.component.html',
-  styleUrls: ['./burger.component.scss']
+  styleUrls: ['./burger.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class BurgerComponent implements OnInit, OnDestroy {
   public isNavbarOpened: boolean;
   private _unsubscribe$: Subject<any> = new Subject<any>();
 
-  constructor(private _navbarService: NavbarService) { }
+  constructor(
+    private _navbarService: NavbarService
+  ) { }
 
   ngOnInit(): void {
     this._navbarService.navbar$

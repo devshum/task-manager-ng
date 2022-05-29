@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { TasksService } from './../../../core/services/tasks/tasks.service';
 import { TasksDashboardService } from './../../../core/services/tasks-dashboard/tasks-dashboard.service';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { TaskView } from 'src/app/core/models/task.interface';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumImportance } from 'src/app/core/enums/task.importances';
@@ -12,7 +12,8 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent implements OnInit, OnDestroy {
   @Input() task: TaskView;
