@@ -17,6 +17,6 @@ export class FilterOptionsService {
   }
 
   public reset(): void {
-    this._filterOptions = {status: '', importance: '', issue: 'issue'};
+    this._filterOptions = {status: '', importance: '', data: 'createdAt'};
   }
 }

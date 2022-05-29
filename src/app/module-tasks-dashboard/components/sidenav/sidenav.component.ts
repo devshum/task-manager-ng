@@ -1,7 +1,7 @@
 import { FilterOptionsService } from './../../../core/services/filter-options/filter-options.service';
-import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EnumStatus } from 'src/app/core/enums/task.statuses';
-import { EnumIssue } from 'src/app/core/enums/task.issue';
+import { EnumData } from 'src/app/core/enums/task.data';
 import { EnumImportance } from 'src/app/core/enums/task.importances';
 import { FormGroup, FormBuilder } from '@angular/forms';
 @Component({
@@ -25,9 +25,9 @@ export class SidenavComponent implements OnInit {
     EnumImportance.normal,
     EnumImportance.critical
   ];
-  public issueOptions: string[] = [
-    EnumIssue.oldest,
-    EnumIssue.newest
+  public dataOptions: string[] = [
+    EnumData.oldest,
+    EnumData.newest
   ];
   constructor(
     private _fb: FormBuilder,
@@ -48,12 +48,12 @@ export class SidenavComponent implements OnInit {
     }
 
 
-    if(this.form.value.issue === EnumIssue.newest) {
-      this.form.value.issue = '-issue';
+    if(this.form.value.data === EnumData.newest) {
+      this.form.value.data = '-createdAt';
     }
 
-    if(this.form.value.issue === EnumIssue.oldest) {
-      this.form.value.issue = 'issue';
+    if(this.form.value.data === EnumData.oldest) {
+      this.form.value.data = 'createdAt';
     }
 
     this._optionsService.setOptions(this.form.value);
@@ -63,7 +63,7 @@ export class SidenavComponent implements OnInit {
     this.form.reset({
       status: [EnumStatus.all, []],
       importance: [EnumImportance.all, []],
-      issue: [EnumIssue.oldest, []]
+      data: [EnumData.oldest, []]
     });
 
     this._optionsService.reset();
@@ -75,7 +75,7 @@ export class SidenavComponent implements OnInit {
       {
         status: [EnumStatus.all, []],
         importance: [EnumImportance.all, []],
-        issue: [EnumIssue.oldest, []]
+        data: [EnumData.oldest, []]
       });
   }
 }
