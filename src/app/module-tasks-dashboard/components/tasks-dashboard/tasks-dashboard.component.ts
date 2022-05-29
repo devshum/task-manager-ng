@@ -115,6 +115,10 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     .subscribe(sidenavStatus => this.isSideNavShown = sidenavStatus);
   }
 
+  public trackItem(index: number, item: TaskView): number {
+    return index;
+  }
+
   ngOnDestroy(): void {
     this._unsubscribe$.next();
   }
