@@ -13,7 +13,7 @@
   >
    
     <app-task @fadeDelay
-              *ngFor="let task of tasks"
+              *ngFor="let task of tasks; trackBy: trackItem"
               class="tasks-board__task-wrap"
               [task]="task" 
               [sideNavShown]="isSideNavShown">

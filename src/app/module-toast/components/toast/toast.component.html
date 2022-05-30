@@ -2,7 +2,7 @@
   <app-message
     class="toast__message-wrap"
     @fadeDelay
-    *ngFor="let message of messages; let index = index" 
+    *ngFor="let message of messages; trackBy: trackItem; let index = index" 
     [message]="message"
     [index]="index"
     (onClose)="onMessageClose($event)"
