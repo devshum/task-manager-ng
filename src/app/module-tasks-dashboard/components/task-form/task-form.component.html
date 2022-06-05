@@ -38,16 +38,16 @@
       </div>
 
       <app-button class="task-form__button-wrap"
-                  [text]="!isFormShown ? 'Add new' : 'Hide form'"
+                  [text]="(isFormShown$ | async) ? 'Hide form' : 'Add new'"
                   (click)="toggleForm()"
                   [tasks]="tasks.length"
-                  [formShown]="isFormShown">
+                  [formShown]="isFormShown$ | async">
       </app-button>
     </div>
   </div>
  
   <app-form [tasks]="tasks"
-            [formShown]="isFormShown"
+            [formShown]="isFormShown$ | async"
             [btnLabel]="'Add'"
             [resetForm]="true"
             [sideNavShown]="isSideNavShown"></app-form>
