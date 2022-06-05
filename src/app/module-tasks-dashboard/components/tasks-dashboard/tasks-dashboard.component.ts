@@ -169,9 +169,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
         switchMap(() => this._tasksDashboardService.getTasks({page: this.pages, limit: this.pageLimit})),
       )
       .subscribe(data => {
-        if(this.pages > 1) {
-          this._lastPageTasks = data.result;
-        }
+        this._lastPageTasks = data.result;
       });
   }
 }
