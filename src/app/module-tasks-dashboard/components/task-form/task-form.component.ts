@@ -1,11 +1,9 @@
 import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
 import { FormService } from './../../../core/services/form/form.service';
 import { TaskView } from './../../../core/models/task.interface';
-import { Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { TaskFilterParams } from 'src/app/core/models/filter.interface';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { fadeCommon } from './../../../core/animations/animations';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
@@ -14,13 +12,11 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class TaskFormComponent implements OnInit, OnDestroy {
+export class TaskFormComponent implements OnInit {
   @Input() tasks: TaskView[] = [];
   @Input() totalTasks: number;
-  public isFormShown: boolean;
+  public isFormShown$: Observable<boolean>;
   public isSideNavShown = false;
-  filteredOptions: TaskFilterParams;
-  private _unsubscribe$: Subject<any> = new Subject<any>();
 
   constructor(
     private _formService: FormService,
@@ -32,9 +28,7 @@ export class TaskFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._formService.form$
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe(formStatus => this.isFormShown = formStatus);
+    this.isFormShown$ = this._formService.form$;
   }
 
   public toggleForm(): void {
@@ -43,9 +37,5 @@ export class TaskFormComponent implements OnInit, OnDestroy {
 
   public toggleSidenav(): void {
     this._sidenavService.toggleSidenav();
-  }
-
-  ngOnDestroy(): void {
-    this._unsubscribe$.next();
   }
 }

@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { LoaderService } from 'src/app/core/services/loader/loader.service';
-import { debounce, filter, takeUntil } from 'rxjs/operators';
-import { timer, Subject } from 'rxjs';
+import { debounce, filter, tap } from 'rxjs/operators';
+import { timer, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-preloader',
@@ -10,8 +10,7 @@ import { timer, Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PreloaderComponent implements OnInit {
-  @Input() load = true;
-  private _unsubscribe$: Subject<any> = new Subject<any>();
+  public load$: Observable<boolean>;
 
   constructor(
     private _loaderService: LoaderService,
@@ -19,13 +18,10 @@ export class PreloaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-     this._loaderService.loading$.pipe(
-      takeUntil(this._unsubscribe$),
+     this.load$ = this._loaderService.loading$.pipe(
       filter(load => load !== null),
-      debounce(load => load ? timer(0) : timer(500))
-    ).subscribe((isLoad: boolean) => {
-      this.load = isLoad;
-      this._cd.detectChanges();
-    });
+      debounce(load => load ? timer(0) : timer(500)),
+      tap(() => this._cd.detectChanges())
+    );
   }
 }

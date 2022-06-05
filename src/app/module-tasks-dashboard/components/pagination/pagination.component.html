@@ -1,4 +1,4 @@
-<div class="pagination">
+<div class="pagination" *ngIf="currentPage$ | async as currentPage">
   <button class="pagination__btn-prev" 
        (click)="prevPage()" 
        aria-label="button navigate a pagination"

@@ -35,8 +35,8 @@ export class ToastComponent implements OnInit {
     });
   }
 
-  public trackItem(index: number, item: ToastMessage): number {
-    return index;
+  public trackItem(index: number, item: ToastMessage): ToastMessage {
+    return item;
   }
 
   public add(messages: ToastMessage[]): void {

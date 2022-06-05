@@ -7,16 +7,16 @@ import { TaskFilterParams } from '../../models/filter.interface';
 })
 export class FilterOptionsService {
   public filter$: Subject<TaskFilterParams> = new Subject<TaskFilterParams>();
-  private _filterOptions: TaskFilterParams;
+  public filterOptions: TaskFilterParams;
 
   constructor() { }
 
   public setOptions(params: TaskFilterParams): void {
-    this._filterOptions = params;
-    this.filter$.next(this._filterOptions);
+    this.filterOptions = params;
+    this.filter$.next(this.filterOptions);
   }
 
   public reset(): void {
-    this._filterOptions = {status: '', importance: '', data: 'createdAt'};
+    this.filterOptions = {status: '', importance: '', data: 'createdAt'};
   }
 }

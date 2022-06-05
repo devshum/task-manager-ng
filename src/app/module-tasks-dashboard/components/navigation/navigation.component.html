@@ -1,4 +1,4 @@
-<nav class="navigation" [class.opened]="isNavbarOpened">
+<nav class="navigation" [class.opened]="isNavbarOpened$ | async">
   <div class="navigation__bg">&nbsp;</div>
 
   <ul class="navigation__links">
