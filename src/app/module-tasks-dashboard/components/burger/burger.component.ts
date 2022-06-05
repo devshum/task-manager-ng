@@ -1,7 +1,6 @@
 import { NavbarService } from '../../../core/services/navbar/navbar.service';
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-burger',
   templateUrl: './burger.component.html',
@@ -9,25 +8,18 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class BurgerComponent implements OnInit, OnDestroy {
-  public isNavbarOpened: boolean;
-  private _unsubscribe$: Subject<any> = new Subject<any>();
+export class BurgerComponent implements OnInit {
+  public isNavbarOpened$: Observable<boolean>;
 
   constructor(
     private _navbarService: NavbarService
   ) { }
 
   ngOnInit(): void {
-    this._navbarService.navbar$
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe(navbarStatus => this.isNavbarOpened = navbarStatus);
+    this.isNavbarOpened$ = this._navbarService.navbar$;
   }
 
   public toggleNavbar(): void {
     this._navbarService.toggleNavbar();
-  }
-
-  ngOnDestroy(): void {
-    this._unsubscribe$.next();
   }
 }

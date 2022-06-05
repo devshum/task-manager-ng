@@ -1,5 +1,5 @@
 <button class="burger" 
-        [class.opened]="isNavbarOpened" 
+        [class.opened]="isNavbarOpened$ | async" 
         (click)="toggleNavbar()"
         aria-label="button to open a menu">
   <span>&nbsp;</span>
