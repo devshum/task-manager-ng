@@ -1,7 +1,6 @@
 import { PaginationService } from './../../../core/services/pagination/pagination.service';
-import { Component, Input, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Component, Input, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pagination',
@@ -9,10 +8,9 @@ import { Subject } from 'rxjs';
   styleUrls: ['./pagination.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PaginationComponent implements OnInit, OnDestroy {
+export class PaginationComponent implements OnInit {
   @Input() pages: number;
-  public currentPage: number;
-  private _unsubscribe$: Subject<any> = new Subject<any>();
+  public currentPage$: Observable<number>;
 
   constructor(
     private _paginationService: PaginationService,
@@ -20,12 +18,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this._paginationService.currentPage$
-    .pipe(takeUntil(this._unsubscribe$))
-    .subscribe(page => {
-      this.currentPage = page;
-      this._cd.detectChanges();
-    });
+    this.currentPage$ = this._paginationService.currentPage$;
   }
 
   public prevPage(): void {
@@ -34,9 +27,5 @@ export class PaginationComponent implements OnInit, OnDestroy {
 
   public nextPage(): void {
     this._paginationService.nextPage();
-  }
-
-  ngOnDestroy(): void {
-    this._unsubscribe$.next();
   }
 }
