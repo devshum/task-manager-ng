@@ -35,10 +35,6 @@ export class ToastComponent implements OnInit {
     });
   }
 
-  public trackItem(index: number, item: ToastMessage): number {
-    return index;
-  }
-
   public add(messages: ToastMessage[]): void {
     this.messages = this.messages ? [...this.messages, ...messages] : [...messages];
     this._cd.markForCheck();
