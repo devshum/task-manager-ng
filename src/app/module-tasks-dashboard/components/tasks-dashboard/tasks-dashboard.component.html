@@ -1,6 +1,6 @@
 <div class="tasks-board" @fadeCommon
                          *ngIf="tasks !== undefined"  
-                         [ngClass]="isSideNavShown ? 'slided' : 'non-slided'">
+                         [ngClass]="(isSideNavShown$ | async) ? 'slided' : 'non-slided'">
   <app-task-form
     [tasks]="tasks"
     [totalTasks]="totalTasks"
@@ -9,14 +9,14 @@
   <div
     class="tasks-board__wrap"
     *ngIf="tasks.length > 0"
-    [ngClass]="isFormShown ? 'translated' : 'not-translated'"
+    [ngClass]="(isFormShown$ | async) ? 'translated' : 'not-translated'"
   >
    
     <app-task @fadeDelay
               *ngFor="let task of tasks; trackBy: trackItem"
               class="tasks-board__task-wrap"
               [task]="task" 
-              [sideNavShown]="isSideNavShown">
+              [sideNavShown]="(isSideNavShown$ | async)">
     </app-task>
   </div>
 
@@ -34,7 +34,7 @@
 <app-toast></app-toast>
 
 <app-sidenav class="sidenav-wrap"
-             [ngClass]="isSideNavShown ? 'slided' : 'non-slided'">
+             [ngClass]="(isSideNavShown$ | async) ? 'slided' : 'non-slided'">
 </app-sidenav>
              
 <app-navigation *ngIf="tasks !== undefined"></app-navigation>
