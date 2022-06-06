@@ -1,3 +1,4 @@
+import { TaskFilterParams } from './../../../core/models/filter.interface';
 import { FilterOptionsService } from '../../../core/services/filter-options/filter-options.service';
 import { SidenavService } from '../../../core/services/sidenav/sidenav.service';
 import { FormService } from '../../../core/services/form/form.service';
@@ -15,6 +16,7 @@ import { EnumToastDelete } from 'src/app/core/enums/toast.delete';
 import { EnumToastAdd } from 'src/app/core/enums/toast.add';
 import { fadeDelay, fadeCommon } from 'src/app/core/animations/animations';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { Toast } from 'src/app/core/models/toast.interface';
 @Component({
   selector: 'app-tasks-dashboard',
   templateUrl: './tasks-dashboard.component.html',
@@ -25,8 +27,8 @@ import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 export class TaskDashboardComponent implements OnInit, OnDestroy {
   public tasks: TaskView[];
-  public isFormShown: boolean;
-  public isSideNavShown: boolean;
+  public isFormShown$: Observable<boolean>;
+  public isSideNavShown$: Observable<boolean>;
   public currentPage: number;
   public pageLimit = 4;
   public totalTasks: number;
@@ -75,7 +77,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._tasksService.tasks$.pipe(
-      tap(eventAction => {
+      tap((eventAction: string) => {
         if(eventAction === 'add') {
           this._addTask();
         } else if(eventAction === 'delete') {
@@ -84,8 +86,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
           this._editTask();
         }
       }),
-      switchMap(() => this._paginationService.currentPage$),
-      tap((currentPage: number) => this.currentPage = currentPage),
       takeUntil(this._unsubscribe$)
     ).subscribe(() => {
       this._getTasksList({
@@ -97,26 +97,36 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       });
     });
 
+    this._paginationService.currentPage$.pipe(
+      takeUntil(this._unsubscribe$)
+    ).subscribe((currentPage: number) => {
+      this.currentPage = currentPage;
+
+      this._getTasksList({
+        status: this.status,
+        importance: this.importance,
+        sort: this.sort,
+        page: this.currentPage,
+        limit: this.pageLimit
+      });
+    });
+
     this._optionsService.filter$
     .pipe(takeUntil(this._unsubscribe$))
-    .subscribe(query => {
+    .subscribe((query: TaskFilterParams) => {
       this.status = query.status;
       this.importance = query.importance;
-      this.sort = query.data;
+      this.sort = query.sort;
       this._paginationService.initialPage();
     });
 
-    this._formService.form$
-    .pipe(takeUntil(this._unsubscribe$))
-    .subscribe(formStatus => this.isFormShown = formStatus);
+    this.isFormShown$ = this._formService.form$;
 
-    this._sidenavService.sidenav$
-    .pipe(takeUntil(this._unsubscribe$))
-    .subscribe(sidenavStatus => this.isSideNavShown = sidenavStatus);
+    this.isSideNavShown$ = this._sidenavService.sidenav$;
   }
 
-  public trackItem(index: number, item: TaskView): number {
-    return index;
+  public trackItem(index: number, item: TaskView): TaskView {
+    return item;
   }
 
   ngOnDestroy(): void {
