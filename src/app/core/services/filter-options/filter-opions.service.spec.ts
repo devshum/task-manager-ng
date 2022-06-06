@@ -14,18 +14,18 @@ describe('FilterOptionsService', () => {
   });
 
   it('should pass filter data', () => {
-    service.setOptions({status: 'pending', importance: 'normal', data: '-createdAt'});
-    expect(service.filterOptions).toEqual({status: 'pending', importance: 'normal', data: '-createdAt'});
+    service.setOptions({status: 'pending', importance: 'normal', sort: '-createdAt'});
+    expect(service.filterOptions).toEqual({status: 'pending', importance: 'normal', sort: '-createdAt'});
   });
 
   it('should pass filter data into subject', () => {
     const spyFilter = spyOn(service.filter$, 'next');
-    service.filter$.next({status: 'pending', importance: 'normal', data: '-createdAt'});
-    expect(spyFilter).toHaveBeenCalledWith({status: 'pending', importance: 'normal', data: '-createdAt'});
+    service.filter$.next({status: 'pending', importance: 'normal', sort: '-createdAt'});
+    expect(spyFilter).toHaveBeenCalledWith({status: 'pending', importance: 'normal', sort: '-createdAt'});
   });
 
   it('should reset filter', () => {
     service.reset();
-    expect(service.filterOptions).toEqual({status: '', importance: '', data: 'createdAt'});
+    expect(service.filterOptions).toEqual({status: '', importance: '', sort: 'createdAt'});
   });
 });

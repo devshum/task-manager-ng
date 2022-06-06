@@ -37,6 +37,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   public importance: string;
   public sort = 'createdAt';
   public loading$: Observable<boolean>;
+  public lastPageTasks: TaskView[];
 
   private _editToastData: any = {
     id: EnumToastEdit.id,
@@ -60,7 +61,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     message: EnumToastDelete.message
   };
 
-  private _lastPageTasks: TaskView[];
   private _unsubscribe$: Subject<any> = new Subject();
 
   constructor(
@@ -76,18 +76,11 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this._tasksService.tasks$.pipe(
-      tap((eventAction: string) => {
-        if(eventAction === 'add') {
-          this._addTask();
-        } else if(eventAction === 'delete') {
-          this._removeTask();
-        } else if(eventAction === 'edit') {
-          this._editTask();
-        }
-      }),
+    this._paginationService.currentPage$.pipe(
       takeUntil(this._unsubscribe$)
-    ).subscribe(() => {
+    ).subscribe((currentPage: number) => {
+      this.currentPage = currentPage;
+
       this._getTasksList({
         status: this.status,
         importance: this.importance,
@@ -97,11 +90,18 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
       });
     });
 
-    this._paginationService.currentPage$.pipe(
+    this._tasksService.tasks$.pipe(
+      tap((eventAction: string) => {
+        if(eventAction === 'add') {
+          this. addTask();
+        } else if(eventAction === 'delete') {
+          this. removeTask();
+        } else if(eventAction === 'edit') {
+          this. editTask();
+        }
+      }),
       takeUntil(this._unsubscribe$)
-    ).subscribe((currentPage: number) => {
-      this.currentPage = currentPage;
-
+    ).subscribe(() => {
       this._getTasksList({
         status: this.status,
         importance: this.importance,
@@ -126,6 +126,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   }
 
   public trackItem(index: number, item: TaskView): TaskView {
+    console.log(index, item);
     return item;
   }
 
@@ -133,16 +134,16 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     this._unsubscribe$.next();
   }
 
-  private _addTask(): void {
+  public addTask(): void {
     if(this.currentPage === this.pages && this.tasks.length === this.pageLimit) {
       this._paginationService.nextPage();
     }
 
-    if(this.currentPage !== this.pages && this._lastPageTasks.length !== this.pageLimit) {
+    if(this.currentPage !== this.pages && this.lastPageTasks.length !== this.pageLimit) {
       this._paginationService.changePage(this.pages);
     }
 
-    if(this.currentPage !== this.pages && this._lastPageTasks.length === this.pageLimit) {
+    if(this.currentPage !== this.pages && this.lastPageTasks.length === this.pageLimit) {
       this._paginationService.changePage(this.pages + 1);
     }
 
@@ -150,7 +151,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     this._toastService.add(this._addToastData);
   }
 
-  private _removeTask(): void {
+  public removeTask(): void {
     if(this.tasks.length === 1 && this.currentPage > 1) {
       this._paginationService.prevPage();
     }
@@ -158,7 +159,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
     this._toastService.add(this._deleteToastData);
   }
 
-  private _editTask(): void {
+  public editTask(): void {
     this._toastService.add(this._editToastData);
   }
 
@@ -179,7 +180,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
         switchMap(() => this._tasksDashboardService.getTasks({page: this.pages, limit: this.pageLimit})),
       )
       .subscribe(data => {
-        this._lastPageTasks = data.result;
+        this.lastPageTasks = data.result;
       });
   }
 }
