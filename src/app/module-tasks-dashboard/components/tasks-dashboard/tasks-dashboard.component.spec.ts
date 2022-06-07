@@ -75,9 +75,36 @@ describe('TaskDashboardComponent', () => {
   });
 
   it('should return  index', () => {
-    const value = component.trackItem(5, {} as any);
+    const value = component.trackItem(
+      0,
+      {
+        createdAt: '2022-06-05T09:44:27.442Z',
+        date: '2022-06-12',
+        description: null,
+        finishedAt: null,
+        id: '629c7afb3733ef0016150dc2',
+        importance: 'critical',
+        issue: 'D-2',
+        name: '1',
+        status: 'pending',
+        updatedAt: '2022-06-05T09:49:12.720Z'
+      } as any
+    );
 
-    expect(value).toEqual(5);
+    expect(value).toEqual(
+      {
+        createdAt: '2022-06-05T09:44:27.442Z',
+        date: '2022-06-12',
+        description: null,
+        finishedAt: null,
+        id: '629c7afb3733ef0016150dc2',
+        importance: 'critical',
+        issue: 'D-2',
+        name: '1',
+        status: 'pending',
+        updatedAt: '2022-06-05T09:49:12.720Z'
+      } as any
+    );
   });
 
   it('should add toast message on editTask', () => {
@@ -145,7 +172,7 @@ describe('TaskDashboardComponent', () => {
   it('should recieve query', () => {
     const optionsService = TestBed.inject(FilterOptionsService);
 
-    optionsService.filter$.next({status: 'pending', importance: 'normal', data: '-createdAt'});
+    optionsService.filter$.next({status: 'pending', importance: 'normal', sort: '-createdAt'});
 
     expect(component.status).toEqual('pending');
     expect(component.importance).toEqual('normal');
