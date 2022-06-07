@@ -38,6 +38,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   public sort = 'createdAt';
   public loading$: Observable<boolean>;
   public lastPageTasks: TaskView[];
+  public offset: number;
 
   private _editToastData: any = {
     id: EnumToastEdit.id,
@@ -126,7 +127,6 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   }
 
   public trackItem(index: number, item: TaskView): TaskView {
-    console.log(index, item);
     return item;
   }
 
@@ -135,19 +135,7 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
   }
 
   public addTask(): void {
-    if(this.currentPage === this.pages && this.tasks.length === this.pageLimit) {
-      this._paginationService.nextPage();
-    }
-
-    if(this.currentPage !== this.pages && this.lastPageTasks.length !== this.pageLimit) {
-      this._paginationService.changePage(this.pages);
-    }
-
-    if(this.currentPage !== this.pages && this.lastPageTasks.length === this.pageLimit) {
-      this._paginationService.changePage(this.pages + 1);
-    }
-
-
+    this._paginationService.changePage(this.offset);
     this._toastService.add(this._addToastData);
   }
 
@@ -168,19 +156,27 @@ export class TaskDashboardComponent implements OnInit, OnDestroy {
 
     this._tasksDashboardService
       .getTasks(filterParams)
-      .pipe(
-        takeUntil(this._unsubscribe$),
-        tap(data => {
-          this.tasks = data.result;
-          this.pages = Math.ceil(data.total / data.limit) || 1;
-          this.totalTasks = data.total;
-          this._loaderService.end();
-          this._cd.detectChanges();
-        }),
-        switchMap(() => this._tasksDashboardService.getTasks({page: this.pages, limit: this.pageLimit})),
-      )
+      .pipe(takeUntil(this._unsubscribe$))
       .subscribe(data => {
-        this.lastPageTasks = data.result;
+        this.tasks = data.result;
+        this.pages = Math.ceil(data.total / data.limit) || 1;
+        this.totalTasks = data.total;
+
+        const maxCounts = this.pages * data.limit;
+        const diff = maxCounts - this.totalTasks;
+
+        this.offset = this.currentPage;
+
+        if (diff >= 0) {
+          if (diff === 0) {
+            this.offset = this.pages + 1;
+          } else {
+            this.offset = this.pages;
+          }
+        }
+
+        this._loaderService.end();
+        this._cd.detectChanges();
       });
   }
 }
